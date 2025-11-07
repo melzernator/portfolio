@@ -7,13 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "marvin":"echo 'I am Marvin, your personal assistant.'",
+    "marvin": "echo 'I am Marvin, your personal assistant.'",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
