@@ -99,17 +99,23 @@ export default function Home() {
   return (
     <main
       style={{
+        width: '100vw',
+        height: '100vh',
         minHeight: '100vh',
+        minWidth: '100vw',
+        overflow: 'hidden',
+        margin: 0,
+        padding: 0,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 0,
+        boxSizing: 'border-box',
       }}
     >
       <div
         style={{
-          width: '100vw',
-          height: 'calc(100vh - 56px)', // fits below navbar, no scroll
+          width: 'calc(100vw - 32px)',
+          height: 'calc(100vh - 32px)',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gridTemplateRows: '1fr 1fr',
