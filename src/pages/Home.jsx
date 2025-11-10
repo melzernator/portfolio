@@ -1,15 +1,40 @@
-import { useState, useRef, useEffect } from 'react'
-  // Disable scrolling on Home mount
-  useEffect(() => {
-    const original = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = original;
-    };
-  }, []);
+import { useState, useRef } from 'react'
 import '../App.css'
 
+
 function ImageFrame({ src, onChange, placeholder }) {
+  if (src) {
+    // Show image, but do not allow click to open file picker
+    return (
+      <div
+        style={{
+          flex: 1,
+          minHeight: 0,
+          display: 'block',
+          borderRadius: 12,
+          overflow: 'hidden',
+          background: '#f3f3f3',
+          position: 'relative',
+          minHeight: 120,
+          width: '100%',
+          height: '100%',
+          cursor: 'default',
+        }}
+      >
+        <img
+          src={src}
+          alt="frame"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+          }}
+        />
+      </div>
+    );
+  }
+  // If no image, allow upload
   return (
     <label
       style={{
@@ -21,8 +46,9 @@ function ImageFrame({ src, onChange, placeholder }) {
         background: '#f3f3f3',
         cursor: 'pointer',
         position: 'relative',
-        aspectRatio: '4 / 3',
         minHeight: 120,
+        width: '100%',
+        height: '100%',
       }}
     >
       <input
@@ -31,35 +57,22 @@ function ImageFrame({ src, onChange, placeholder }) {
         onChange={onChange}
         style={{ display: 'none' }}
       />
-      {src ? (
-        <img
-          src={src}
-          alt="frame"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
-        />
-      ) : (
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#666',
-            padding: 12,
-            textAlign: 'center',
-          }}
-        >
-          {placeholder}
-        </div>
-      )}
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#666',
+          padding: 12,
+          textAlign: 'center',
+        }}
+      >
+        {placeholder}
+      </div>
     </label>
-  )
+  );
 }
 
 export default function Home() {
