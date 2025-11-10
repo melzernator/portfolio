@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home.jsx'
+import Navigationbar from './pages/Navigationbar.jsx'
 
 // Small inline components so routes reference valid elements
 function About() {
@@ -26,11 +27,14 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="*" element={<NotFound />} /> {/* fallback route */}
-    </Routes>
+    <>
+      <Navigationbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} /> {/* fallback route */}
+      </Routes>
+    </>
   )
 }
 
