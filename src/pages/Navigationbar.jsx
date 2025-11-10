@@ -41,7 +41,7 @@ function Navigationbar() {
 
   return (
     <nav style={navBarStyle} aria-label="Primary">
-      <div style={nameStyle}>Your Name</div>
+      <div style={nameStyle}>marvin melzer</div>
       <div style={linksStyle}>
         <NavLink
           to="/"

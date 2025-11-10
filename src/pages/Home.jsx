@@ -103,18 +103,18 @@ export default function Home() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 20,
+        padding: 0,
       }}
     >
       <div
         style={{
-          width: '100%',
-          maxWidth: 'calc(100% - 40px)', // small horizontal margin
-          height: 'calc(100vh - 40px)', // small vertical margin
+          width: '100vw',
+          height: 'calc(100vh - 56px)', // fits below navbar, no scroll
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gridTemplateRows: '1fr 1fr',
           gap: 16,
+          boxSizing: 'border-box',
         }}
       >
         {[0, 1, 2, 3].map((i) => (
