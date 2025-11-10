@@ -35,6 +35,7 @@ md file very explicit: buttons, pages, etc maybe using figma
 
 use claude
 # ideas
+add easter eggs. pleeeas for my brather
 only four visible projects
     they change over time 
     press a button to change to next one
