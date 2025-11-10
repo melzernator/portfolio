@@ -1,4 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+  // Disable scrolling on Home mount
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, []);
 import '../App.css'
 
 function ImageFrame({ src, onChange, placeholder }) {
@@ -55,18 +63,25 @@ function ImageFrame({ src, onChange, placeholder }) {
 }
 
 export default function Home() {
-  const [images, setImages] = useState([null, null, null, null])
+  // Default images from public folder
+  const defaultImages = [
+    '/braun_deskfan.png',
+    '/breathconductor.png',
+    '/fens_render.png',
+    '/gaia.png',
+  ];
+  const [images, setImages] = useState([null, null, null, null]);
 
   const handleFile = (index) => (e) => {
-    const file = e.target.files && e.target.files[0]
-    if (!file) return
-    const url = URL.createObjectURL(file)
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
     setImages((prev) => {
-      const next = [...prev]
-      next[index] = url
-      return next
-    })
-  }
+      const next = [...prev];
+      next[index] = url;
+      return next;
+    });
+  };
 
   return (
     <main
@@ -89,15 +104,15 @@ export default function Home() {
           gap: 16,
         }}
       >
-        {images.map((src, i) => (
+        {[0, 1, 2, 3].map((i) => (
           <ImageFrame
             key={i}
-            src={src}
+            src={images[i] || defaultImages[i]}
             onChange={handleFile(i)}
             placeholder={`Click to add image ${i + 1}`}
           />
         ))}
       </div>
     </main>
-  )
+  );
 }
