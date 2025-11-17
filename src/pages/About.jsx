@@ -27,11 +27,16 @@ export default function About() {
 
           <div style={{ textAlign: 'justify', flex: 1 }}>
             <p style={{ marginBottom: '16px' }}>
-              <b>Einfach</b> is an independent design studio based in Boulder Colorado. Established in 2025 by Marvin Melzer I design consumer products that are useful and human-centered. With a background in engineering and hands-on prototyping, I bring concepts to production-ready reality. I am drawn to multigenerational and meaningful products steering away from short lasting trends and profit driven motives.
+              <strong>Einfach</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer. I design consumer products with a focus on simplicity and purpose, stripping away the unnecessary to reveal what truly matters. Every project is guided by rigorous attention to detail and the principle that less is more.
+            </p>
+<p style={{ marginBottom: '16px' }}>
+              {/* intentional empty line for spacing */}
             </p>
             <p style={{ marginBottom: '16px' }}>
-              I focus deeply on one meaningful project at a time from concept to finished object. Einfachs core value is to reduce. less is more
+              My engineering foundation and hands-on prototyping practice translate ideas into production-ready realities. I focus deeply on one meaningful project at a time, prioritizing multigenerational, human-centered design over short-lived trends.
             </p>
+
+            
           </div>
         </div>
       </article>

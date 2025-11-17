@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
+import { } from 'react'
 import '../App.css'
 
 function ProjectCard({ project }) {
@@ -27,5 +28,5 @@ export default function Home() {
         </div>
       </div>
     </main>
-  );
+  )
 }

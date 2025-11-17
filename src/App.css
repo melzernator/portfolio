@@ -104,6 +104,10 @@ body {
   transition: transform 200ms ease, opacity 200ms ease; /* Smooth hover effects */
 }
 
+/* Ensure button is visible on small screens */
+@media (max-width: 700px) {
+}
+
 /* Hover effect on card - shrinks and fades */
 .project-card:hover {
   transform: scale(0.98); /* Shrinks to 98% size */
