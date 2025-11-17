@@ -40,7 +40,7 @@ function Navigationbar() {
   return (
     <nav style={navBarStyle} aria-label="Primary">
       <NavLink to="/" style={{ ...nameStyle, textDecoration: 'none', color: '#111' }}>
-        Marvin Melzer
+        Einfach
       </NavLink>
       <div style={linksStyle}>
         <NavLink

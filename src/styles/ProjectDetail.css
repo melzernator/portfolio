@@ -75,48 +75,7 @@
   margin-bottom: 8px;
   color: #333;
 }
-
-.related-projects {
-  margin-top: 80px;
-  padding-top: 40px;
-  border-top: 1px solid #eee;
-}
-
-.related-projects h2 {
-  margin-bottom: 24px;
-  font-size: 1.25rem;
-}
-
-.related-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.related-item {
-  display: block;
-  text-decoration: none;
-  color: #000;
-  transition: opacity 200ms ease;
-}
-
-.related-item:hover {
-  opacity: 0.7;
-}
-
-.related-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.related-item h3 {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.4;
-}
+/* Related projects section removed */
 
 @media (max-width: 600px) {
   .project-detail {

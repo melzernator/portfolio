@@ -1,11 +1,10 @@
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import { getProjectBySlug, projects } from '../data/projects'
+import { useParams, Link } from 'react-router-dom'
+import { getProjectBySlug } from '../data/projects'
 import '../styles/ProjectDetail.css'
 
 export default function ProjectDetail() {
   const { slug } = useParams()
   const project = getProjectBySlug(slug)
-  const navigate = useNavigate()
 
   if (!project) {
     return (
@@ -16,8 +15,6 @@ export default function ProjectDetail() {
     )
   }
 
-  // Get related projects (other projects)
-  const relatedProjects = projects.filter(p => p.id !== project.id).slice(0, 2)
 
   return (
     <main className="project-detail">
@@ -86,20 +83,7 @@ export default function ProjectDetail() {
           </section>
         )}
 
-        {/* Related projects */}
-        {relatedProjects.length > 0 && (
-          <section className="related-projects">
-            <h2>You may also like</h2>
-            <div className="related-grid">
-              {relatedProjects.map((p) => (
-                <Link key={p.id} to={`/work/${p.slug}`} className="related-item">
-                  <img src={p.image} alt={p.title} />
-                  <h3>{p.title} {p.year}</h3>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* Related projects removed */}
       </article>
 
       {/* Back to work link */}
