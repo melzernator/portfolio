@@ -1,47 +1,68 @@
 export default function About() {
   return (
     <main style={{ maxWidth: '900px', margin: '0 auto', padding: '120px 24px 60px' }}>
-      <article style={{ lineHeight: 1.6, fontSize: '1rem', color: '#333' }}>
-        <h1 style={{ marginBottom: '32px', fontSize: '2.5rem' }}>About</h1>
+      <article style={{ lineHeight: 1.8, fontSize: '1rem', color: '#333' }}>
+        <div style={{ marginBottom: '60px' }}>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '24px', lineHeight: 1.4 }}>
+            Inventor - Minimalist - Designer
+          </h1>
+          <p style={{ marginBottom: '16px' }}>
+            I design consumer products that are useful and human-centered. With a background in engineering and hands-on prototyping, I bring concepts to production-ready reality. I am drawn to multigenerational and meaningful products steering away from short lasting trends and profit driven motives.
+          </p>
+          <p style={{ marginBottom: '16px' }}>
+            I thrive in clean, ordered studios as they enhance my creative output. There I can focus deeply on one meaningful project at a time from concept to finished object.
+          </p>
+          <p>
+            Studying Creative Technology & Design at CU Boulder, I'm available for industrial design or prototyping roles.
+          </p>
+        </div>
 
         <section style={{ marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '1.25rem', marginBottom: '12px' }}>Hi, I'm Marvin</h2>
-          <p>
-            I'm a designer and maker focused on creating thoughtful, minimal products that connect people to technology in meaningful ways.
-          </p>
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '16px' }}>Core Skills</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            <div>
+              <p style={{ fontWeight: 600, marginBottom: '8px', fontSize: '0.95rem' }}>Generating ideas</p>
+              <p style={{ margin: 0, fontSize: '0.95rem', color: '#666' }}>hand sketching · 3D modeling</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 600, marginBottom: '8px', fontSize: '0.95rem' }}>attention to detail</p>
+              <p style={{ margin: 0, fontSize: '0.95rem', color: '#666' }}>Communicating ideas</p>
+            </div>
+            <div style={{ gridColumn: '1 / -1' }}>
+              <p style={{ fontWeight: 600, marginBottom: '8px', fontSize: '0.95rem' }}>Making</p>
+              <p style={{ margin: 0, fontSize: '0.95rem', color: '#666' }}>CNC · 3D Printing · Woodworking · Metalworking · Electronics</p>
+            </div>
+          </div>
         </section>
 
-        <section style={{ marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '1.25rem', marginBottom: '12px' }}>What I Do</h2>
-          <p>
-            I work across design thinking, 3D modeling, prototyping, and physical computing. My projects explore the intersection of aesthetics, functionality, and human experience.
-          </p>
-          <p>
-            Whether it's reimagining classic products, building interactive installations, or creating tools that enhance everyday life, I believe good design should be intuitive and beautiful.
-          </p>
-        </section>
+        <div style={{ display: 'flex', gap: '24px', marginBottom: '60px' }}>
+          <a 
+            href="https://acrobat.adobe.com/id/urn:aaid:sc:EU:c0026edf-043d-40d6-82e1-9a900d4af80c" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: '#000', textDecoration: 'underline', fontSize: '0.95rem' }}
+          >
+            CV
+          </a>
+          <a 
+            href="https://www.linkedin.com/in/marvin-melzer/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: '#000', textDecoration: 'underline', fontSize: '0.95rem' }}
+          >
+            LinkedIn
+          </a>
+        </div>
 
-        <section style={{ marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '1.25rem', marginBottom: '12px' }}>Skills</h2>
-          <ul style={{ paddingLeft: '20px' }}>
-            <li>Product Design & Ideation</li>
-            <li>3D CAD & Modeling</li>
-            <li>Rendering & Visualization</li>
-            <li>Prototyping & 3D Printing</li>
-            <li>Electronics & Arduino</li>
-            <li>Web Design & Development</li>
-          </ul>
-        </section>
+        <div style={{ marginBottom: '40px' }}>
+          <p style={{ fontSize: '0.85rem', color: '#999', fontStyle: 'italic' }}>working everyday to get better at sketching</p>
+        </div>
 
-        <section>
-          <h2 style={{ fontSize: '1.25rem', marginBottom: '12px' }}>Get in Touch</h2>
-          <p>
-            Interested in working together? Drop me a line at{' '}
-            <a href="mailto:marvin@melzer.org" style={{ color: '#000', textDecoration: 'underline' }}>
-              marvin@melzer.org
-            </a>
-          </p>
-        </section>
+        <p style={{ fontSize: '0.95rem' }}>
+          <a href="mailto:marvin@melzer.org" style={{ color: '#000', textDecoration: 'none' }}>
+            marvin@melzer.org
+          </a>
+        </p>
       </article>
     </main>
   )
