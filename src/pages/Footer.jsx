@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
   return (
     <footer style={{
-      borderTop: '1px solid #eee',
       padding: '40px 24px',
       textAlign: 'center',
       fontSize: '0.9rem',

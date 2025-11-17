@@ -22,7 +22,6 @@ function Navigationbar() {
     zIndex: 50,
     background: 'rgba(255,255,255,0.98)',
     boxSizing: 'border-box',
-    borderBottom: '1px solid #f0f0f0',
   }
 
   const nameStyle = {

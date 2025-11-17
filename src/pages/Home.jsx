@@ -24,7 +24,6 @@ export default function Home() {
   return (
     <main className="work-main">
       <div className="work-container">
-        <h1 className="work-heading">Work</h1>
         <div className="work-grid">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
