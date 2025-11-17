@@ -1,16 +1,14 @@
 import { NavLink } from 'react-router-dom'
 
 function Navigationbar() {
-  // base styles for links
   const baseLink = {
-    color: '#000', // black
+    color: '#000',
     textDecoration: 'none',
     transition: 'font-size 120ms ease, opacity 120ms ease',
     display: 'inline-block',
     lineHeight: 1,
   }
 
-  // container fixed to top, full width, flex row
   const navBarStyle = {
     position: 'fixed',
     top: 0,
@@ -22,44 +20,49 @@ function Navigationbar() {
     alignItems: 'center',
     padding: '12px 24px',
     zIndex: 50,
-    background: 'rgba(255,255,255,0.95)',
+    background: 'rgba(255,255,255,0.98)',
     boxSizing: 'border-box',
+    borderBottom: '1px solid #f0f0f0',
   }
 
   const nameStyle = {
     fontWeight: 700,
-    fontSize: '1.2rem',
+    fontSize: '1rem',
     color: '#111',
     letterSpacing: '0.02em',
   }
 
   const linksStyle = {
     display: 'flex',
-    gap: 16,
+    gap: 24,
     alignItems: 'center',
   }
 
   return (
     <nav style={navBarStyle} aria-label="Primary">
-      <div style={nameStyle}>marvin melzer</div>
+      <NavLink to="/" style={{ ...nameStyle, textDecoration: 'none', color: '#111' }}>
+        Marvin Melzer
+      </NavLink>
       <div style={linksStyle}>
         <NavLink
           to="/"
           end
           style={({ isActive }) => ({
             ...baseLink,
-            fontSize: isActive ? '1.25rem' : '0.95rem', // active larger
-            opacity: isActive ? 1 : 0.85,
+            fontSize: isActive ? '1rem' : '0.95rem',
+            opacity: isActive ? 1 : 0.6,
+            fontWeight: isActive ? 600 : 400,
           })}
         >
-          Home
+          Work
         </NavLink>
         <NavLink
           to="/about"
           style={({ isActive }) => ({
             ...baseLink,
-            fontSize: isActive ? '1.25rem' : '0.95rem', // active larger
-            opacity: isActive ? 1 : 0.85,
+            fontSize: isActive ? '1rem' : '0.95rem',
+            opacity: isActive ? 1 : 0.6,
+            fontWeight: isActive ? 600 : 400,
           })}
         >
           About

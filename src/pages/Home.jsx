@@ -1,136 +1,35 @@
-import { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { projects } from '../data/projects'
 import '../App.css'
 
-
-function ImageFrame({ src, onChange, placeholder }) {
-  if (src) {
-    // Show image, but do not allow click to open file picker
-    return (
-      <div
-        style={{
-          flex: 1,
-          minHeight: 0,
-          display: 'block',
-          borderRadius: 12,
-          overflow: 'hidden',
-          background: '#f3f3f3',
-          position: 'relative',
-          minHeight: 120,
-          width: '100%',
-          height: '100%',
-          cursor: 'default',
-        }}
-      >
-        <img
-          src={src}
-          alt="frame"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
-        />
-      </div>
-    );
-  }
-  // If no image, allow upload
+function ProjectCard({ project }) {
   return (
-    <label
-      style={{
-        flex: 1,
-        minHeight: 0,
-        display: 'block',
-        borderRadius: 12,
-        overflow: 'hidden',
-        background: '#f3f3f3',
-        cursor: 'pointer',
-        position: 'relative',
-        minHeight: 120,
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      <input
-        type="file"
-        accept="image/*"
-        onChange={onChange}
-        style={{ display: 'none' }}
-      />
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#666',
-          padding: 12,
-          textAlign: 'center',
-        }}
-      >
-        {placeholder}
+    <Link to={`/work/${project.slug}`} className="project-card-link">
+      <div className="project-card">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="project-card-image"
+        />
+        <div className="project-card-info">
+          <h3 className="project-card-title">{project.title}</h3>
+          <p className="project-card-year">{project.year}</p>
+        </div>
       </div>
-    </label>
+    </Link>
   );
 }
 
 export default function Home() {
-  // Default images from public folder
-  const defaultImages = [
-    '/braun_deskfan.png',
-    '/breathconductor.png',
-    '/fens_render.png',
-    '/gaia.png',
-  ];
-  const [images, setImages] = useState([null, null, null, null]);
-
-  const handleFile = (index) => (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (!file) return;
-    const url = URL.createObjectURL(file);
-    setImages((prev) => {
-      const next = [...prev];
-      next[index] = url;
-      return next;
-    });
-  };
-
   return (
-    <main
-      style={{
-        width: '100vw',
-        height: '100vh',
-        minHeight: '100vh',
-        minWidth: '100vw',
-        overflow: 'hidden',
-        margin: 0,
-        padding: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxSizing: 'border-box',
-      }}
-    >
-      <div
-        style={{
-          width: 'calc(100vw - 32px)',
-          height: 'calc(100vh - 32px)',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gridTemplateRows: '1fr 1fr',
-          gap: 16,
-          boxSizing: 'border-box',
-        }}
-      >
-        {[0, 1, 2, 3].map((i) => (
-          <ImageFrame
-            key={i}
-            src={images[i] || defaultImages[i]}
-            onChange={handleFile(i)}
-            placeholder={`Click to add image ${i + 1}`}
-          />
-        ))}
+    <main className="work-main">
+      <div className="work-container">
+        <h1 className="work-heading">Work</h1>
+        <div className="work-grid">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
       </div>
     </main>
   );
