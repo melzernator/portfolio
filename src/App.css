@@ -1,8 +1,8 @@
 @import "tailwindcss";
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
@@ -48,7 +48,7 @@
 .work-main {
   width: 100%;
   margin: 0;
-  padding: 20px 16px 40px; /* 20px from navbar | 16px sides | 40px bottom */
+  padding: 30px 4px 8px; /* Minimal spacing, no bottom padding */
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -58,7 +58,7 @@
 /* Constrains grid max width */
 .work-container {
   width: 100%;
-  max-width: 1200px; /* Prevents from stretching too wide */
+  max-width: 100%; /* Full viewport width */
 }
 
 /* Main "Work" heading (currently hidden, see Home.jsx) */
@@ -73,7 +73,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2 equal columns */
   grid-template-rows: auto auto;
-  gap: 24px; /* Space between cards */
+  gap: 12px; /* Space between cards */
   box-sizing: border-box;
 }
 
@@ -103,7 +103,7 @@
 .project-card-image {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9; /* Ratio: 16 wide × 9 tall */
+  aspect-ratio: 16 / 8; /* Ratio*/
   object-fit: cover; /* Crops to fill without stretching */
   display: block;
 }
