@@ -20,7 +20,7 @@ function Navigationbar() {
     alignItems: 'center',
     padding: '12px 24px',
     zIndex: 50,
-    background: 'rgba(255,255,255,0.98)',
+    background: 'transparent',
     boxSizing: 'border-box',
   }
 

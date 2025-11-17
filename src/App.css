@@ -48,7 +48,7 @@
 .work-main {
   width: 100%;
   margin: 0;
-  padding: 30px 4px 8px; /* Minimal spacing, no bottom padding */
+  padding: 35px 16px 16px; /* Minimal spacing, no bottom padding */
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -133,7 +133,7 @@
 @media (max-width: 700px) {
   /* Consistent padding on mobile */
   .work-main {
-    padding: 20px 16px 40px;
+    padding: 16px 16px 40px;
   }
 
   /* Smaller heading on mobile */

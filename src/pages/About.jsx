@@ -1,7 +1,7 @@
 export default function About() {
   return (
-    <main style={{ maxWidth: '900px', margin: '0 auto', padding: '120px 24px 60px' }}>
-      <article style={{ lineHeight: 1.8, fontSize: '1rem', color: '#333' }}>
+    <main style={{ width: '100%', margin: 0, padding: '120px 0px 60px', boxSizing: 'border-box' }}>
+      <article style={{ lineHeight: 1.8, fontSize: '1rem', color: '#333', paddingLeft: '4px', paddingRight: '4px' }}>
         <div style={{ marginBottom: '60px' }}>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '24px', lineHeight: 1.4 }}>
             Inventor - Minimalist - Designer

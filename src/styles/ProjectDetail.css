@@ -1,7 +1,8 @@
 .project-detail {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 120px 24px 60px;
+  width: 100%;
+  margin: 0;
+  padding: 120px 4px 60px;
+  box-sizing: border-box;
 }
 
 .project-hero {
