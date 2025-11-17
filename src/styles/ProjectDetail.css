@@ -118,23 +118,6 @@
   line-height: 1.4;
 }
 
-.project-footer {
-  margin-top: 60px;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
-}
-
-.project-footer a {
-  color: #000;
-  text-decoration: none;
-  transition: opacity 200ms ease;
-  display: inline-block;
-}
-
-.project-footer a:hover {
-  opacity: 0.6;
-}
-
 @media (max-width: 600px) {
   .project-detail {
     padding: 100px 16px 40px;

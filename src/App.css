@@ -4,6 +4,18 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure root fills the viewport so child flex items size predictably */
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .logo {
@@ -48,17 +60,21 @@
 .work-main {
   width: 100%;
   margin: 0;
-  padding: 40px 8px 4px; /* No top padding */
+  padding: 40px 16px 0px; /* Top, left/right, bottom */
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+  /* do not force main to stretch; let content size naturally */
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Constrains grid max width */
 .work-container {
   width: 100%;
   max-width: 100%; /* Full viewport width */
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -67,9 +83,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2 equal columns */
   grid-template-rows: auto auto;
-  gap: 12px; /* Space between cards */
+  gap: 16px; /* Space between cards */
   box-sizing: border-box;
-  max-height: auto; /* Limits grid height to 60% of viewport */
+  width: 100%;
 }
 
 /* Makes link not look like a link */
@@ -134,7 +150,7 @@
 @media (max-width: 700px) {
   /* Consistent padding on mobile */
   .work-main {
-    padding: 16px 16px 40px;
+    padding: 100px 16px 16px; /* push content down on mobile as well */
   }
 
   /* Smaller heading on mobile */

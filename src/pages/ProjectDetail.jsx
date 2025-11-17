@@ -103,9 +103,9 @@ export default function ProjectDetail() {
       </article>
 
       {/* Back to work link */}
-      <footer className="project-footer">
+      <div style={{ paddingTop: '20px', textAlign: 'center' }}>
         <Link to="/">← Back to work</Link>
-      </footer>
+      </div>
     </main>
   )
 }
