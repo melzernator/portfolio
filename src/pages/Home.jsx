@@ -11,10 +11,6 @@ function ProjectCard({ project }) {
           alt={project.title}
           className="project-card-image"
         />
-        <div className="project-card-info">
-          <h3 className="project-card-title">{project.title}</h3>
-          <p className="project-card-year">{project.year}</p>
-        </div>
       </div>
     </Link>
   );

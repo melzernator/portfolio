@@ -4,7 +4,6 @@ import Home from './pages/Home.jsx'
 import ProjectDetail from './pages/ProjectDetail.jsx'
 import Navigationbar from './pages/Navigationbar.jsx'
 import About from './pages/About.jsx'
-import Footer from './pages/Footer.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </>
   )
 }
