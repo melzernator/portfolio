@@ -27,7 +27,6 @@ export default function Home() {
     { id: 'scale', slug: 'scale', title: 'Scale', image: '/scale.png' },
     { id: 'lamp', slug: 'lamp', title: 'Lamp', image: '/lamp.png' },
     { id: 'gaia', slug: 'gaia', title: 'Gaia', image: '/gaia.png' },
-    { id: 'forks', slug: 'forks', title: 'Forks', image: '/forks.png' },
   ]), []);
 
   // Wheel listener to adjust progress without actual vertical scroll
@@ -61,7 +60,7 @@ export default function Home() {
   const page2Pointer = progress >= 0.5 ? 'auto' : 'none';
 
   const page1Class = 'work-grid home-page-1';
-  const page2Class = 'work-grid';
+  const page2Class = 'work-grid home-page-2';
 
   return (
     <main className="work-main scroll-pages-root" ref={containerRef}>
