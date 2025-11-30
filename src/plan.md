@@ -1,3 +1,11 @@
+# jo jo
+
+pressing on a project maybe enlagres the image or replaces the pther tiles ith other omages text boxes etc.
+
+the entire website exists in these tiles
+
+iintegrate menu buttons in these frame bubbles too
+
 # why?
 to convince people to pay me to do fulfilling work
 # who?
