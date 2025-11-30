@@ -69,6 +69,29 @@ body {
   overflow: hidden;
 }
 
+/* Scroll pages root ensures full viewport and no native scroll movement */
+.scroll-pages-root {
+  height: 100vh;
+  position: relative;
+  overflow: hidden; /* hide any overflow to prevent vertical movement */
+}
+
+/* Stack for overlapping pages */
+.scroll-pages-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scroll-pages-stack .work-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+
 /* Constrains grid max width */
 .work-container {
   width: 100%;

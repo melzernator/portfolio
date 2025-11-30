@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import '../App.css'
 
 function ProjectCard({ project }) {
@@ -18,12 +18,11 @@ function ProjectCard({ project }) {
 }
 
 export default function Home() {
-  const [page, setPage] = useState(1); // 1 or 2
+  // Scroll-driven progress: 0 = Page 1 fully visible, 1 = Page 2 fully visible
+  const [progress, setProgress] = useState(0);
+  const containerRef = useRef(null);
 
-  // Page 1 shows existing projects (now 3 items)
   const page1Items = useMemo(() => projects, []);
-
-  // Page 2 shows the remaining images: scale, lamp, gaia, forks
   const page2Items = useMemo(() => ([
     { id: 'scale', slug: 'scale', title: 'Scale', image: '/scale.png' },
     { id: 'lamp', slug: 'lamp', title: 'Lamp', image: '/lamp.png' },
@@ -31,57 +30,69 @@ export default function Home() {
     { id: 'forks', slug: 'forks', title: 'Forks', image: '/forks.png' },
   ]), []);
 
-  const activeItems = page === 1 ? page1Items : page2Items;
-  const gridClass = page === 1 ? 'work-grid home-page-1' : 'work-grid';
+  // Wheel listener to adjust progress without actual vertical scroll
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const onWheel = (e) => {
+      // Prevent normal scroll
+      e.preventDefault();
+      const { deltaY } = e;
+      // Positive deltaY -> user scrolls up (towards Page 2)
+      let next = progress + deltaY * 0.0015; // sensitivity factor
+      // Invert direction so scrolling up (positive deltaY) increases progress
+      // On some devices deltaY might be negative for upward scroll; adjust if needed
+      // Clamp between 0 and 1
+      if (next < 0) next = 0;
+      if (next > 1) next = 1;
+      setProgress(next);
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, [progress]);
 
-  const goPrev = () => setPage((p) => Math.max(1, p - 1));
-  const goNext = () => setPage((p) => Math.min(2, p + 1));
+  // Derive styles from progress
+  const page1Opacity = 1 - progress;
+  const page2Opacity = progress;
+  const page1Scale = 1 + progress * 0.08; // grows slightly when fading
+  const page2Scale = 0.92 + progress * 0.08; // starts smaller, ends at ~1.0
+
+  const page1Pointer = progress < 0.5 ? 'auto' : 'none';
+  const page2Pointer = progress >= 0.5 ? 'auto' : 'none';
+
+  const page1Class = 'work-grid home-page-1';
+  const page2Class = 'work-grid';
 
   return (
-    <main className="work-main">
-      <div className="work-container">
-        <div className={gridClass}>
-          {activeItems.map((project) => (
+    <main className="work-main scroll-pages-root" ref={containerRef}>
+      <div className="scroll-pages-stack">
+        {/* Page 1 */}
+        <div
+          className={page1Class}
+          style={{
+            opacity: page1Opacity,
+            transform: `scale(${page1Scale})`,
+            pointerEvents: page1Pointer,
+            transition: 'opacity 0.1s linear',
+          }}
+        >
+          {page1Items.map(project => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-
-        {/* Arrow buttons */}
-        <div style={{
-          position: 'absolute',
-          top: 8,
-          right: 16,
-          display: 'flex',
-          gap: '8px'
-        }}>
-          <button
-            aria-label="Previous"
-            onClick={goPrev}
-            disabled={page === 1}
-            style={{
-              padding: '8px 12px',
-              borderRadius: '8px',
-              border: '1px solid #ddd',
-              background: page === 1 ? '#f5f5f5' : '#fff',
-              cursor: page === 1 ? 'default' : 'pointer'
-            }}
-          >
-            ←
-          </button>
-          <button
-            aria-label="Next"
-            onClick={goNext}
-            disabled={page === 2}
-            style={{
-              padding: '8px 12px',
-              borderRadius: '8px',
-              border: '1px solid #ddd',
-              background: page === 2 ? '#f5f5f5' : '#fff',
-              cursor: page === 2 ? 'default' : 'pointer'
-            }}
-          >
-            →
-          </button>
+        {/* Page 2 */}
+        <div
+          className={page2Class}
+          style={{
+            opacity: page2Opacity,
+            transform: `scale(${page2Scale})`,
+            pointerEvents: page2Pointer,
+            transition: 'opacity 0.1s linear',
+          }}
+        >
+          {page2Items.map(project => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
         </div>
       </div>
     </main>
