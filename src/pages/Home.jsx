@@ -70,7 +70,7 @@ export default function Home() {
           className={page1Class}
           style={{
             opacity: page1Opacity,
-            transform: `translate(-50%, -50%) scale(${page1Scale})`,
+            transform: `translateY(-50%) scale(${page1Scale})`,
             pointerEvents: page1Pointer,
             transition: 'opacity 0.1s linear',
           }}
@@ -84,7 +84,7 @@ export default function Home() {
           className={page2Class}
           style={{
             opacity: page2Opacity,
-            transform: `translate(-50%, -50%) scale(${page2Scale})`,
+            transform: `translateY(-50%) scale(${page2Scale})`,
             pointerEvents: page2Pointer,
             transition: 'opacity 0.1s linear',
           }}

@@ -90,11 +90,12 @@ body {
 .scroll-pages-stack .work-grid {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 16px;
+  right: 16px;
   transform-origin: center center;
-  width: calc(100% - 32px); /* Account for padding */
-  max-width: 1568px; /* 1600 - 32px padding */
-  margin: 0 16px;
+  width: auto;
+  max-width: calc(1600px - 32px);
+  margin: 0 auto;
   display: grid;
   padding: 0;
   box-sizing: border-box;
