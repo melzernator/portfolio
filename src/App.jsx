@@ -9,16 +9,13 @@ import NotFound from './pages/NotFound.jsx'
 
 function App() {
   return (
-    <>
-      <Navigationbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/work" element={<Work />} />
-        <Route path="/work/:slug" element={<ProjectDetail />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/work" element={<Work />} />
+      <Route path="/work/:slug" element={<ProjectDetail />} />
+      <Route path="/about" element={<About />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   )
 }
 
