@@ -9,7 +9,7 @@ export const projects = [
     slug: 'hl-3',
     title: 'Braun Desk Fan',
     year: 2024,
-    image: '/braun_deskfan.png',
+    image: '/deskfan.png',
     description: 'Reimagining the iconic Braun desk fan for modern mobile workspaces',
     skills: ['Design Thinking', 'Sketching', '3D CAD', 'Rendering', 'Animation', '3D Printing'],
     content: {
@@ -34,7 +34,7 @@ export const projects = [
     slug: 'a-table',
     title: 'A Table',
     year: 2023,
-    image: '/fens_render.png',
+    image: '/fens.png',
     description: 'Furniture design exploring minimalist form and functionality',
     skills: ['Furniture Design', '3D Modeling', 'CAD'],
     content: {
@@ -50,7 +50,7 @@ export const projects = [
     slug: 'lumenhale',
     title: 'Breath Conductor',
     year: 2025,
-    image: '/breathconductor.png',
+    image: '/table.png',
     description: 'Interactive breathing meditation device',
     skills: ['Electronics', 'Physical Computing', 'Design'],
     content: {
