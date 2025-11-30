@@ -24,8 +24,8 @@ export default function Home() {
 
   const page1Items = useMemo(() => projects, []);
   const page2Items = useMemo(() => ([
-    { id: 'scale', slug: 'scale', title: 'Scale', image: '/scale.png' },
     { id: 'lamp', slug: 'lamp', title: 'Lamp', image: '/lamp.png' },
+    { id: 'scale', slug: 'scale', title: 'Scale', image: '/scale.png' },
     { id: 'gaia', slug: 'gaia', title: 'Gaia', image: '/gaia.png' },
   ]), []);
 
