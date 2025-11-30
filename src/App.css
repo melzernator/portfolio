@@ -124,25 +124,21 @@ body {
   width: 100%;
 }
 
-/* Make the top-right tile (2nd item) span two rows on page 1 */
-.work-grid.home-page-1 > .project-card-link:nth-child(2) {
-  grid-row: span 2;
-}
-
-/* Make the top-left tile (1st item) span two rows on page 2 */
-.work-grid.home-page-2 > .project-card-link:nth-child(1) {
+/* Make the top-right tile (2nd item) span two rows on page 1 and page 2 */
+.work-grid.home-page-1 > .project-card-link:nth-child(2),
+.work-grid.home-page-2 > .project-card-link:nth-child(2) {
   grid-row: span 2;
 }
 
 /* Ensure the spanning card stretches to fill height */
 .work-grid.home-page-1 > .project-card-link:nth-child(2) .project-card,
-.work-grid.home-page-2 > .project-card-link:nth-child(1) .project-card {
+.work-grid.home-page-2 > .project-card-link:nth-child(2) .project-card {
   height: 100%;
   display: flex;
 }
 
 .work-grid.home-page-1 > .project-card-link:nth-child(2) .project-card-image,
-.work-grid.home-page-2 > .project-card-link:nth-child(1) .project-card-image {
+.work-grid.home-page-2 > .project-card-link:nth-child(2) .project-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
