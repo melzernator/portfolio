@@ -156,16 +156,17 @@ body {
   position: relative;
   overflow: hidden; /* Clips image to rounded corners */
   border-radius: 20px;
-  background: #f3f3f3;
+  background: #000000;
+  border: 2px solid #ffffff;
   cursor: pointer;
   transition: transform 200ms ease, opacity 200ms ease, box-shadow 200ms ease; /* Smooth hover effects */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Visible shadow by default */
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1); /* Subtle white shadow */
 }
 
 /* Hover effect on card - shrinks and fades */
 .project-card:hover {
   transform: scale(0.98); /* Shrinks to 98% size */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); /* Stronger white shadow on hover */
 }
 
 /* Project image inside card */

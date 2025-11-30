@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 function Navigationbar() {
   const baseLink = {
-    color: '#000',
+    color: '#ffffff',
     textDecoration: 'none',
     transition: 'font-size 120ms ease, opacity 120ms ease',
     display: 'inline-block',
@@ -27,7 +27,7 @@ function Navigationbar() {
   const nameStyle = {
     fontWeight: 700,
     fontSize: '1rem',
-    color: '#111',
+    color: '#ffffff',
     letterSpacing: '0.02em',
   }
 
@@ -39,7 +39,7 @@ function Navigationbar() {
 
   return (
     <nav style={navBarStyle} aria-label="Primary">
-      <NavLink to="/" style={{ ...nameStyle, textDecoration: 'none', color: '#111' }}>
+      <NavLink to="/" style={{ ...nameStyle, textDecoration: 'none', color: '#ffffff' }}>
         Einfach
       </NavLink>
       <div style={linksStyle}>
