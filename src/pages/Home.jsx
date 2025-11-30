@@ -4,9 +4,41 @@ import { useState, useMemo, useRef, useEffect } from 'react'
 import '../App.css'
 
 function ProjectCard({ project }) {
+  const cardRef = useRef(null);
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Calculate tilt angles (max 5 degrees for subtle effect)
+    const rotateY = ((x - centerX) / centerX) * 5;
+    const rotateX = ((centerY - y) / centerY) * 5;
+    
+    setTilt({ rotateX, rotateY });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ rotateX: 0, rotateY: 0 });
+  };
+
   return (
     <Link to={`/work/${project.slug}`} className="project-card-link">
-      <div className="project-card">
+      <div 
+        ref={cardRef}
+        className="project-card"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
+          transition: tilt.rotateX === 0 ? 'transform 0.5s ease' : 'none',
+        }}
+      >
         <img
           src={project.image}
           alt={project.title}
