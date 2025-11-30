@@ -82,10 +82,29 @@ body {
 .work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2 equal columns */
-  grid-template-rows: auto auto;
+  /* Make rows equal height so spanning fills space */
+  grid-auto-rows: 1fr;
   gap: 16px; /* Space between cards */
   box-sizing: border-box;
   width: 100%;
+}
+
+/* Make the top-right tile (2nd item) span two rows */
+.work-grid > .project-card-link:nth-child(2) {
+  grid-row: span 2;
+}
+
+/* Ensure the spanning card stretches to fill height */
+.work-grid > .project-card-link:nth-child(2) .project-card {
+  height: 100%;
+  display: flex;
+}
+
+.work-grid > .project-card-link:nth-child(2) .project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: auto;
 }
 
 /* Makes link not look like a link */
