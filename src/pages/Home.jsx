@@ -27,6 +27,12 @@ function ProjectCard({ project }) {
     setTilt({ rotateX: 0, rotateY: 0 });
   };
 
+  // Calculate gradient angle based on tilt to simulate light reflection
+  const gradientAngle = 135 + tilt.rotateY * 10 - tilt.rotateX * 10;
+  
+  // Adjust gradient brightness based on tilt
+  const brightness = 1 + Math.abs(tilt.rotateX + tilt.rotateY) * 0.03;
+
   return (
     <Link to={`/work/${project.slug}`} className="project-card-link">
       <div 
@@ -36,7 +42,16 @@ function ProjectCard({ project }) {
         onMouseLeave={handleMouseLeave}
         style={{
           transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
-          transition: tilt.rotateX === 0 ? 'transform 0.5s ease' : 'none',
+          transition: tilt.rotateX === 0 ? 'transform 0.5s ease, background-image 0.5s ease' : 'none',
+          backgroundImage: `
+            linear-gradient(#000000, #000000),
+            linear-gradient(${gradientAngle}deg, 
+              rgba(255, 255, 255, ${0.8 * brightness}) 0%,
+              rgba(255, 255, 255, ${0.5 * brightness}) 25%,
+              rgba(255, 255, 255, ${0.3 * brightness}) 50%,
+              rgba(255, 255, 255, ${0.2 * brightness}) 75%,
+              rgba(255, 255, 255, ${0.4 * brightness}) 100%)
+          `,
         }}
       >
         <img
