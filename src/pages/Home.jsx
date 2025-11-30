@@ -72,7 +72,6 @@ export default function Home() {
             opacity: page1Opacity,
             transform: `translateY(-50%) scale(${page1Scale})`,
             pointerEvents: page1Pointer,
-            transition: 'opacity 0.1s linear',
           }}
         >
           {page1Items.map(project => (
@@ -86,7 +85,6 @@ export default function Home() {
             opacity: page2Opacity,
             transform: `translateY(-50%) scale(${page2Scale})`,
             pointerEvents: page2Pointer,
-            transition: 'opacity 0.1s linear',
           }}
         >
           {page2Items.map(project => (

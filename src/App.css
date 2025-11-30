@@ -60,7 +60,7 @@ body {
 .work-main {
   width: 100%;
   margin: 0;
-  padding: 40px 16px 16px; /* Top, left/right, bottom */
+  padding: 0; /* Remove padding since scroll-pages-root handles spacing */
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -90,18 +90,18 @@ body {
 .scroll-pages-stack .work-grid {
   position: absolute;
   top: 50%;
-  left: 12.5px;
-  right: 12.5px;
+  left: 35px;
+  right: 35px;
   transform-origin: center center;
-  width: calc(100% - 25px); /* Account for 12.5px margins on each side (12.5 + 12.5 = 25) */
-  max-width: calc(1600px - 25px);
+  width: calc(100% - 70px); /* Account for 35px margins on each side (35 + 35 = 70) */
+  max-width: calc(1600px - 70px);
   margin: 0 auto;
   display: grid;
-  padding: 0 0 12.5px 0; /* Add 12.5px bottom padding */
+  padding: 35px 0 0 0; /* Add 12.5px bottom padding */
   box-sizing: border-box;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 25px;
+  gap: 15px;
   aspect-ratio: 2 / 1; /* Keep consistent proportions */
 }
 
