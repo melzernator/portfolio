@@ -154,19 +154,50 @@ body {
 /* Container for single project card */
 .project-card {
   position: relative;
-  overflow: hidden; /* Clips image to rounded corners */
-  border-radius: 20px;
+  overflow: hidden;
+  border-radius: 25px;
   background: #000000;
-  border: 2px solid #ffffff;
+  border: 0.5px solid transparent;
   cursor: pointer;
-  transition: transform 200ms ease, opacity 200ms ease, box-shadow 200ms ease; /* Smooth hover effects */
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1); /* Subtle white shadow */
+  transition: transform 200ms ease, opacity 200ms ease, box-shadow 200ms ease;
+  /* Gradient border - brighter at top, dimmer at bottom */
+  background-image: 
+    linear-gradient(#000000, #000000),
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.5) 25%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      rgba(255, 255, 255, 0.4) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  /* iOS liquid glass effect - subtle glow */
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 2px 8px rgba(255, 255, 255, 0.05),
+    0 8px 24px rgba(255, 255, 255, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 /* Hover effect on card - shrinks and fades */
 .project-card:hover {
-  transform: scale(0.98); /* Shrinks to 98% size */
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); /* Stronger white shadow on hover */
+  transform: scale(0.98);
+  background-image: 
+    linear-gradient(#000000, #000000),
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.65) 25%,
+      rgba(255, 255, 255, 0.45) 50%,
+      rgba(255, 255, 255, 0.35) 75%,
+      rgba(255, 255, 255, 0.55) 100%);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 4px 12px rgba(255, 255, 255, 0.08),
+    0 12px 32px rgba(255, 255, 255, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08);
 }
 
 /* Project image inside card */
