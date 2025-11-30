@@ -60,22 +60,6 @@ export const projects = [
       goals: ['Meditative experience', 'Portable design'],
       solution: 'Ambient light that responds to breathing patterns'
     }
-  },
-  {
-    id: 'gaia',
-    slug: 'gaia',
-    title: 'Gaia',
-    year: 2023,
-    image: '/gaia.png',
-    description: 'Environmental monitoring and visualization system',
-    skills: ['IoT', 'Data Visualization', 'Embedded Systems'],
-    content: {
-      motivation: 'Make environmental data tangible and meaningful',
-      context: 'Personal exploration 2023',
-      problems: [],
-      goals: ['Connect people to nature', 'Beautiful data representation'],
-      solution: 'Physical display of real-time environmental metrics'
-    }
   }
 ];
 
