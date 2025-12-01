@@ -215,10 +215,6 @@ function MiniProjectCard({ project, size = 'medium' }) {
 }
 
 export default function Home() {
-  const [progress, setProgress] = useState(0);
-  const containerRef = useRef(null);
-  const isAnimatingRef = useRef(false);
-
   const workPage1Projects = useMemo(() => [
     { id: 'braun-desk-fan', slug: 'hl-3', title: 'Braun Desk Fan', image: '/deskfan.png' },
     { id: 'a-table', slug: 'a-table', title: 'A Table', image: '/fens.png' },
@@ -230,87 +226,16 @@ export default function Home() {
     { id: 'scale', slug: 'scale', title: 'Scale', image: '/scale.png' },
   ], []);
 
-  // Auto-complete animation for 3 pages
-  useEffect(() => {
-    if (isAnimatingRef.current) return;
-    
-    // Snap to nearest page: 0, 1, or 2
-    let target;
-    if (progress < 0.33) target = 0;
-    else if (progress < 0.67) target = 0.5;
-    else target = 1;
-    
-    if (Math.abs(progress - target) < 0.01) return;
-
-    const animateToTarget = () => {
-      isAnimatingRef.current = true;
-      const start = progress;
-      const distance = target - start;
-      const duration = 300;
-      const startTime = performance.now();
-
-      const animate = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const t = Math.min(elapsed / duration, 1);
-        const eased = 1 - (1 - t) * (1 - t);
-        const newProgress = start + distance * eased;
-        
-        setProgress(newProgress);
-
-        if (t < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setProgress(target);
-          isAnimatingRef.current = false;
-        }
-      };
-
-      requestAnimationFrame(animate);
-    };
-
-    const timeout = setTimeout(animateToTarget, 150);
-    return () => clearTimeout(timeout);
-  }, [progress]);
-
-  // Wheel listener
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const onWheel = (e) => {
-      e.preventDefault();
-      isAnimatingRef.current = false;
-      
-      const { deltaY } = e;
-      let next = progress + deltaY * 0.0015;
-      if (next < 0) next = 0;
-      if (next > 1) next = 1;
-      setProgress(next);
-    };
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
-  }, [progress]);
-
-  // Calculate opacities for 3 pages
-  const page1Opacity = progress < 0.5 ? 1 - (progress * 2) : 0;
-  const page2Opacity = progress < 0.5 ? (progress * 2) : (2 - progress * 2);
-  const page3Opacity = progress > 0.5 ? ((progress - 0.5) * 2) : 0;
-  
-  const page1Pointer = progress < 0.25 ? 'auto' : 'none';
-  const page2Pointer = progress >= 0.25 && progress < 0.75 ? 'auto' : 'none';
-  const page3Pointer = progress >= 0.75 ? 'auto' : 'none';
-
   return (
-    <main className="work-main scroll-pages-root" ref={containerRef}>
+    <main className="work-main scroll-pages-root">
       <div className="scroll-pages-stack">
         {/* Page 1 - Menu tiles */}
         <div
           className="work-grid home-page-1"
           style={{
-            opacity: page1Opacity,
             transform: 'translateY(-50%)',
-            pointerEvents: page1Pointer,
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateColumns: '2fr 1fr',
             gridTemplateRows: 'auto auto',
             gap: '15px',
             width: 'calc(100% - 70px)',
@@ -319,7 +244,7 @@ export default function Home() {
         >
           <MenuTile gridArea="1 / 1 / 2 / 3">
             <h1 style={{ 
-              fontSize: '20rem', 
+              fontSize: '12rem', 
               fontWeight: 700, 
               margin: 0,
               letterSpacing: '-0.02em'
