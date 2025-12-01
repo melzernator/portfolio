@@ -136,8 +136,9 @@ function MiniProjectCard({ project }) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    const rotateY = ((x - centerX) / centerX) * 5;
-    const rotateX = ((centerY - y) / centerY) * 5;
+    // Multiply by 2 to match the tilt intensity of larger tiles
+    const rotateY = ((x - centerX) / centerX) * 10;
+    const rotateX = ((centerY - y) / centerY) * 10;
     
     setTilt({ rotateX, rotateY });
   };
@@ -157,7 +158,7 @@ function MiniProjectCard({ project }) {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
-          transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
+          transform: `perspective(500px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
           transition: tilt.rotateX === 0 ? 'transform 0.5s ease, background-image 0.5s ease' : 'none',
           backgroundImage: `
             linear-gradient(#000000, #000000),
@@ -167,6 +168,13 @@ function MiniProjectCard({ project }) {
               rgba(255, 255, 255, ${0.3 * brightness}) 50%,
               rgba(255, 255, 255, ${0.2 * brightness}) 75%,
               rgba(255, 255, 255, ${0.4 * brightness}) 100%)
+          `,
+          boxShadow: `
+            0 0 0 0.5px rgba(255, 255, 255, 0.08),
+            0 2px 6px rgba(255, 255, 255, 0.05),
+            0 6px 16px rgba(255, 255, 255, 0.08),
+            inset 0 0.5px 1px rgba(255, 255, 255, 0.25),
+            inset 0 -0.5px 0.5px rgba(255, 255, 255, 0.05)
           `,
           height: '100%',
           width: '100%',
