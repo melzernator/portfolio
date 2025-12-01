@@ -123,7 +123,7 @@ function ProjectCard({ project }) {
   );
 }
 
-function MiniProjectCard({ project, size = 'medium' }) {
+function MiniProjectCard({ project, size = 'medium', hoveredImage, setHoveredImage }) {
   const cardRef = useRef(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -146,11 +146,13 @@ function MiniProjectCard({ project, size = 'medium' }) {
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    setHoveredImage(project.id);
   };
 
   const handleMouseLeave = () => {
     setTilt({ rotateX: 0, rotateY: 0 });
     setIsHovered(false);
+    setHoveredImage(null);
   };
 
   const gradientAngle = 135 + tilt.rotateY * 10 - tilt.rotateX * 10;
@@ -204,7 +206,9 @@ function MiniProjectCard({ project, size = 'medium' }) {
             aspectRatio: 'auto',
             objectFit: 'cover',
             display: 'block',
-            filter: isHovered ? 'grayscale(0%)' : 'grayscale(100%)',
+            filter: hoveredImage && hoveredImage !== project.id
+              ? 'grayscale(100%) blur(4px)'
+              : isHovered ? 'grayscale(0%)' : 'grayscale(100%)',
             transition: 'filter 200ms ease',
             objectPosition: project.id === 'gaia' ? 'center 45%' : 'center center',
           }}
@@ -215,6 +219,8 @@ function MiniProjectCard({ project, size = 'medium' }) {
 }
 
 export default function Home() {
+  const [hoveredImage, setHoveredImage] = useState(null);
+
   const workPage1Projects = useMemo(() => [
     { id: 'braun-desk-fan', slug: 'hl-3', title: 'Braun Desk Fan', image: '/deskfan.png' },
     { id: 'a-table', slug: 'a-table', title: 'A Table', image: '/fens.png' },
@@ -243,36 +249,39 @@ export default function Home() {
           }}
         >
           <MenuTile gridArea="1 / 1 / 2 / 3">
-            <h1 style={{ 
-              fontSize: '12rem', 
-              fontWeight: 700, 
-              margin: 0,
-              letterSpacing: '-0.02em'
+            <div style={{ 
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%',
+              height: '100%',
+              padding: '0 2rem',
+              boxSizing: 'border-box'
             }}>
-              Einfach
-            </h1>
+              <h1 style={{ 
+                fontSize: '12rem', 
+                fontWeight: 700, 
+                margin: 0,
+                letterSpacing: '-0.02em'
+              }}>
+                Einfach
+              </h1>
+              <div style={{ 
+                fontSize: '0.9rem', 
+                lineHeight: 1.6,
+                textAlign: 'left',
+                maxWidth: '350px',
+              }}>
+                <p style={{ margin: '0 0 1rem 0' }}>
+                  <strong>Einfach</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer.
+                </p>
+                <p style={{ margin: 0 }}>
+                  I design consumer products with a focus on simplicity and purpose, stripping away the unnecessary to reveal what truly matters.
+                </p>
+              </div>
+            </div>
           </MenuTile>
           <MenuTile gridArea="2 / 2 / 3 / 3">
-            <div style={{ 
-              padding: '2rem', 
-              fontSize: '0.9rem', 
-              lineHeight: 1.6,
-              textAlign: 'left',
-              maxWidth: '100%',
-              overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              height: '100%'
-            }}>
-              <p style={{ margin: '0 0 1rem 0' }}>
-                <strong>Einfach</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer.
-              </p>
-              <p style={{ margin: 0 }}>
-                I design consumer products with a focus on simplicity and purpose, stripping away the unnecessary to reveal what truly matters.
-              </p>
-            </div>
           </MenuTile>
           <div style={{ 
             gridArea: '2 / 1 / 3 / 2',
@@ -284,10 +293,10 @@ export default function Home() {
             height: '100%',
           }}>
             <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2' }}>
-              <MiniProjectCard project={workPage1Projects[0]} size="medium" />
+              <MiniProjectCard project={workPage1Projects[0]} size="medium" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
             </div>
             <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
-              <MiniProjectCard project={workPage1Projects[1]} size="medium" />
+              <MiniProjectCard project={workPage1Projects[1]} size="medium" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
             </div>
             <div style={{ 
               gridColumn: '1 / 2', 
@@ -298,13 +307,13 @@ export default function Home() {
               gap: '3.75px',
             }}>
               <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[0]} size="small" />
+                <MiniProjectCard project={workPage2Projects[0]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
               </div>
               <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
-                <MiniProjectCard project={workPage2Projects[1]} size="small" />
+                <MiniProjectCard project={workPage2Projects[1]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
               </div>
               <div style={{ gridColumn: '1 / 2', gridRow: '2 / 3', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[2]} size="small" />
+                <MiniProjectCard project={workPage2Projects[2]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
               </div>
             </div>
           </div>
