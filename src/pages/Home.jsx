@@ -222,7 +222,7 @@ export default function Home() {
         >
           <MenuTile gridArea="1 / 1 / 2 / 2">
             <h1 style={{ 
-              fontSize: '4rem', 
+              fontSize: '10rem', 
               fontWeight: 700, 
               margin: 0,
               letterSpacing: '-0.02em'
@@ -231,6 +231,40 @@ export default function Home() {
             </h1>
           </MenuTile>
           <MenuTile gridArea="1 / 2 / 3 / 3">
+            <div style={{ 
+              padding: '2rem', 
+              fontSize: '0.9rem', 
+              lineHeight: 1.6,
+              textAlign: 'left',
+              maxWidth: '100%',
+              overflow: 'hidden',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'flex-start'
+            }}>
+              <p style={{ margin: '0 0 1rem 0' }}>
+                <strong>Einfach</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer.
+              </p>
+              <p style={{ margin: '0 0 2rem 0' }}>
+                I design consumer products with a focus on simplicity and purpose, stripping away the unnecessary to reveal what truly matters.
+              </p>
+              <p style={{ margin: '0 0 2rem 0' }}>
+                <strong>Contact:</strong> marvin@melzer.org
+              </p>
+              <div style={{ margin: 0 }}>
+                <p style={{ margin: '0 0 0.5rem 0', fontWeight: 600 }}>Capabilities:</p>
+                <ul style={{ margin: 0, paddingLeft: '1.5rem', listStyleType: 'disc' }}>
+                  <li>Industrial Design</li>
+                  <li>Product Development</li>
+                  <li>Prototyping & Testing</li>
+                  <li>Design Strategy</li>
+                </ul>
+              </div>
+            </div>
+          </MenuTile>
+          <MenuTile gridArea="2 / 1 / 3 / 2">
             <h2 style={{ 
               fontSize: '2rem', 
               fontWeight: 600, 
@@ -238,23 +272,6 @@ export default function Home() {
             }}>
               Work
             </h2>
-          </MenuTile>
-          <MenuTile gridArea="2 / 1 / 3 / 2">
-            <div style={{ 
-              padding: '2rem', 
-              fontSize: '0.9rem', 
-              lineHeight: 1.6,
-              textAlign: 'left',
-              maxWidth: '100%',
-              overflow: 'hidden'
-            }}>
-              <p style={{ margin: '0 0 1rem 0' }}>
-                <strong>Einfach</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer.
-              </p>
-              <p style={{ margin: 0 }}>
-                I design consumer products with a focus on simplicity and purpose, stripping away the unnecessary to reveal what truly matters.
-              </p>
-            </div>
           </MenuTile>
         </div>
 
