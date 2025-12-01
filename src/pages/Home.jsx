@@ -116,6 +116,7 @@ function ProjectCard({ project }) {
           src={project.image}
           alt={project.title}
           className="project-card-image"
+              style={project.id === 'gaia' ? { objectPosition: 'left 45%' } : undefined}
         />
       </div>
     </Link>
@@ -134,9 +135,10 @@ export default function Home() {
   ], []);
 
   const workPage2Projects = useMemo(() => [
-    { id: 'scale', slug: 'scale', title: 'Scale', image: '/scale.png' },
-    { id: 'lamp', slug: 'lamp', title: 'Lamp', image: '/lamp.png' },
+    // Reordered so Gaia renders first (top-left position)
     { id: 'gaia', slug: 'gaia', title: 'Gaia', image: '/gaia.png' },
+    { id: 'lamp', slug: 'lamp', title: 'Lamp', image: '/lamp.png' },
+    { id: 'scale', slug: 'scale', title: 'Scale', image: '/scale.png' },
   ], []);
 
   // Auto-complete animation for 3 pages
@@ -218,6 +220,7 @@ export default function Home() {
             opacity: page1Opacity,
             transform: 'translateY(-50%)',
             pointerEvents: page1Pointer,
+            gridTemplateColumns: '2fr 1fr',
           }}
         >
           <MenuTile gridArea="1 / 1 / 2 / 3">
