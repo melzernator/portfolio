@@ -309,6 +309,12 @@ export default function Home() {
             opacity: page1Opacity,
             transform: 'translateY(-50%)',
             pointerEvents: page1Pointer,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateRows: 'auto auto',
+            gap: '15px',
+            width: 'calc(100% - 70px)',
+            maxWidth: 'calc(1600px - 70px)',
           }}
         >
           <MenuTile gridArea="1 / 1 / 2 / 3">
@@ -329,11 +335,11 @@ export default function Home() {
               textAlign: 'left',
               maxWidth: '100%',
               overflow: 'hidden',
-              height: '100%',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-start',
-              alignItems: 'flex-start'
+              alignItems: 'flex-start',
+              height: '100%'
             }}>
               <p style={{ margin: '0 0 1rem 0' }}>
                 <strong>Einfach</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer.
@@ -343,43 +349,43 @@ export default function Home() {
               </p>
             </div>
           </MenuTile>
-          <div style={{ 
-            gridArea: '2 / 1 / 3 / 2',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gridTemplateRows: '1fr 1fr',
-            gap: '7.5px',
-            padding: '0',
-            width: '100%',
-            height: '100%',
-            aspectRatio: '16 / 9',
-          }}>
-            <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2' }}>
-              <MiniProjectCard project={workPage1Projects[0]} size="medium" />
-            </div>
-            <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
-              <MiniProjectCard project={workPage1Projects[1]} size="medium" />
-            </div>
+          <MenuTile gridArea="2 / 1 / 3 / 2">
             <div style={{ 
-              gridColumn: '1 / 2', 
-              gridRow: '2 / 3',
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
               gridTemplateRows: '1fr 1fr',
-              gap: '3.75px',
-              aspectRatio: '16 / 9',
+              gap: '7.5px',
+              padding: '15px',
+              width: '100%',
+              height: '100%',
+              boxSizing: 'border-box',
             }}>
-              <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[0]} size="small" />
+              <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2' }}>
+                <MiniProjectCard project={workPage1Projects[0]} size="medium" />
               </div>
               <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
-                <MiniProjectCard project={workPage2Projects[1]} size="small" />
+                <MiniProjectCard project={workPage1Projects[1]} size="medium" />
               </div>
-              <div style={{ gridColumn: '1 / 2', gridRow: '2 / 3', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[2]} size="small" />
+              <div style={{ 
+                gridColumn: '1 / 2', 
+                gridRow: '2 / 3',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gridTemplateRows: '1fr 1fr',
+                gap: '3.75px',
+              }}>
+                <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2', aspectRatio: '16 / 9' }}>
+                  <MiniProjectCard project={workPage2Projects[0]} size="small" />
+                </div>
+                <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
+                  <MiniProjectCard project={workPage2Projects[1]} size="small" />
+                </div>
+                <div style={{ gridColumn: '1 / 2', gridRow: '2 / 3', aspectRatio: '16 / 9' }}>
+                  <MiniProjectCard project={workPage2Projects[2]} size="small" />
+                </div>
               </div>
             </div>
-          </div>
+          </MenuTile>
         </div>
 
         {/* Page 2 - Removed, content moved to page 1 */}

@@ -105,6 +105,13 @@ body {
   aspect-ratio: 16 / 9; /* Keep consistent proportions */
 }
 
+/* Page 1 - make bottom tiles maintain 16:9 aspect ratio */
+.work-grid.home-page-1 {
+  grid-template-rows: 1fr 1fr;
+  aspect-ratio: auto;
+  height: auto;
+}
+
 /* Constrains grid max width */
 .work-container {
   width: 100%;
