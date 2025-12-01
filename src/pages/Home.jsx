@@ -220,7 +220,7 @@ export default function Home() {
             pointerEvents: page1Pointer,
           }}
         >
-          <MenuTile gridArea="1 / 1 / 2 / 2">
+          <MenuTile gridArea="1 / 1 / 2 / 3">
             <h1 style={{ 
               fontSize: '10rem', 
               fontWeight: 700, 
@@ -230,7 +230,7 @@ export default function Home() {
               Einfach
             </h1>
           </MenuTile>
-          <MenuTile gridArea="1 / 2 / 3 / 3">
+          <MenuTile gridArea="2 / 2 / 3 / 3">
             <div style={{ 
               padding: '2rem', 
               fontSize: '0.9rem', 
