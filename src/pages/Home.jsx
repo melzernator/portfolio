@@ -150,9 +150,10 @@ function MiniProjectCard({ project }) {
   const brightness = 1 + Math.abs(tilt.rotateX + tilt.rotateY) * 0.03;
 
   return (
-    <Link to={`/work/${project.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+    <Link to={`/work/${project.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%', width: '100%' }}>
       <div 
         ref={cardRef}
+        className="project-card"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
@@ -167,25 +168,18 @@ function MiniProjectCard({ project }) {
               rgba(255, 255, 255, ${0.2 * brightness}) 75%,
               rgba(255, 255, 255, ${0.4 * brightness}) 100%)
           `,
-          backgroundBlendMode: 'overlay, normal',
-          backgroundSize: '100% 100%, 100% 100%',
-          borderRadius: '12px',
-          overflow: 'hidden',
-          cursor: 'pointer',
           height: '100%',
           width: '100%',
-          position: 'relative',
         }}
       >
         <img
           src={project.image}
           alt={project.title}
+          className="project-card-image"
           style={{
-            width: '100%',
             height: '100%',
-            objectFit: 'cover',
+            aspectRatio: 'auto',
             objectPosition: project.id === 'gaia' ? 'center 45%' : 'center center',
-            display: 'block',
           }}
         />
       </div>
