@@ -236,8 +236,8 @@ export default function Home() {
           <MenuTile gridArea="2 / 2 / 3 / 3">
             <div style={{ 
               padding: '2rem', 
-              fontSize: '0.9rem', 
-              lineHeight: 1.6,
+              fontSize: '1.25rem', 
+              lineHeight: 1.5,
               textAlign: 'left',
               maxWidth: '100%',
               overflow: 'hidden',
@@ -247,11 +247,8 @@ export default function Home() {
               justifyContent: 'flex-start',
               alignItems: 'flex-start'
             }}>
-              <p style={{ margin: '0 0 1rem 0' }}>
-                <strong>Einfach</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer.
-              </p>
               <p style={{ margin: 0 }}>
-                I design consumer products with a focus on simplicity and purpose, stripping away the unnecessary to reveal what truly matters.
+                <strong>Einfach (German — meaning “simple”)</strong> is an independent design studio in Boulder, Colorado, founded in 2025 by Marvin Melzer. I design consumer products with a focus on simplicity and purpose, stripping away the unnecessary to reveal what truly matters.
               </p>
             </div>
           </MenuTile>
