@@ -6,6 +6,10 @@ the entire website exists in these tiles
 
 iintegrate menu buttons in these frame bubbles too
 
+it could all be just a map
+
+user zooms in more and more in to more tilesx
+
 # why?
 to convince people to pay me to do fulfilling work
 # who?
