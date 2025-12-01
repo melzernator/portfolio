@@ -123,9 +123,10 @@ function ProjectCard({ project }) {
   );
 }
 
-function MiniProjectCard({ project }) {
+function MiniProjectCard({ project, size = 'medium' }) {
   const cardRef = useRef(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -143,19 +144,27 @@ function MiniProjectCard({ project }) {
     setTilt({ rotateX, rotateY });
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
   const handleMouseLeave = () => {
     setTilt({ rotateX: 0, rotateY: 0 });
+    setIsHovered(false);
   };
 
   const gradientAngle = 135 + tilt.rotateY * 10 - tilt.rotateX * 10;
   const brightness = 1 + Math.abs(tilt.rotateX + tilt.rotateY) * 0.03;
 
+  const borderRadius = size === 'medium' ? '16px' : '8px';
+  const imageBorderRadius = size === 'medium' ? '15px' : '7.5px';
+
   return (
     <Link to={`/work/${project.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%', width: '100%' }}>
       <div 
         ref={cardRef}
-        className="project-card"
         onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{
           transform: `perspective(500px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
@@ -169,6 +178,8 @@ function MiniProjectCard({ project }) {
               rgba(255, 255, 255, ${0.2 * brightness}) 75%,
               rgba(255, 255, 255, ${0.4 * brightness}) 100%)
           `,
+          backgroundBlendMode: 'overlay, normal',
+          backgroundSize: '100% 100%, 100% 100%',
           boxShadow: `
             0 0 0 0.5px rgba(255, 255, 255, 0.08),
             0 2px 6px rgba(255, 255, 255, 0.05),
@@ -176,6 +187,10 @@ function MiniProjectCard({ project }) {
             inset 0 0.5px 1px rgba(255, 255, 255, 0.25),
             inset 0 -0.5px 0.5px rgba(255, 255, 255, 0.05)
           `,
+          borderRadius: borderRadius,
+          overflow: 'hidden',
+          cursor: 'pointer',
+          position: 'relative',
           height: '100%',
           width: '100%',
         }}
@@ -183,10 +198,14 @@ function MiniProjectCard({ project }) {
         <img
           src={project.image}
           alt={project.title}
-          className="project-card-image"
           style={{
+            width: '100%',
             height: '100%',
             aspectRatio: 'auto',
+            objectFit: 'cover',
+            display: 'block',
+            filter: isHovered ? 'grayscale(0%)' : 'grayscale(100%)',
+            transition: 'filter 200ms ease',
             objectPosition: project.id === 'gaia' ? 'center 45%' : 'center center',
           }}
         />
@@ -336,10 +355,10 @@ export default function Home() {
             aspectRatio: '16 / 9',
           }}>
             <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2' }}>
-              <MiniProjectCard project={workPage1Projects[0]} />
+              <MiniProjectCard project={workPage1Projects[0]} size="medium" />
             </div>
             <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
-              <MiniProjectCard project={workPage1Projects[1]} />
+              <MiniProjectCard project={workPage1Projects[1]} size="medium" />
             </div>
             <div style={{ 
               gridColumn: '1 / 2', 
@@ -351,13 +370,13 @@ export default function Home() {
               aspectRatio: '16 / 9',
             }}>
               <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[0]} />
+                <MiniProjectCard project={workPage2Projects[0]} size="small" />
               </div>
               <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
-                <MiniProjectCard project={workPage2Projects[1]} />
+                <MiniProjectCard project={workPage2Projects[1]} size="small" />
               </div>
               <div style={{ gridColumn: '1 / 2', gridRow: '2 / 3', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[2]} />
+                <MiniProjectCard project={workPage2Projects[2]} size="small" />
               </div>
             </div>
           </div>
