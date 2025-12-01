@@ -253,6 +253,14 @@ export default function Home() {
             </div>
           </MenuTile>
           <MenuTile gridArea="2 / 1 / 3 / 2">
+            <h2 style={{
+              margin: 0,
+              fontSize: '2rem',
+              fontWeight: 600,
+              letterSpacing: '-0.01em'
+            }}>
+              what could be here?
+            </h2>
           </MenuTile>
         </div>
 
