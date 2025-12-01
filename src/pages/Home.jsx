@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom'
 import { useState, useRef, useEffect, useMemo } from 'react'
 import '../App.css'
 
-function MenuTile({ to, children, gridArea }) {
+function MenuTile({ children, gridArea }) {
   const cardRef = useRef(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
 
@@ -56,13 +55,7 @@ function MenuTile({ to, children, gridArea }) {
     </div>
   );
 
-  return to ? (
-    <Link to={to} className="project-card-link" style={{ gridArea }}>
-      {TileContent}
-    </Link>
-  ) : (
-    TileContent
-  );
+  return TileContent;
 }
 
 function ProjectCard({ project }) {
@@ -92,34 +85,32 @@ function ProjectCard({ project }) {
   const brightness = 1 + Math.abs(tilt.rotateX + tilt.rotateY) * 0.03;
 
   return (
-    <Link to={`/work/${project.slug}`} className="project-card-link">
-      <div 
-        ref={cardRef}
-        className="project-card"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
-          transition: tilt.rotateX === 0 ? 'transform 0.5s ease, background-image 0.5s ease' : 'none',
-          backgroundImage: `
-            linear-gradient(#000000, #000000),
-            linear-gradient(${gradientAngle}deg, 
-              rgba(255, 255, 255, ${0.8 * brightness}) 0%,
-              rgba(255, 255, 255, ${0.5 * brightness}) 25%,
-              rgba(255, 255, 255, ${0.3 * brightness}) 50%,
-              rgba(255, 255, 255, ${0.2 * brightness}) 75%,
-              rgba(255, 255, 255, ${0.4 * brightness}) 100%)
-          `,
-        }}
-      >
-        <img
-          src={project.image}
-          alt={project.title}
-          className="project-card-image"
-          style={project.id === 'gaia' ? { objectPosition: 'center 45%' } : {}}
-        />
-      </div>
-    </Link>
+    <div 
+      ref={cardRef}
+      className="project-card"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
+        transition: tilt.rotateX === 0 ? 'transform 0.5s ease, background-image 0.5s ease' : 'none',
+        backgroundImage: `
+          linear-gradient(#000000, #000000),
+          linear-gradient(${gradientAngle}deg, 
+            rgba(255, 255, 255, ${0.8 * brightness}) 0%,
+            rgba(255, 255, 255, ${0.5 * brightness}) 25%,
+            rgba(255, 255, 255, ${0.3 * brightness}) 50%,
+            rgba(255, 255, 255, ${0.2 * brightness}) 75%,
+            rgba(255, 255, 255, ${0.4 * brightness}) 100%)
+        `,
+      }}
+    >
+      <img
+        src={project.image}
+        alt={project.title}
+        className="project-card-image"
+        style={project.id === 'gaia' ? { objectPosition: 'center 45%' } : {}}
+      />
+    </div>
   );
 }
 
@@ -162,7 +153,7 @@ function MiniProjectCard({ project, size = 'medium', hoveredImage, setHoveredIma
   const imageBorderRadius = size === 'medium' ? '15px' : '7.5px';
 
   return (
-    <Link to={`/work/${project.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%', width: '100%' }}>
+    <div style={{ textDecoration: 'none', display: 'block', height: '100%', width: '100%' }}>
       <div 
         ref={cardRef}
         onMouseMove={handleMouseMove}
@@ -203,7 +194,7 @@ function MiniProjectCard({ project, size = 'medium', hoveredImage, setHoveredIma
           style={{
             width: '100%',
             height: '100%',
-            aspectRatio: 'auto',
+            aspectRatio: '16 / 6',
             objectFit: 'cover',
             display: 'block',
             filter: hoveredImage && hoveredImage !== project.id
@@ -214,7 +205,7 @@ function MiniProjectCard({ project, size = 'medium', hoveredImage, setHoveredIma
           }}
         />
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -242,7 +233,7 @@ export default function Home() {
             transform: 'translateY(-50%)',
             display: 'grid',
             gridTemplateColumns: '2fr 1fr',
-            gridTemplateRows: 'auto auto',
+            gridTemplateRows: 'auto 53px',
             gap: '15px',
             width: 'calc(100% - 70px)',
             maxWidth: 'calc(1600px - 70px)',
@@ -262,7 +253,7 @@ export default function Home() {
           </MenuTile>
           <MenuTile gridArea="1 / 2 / 2 / 3">
             <div style={{ 
-              padding: '2rem', 
+              padding: '1rem', 
               fontSize: '0.9rem', 
               lineHeight: 1.6,
               textAlign: 'left',
@@ -270,7 +261,8 @@ export default function Home() {
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'flex-start',
-              height: '100%',
+              height: '120px',
+              overflow: 'hidden',
               boxSizing: 'border-box'
             }}>
               <p style={{ margin: '0 0 1rem 0' }}>
@@ -281,39 +273,29 @@ export default function Home() {
               </p>
             </div>
           </MenuTile>
-          <MenuTile gridArea="2 / 2 / 3 / 3">
-          </MenuTile>
           <div style={{ 
-            gridArea: '2 / 1 / 3 / 2',
+            gridArea: '2 / 1 / 3 / 3',
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: '1fr 2fr',
             gridTemplateRows: '1fr 1fr',
             gap: '7.5px',
             width: '100%',
             height: '100%',
           }}>
-            <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2' }}>
-              <MiniProjectCard project={workPage1Projects[0]} size="medium" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
-            </div>
-            <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
+            <div style={{ gridColumn: '1 / 2', gridRow: '1 / 3' }}>
               <MiniProjectCard project={workPage1Projects[1]} size="medium" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
             </div>
-            <div style={{ 
-              gridColumn: '1 / 2', 
-              gridRow: '2 / 3',
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gridTemplateRows: '1fr 1fr',
-              gap: '3.75px',
-            }}>
-              <div style={{ gridColumn: '1 / 2', gridRow: '1 / 2', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[0]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
+            <div style={{ gridColumn: '2 / 3', display: 'grid', gridTemplateRows: '1fr 1fr', gap: '3.75px' }}>
+              <div style={{ gridRow: '1 / 2' }}>
+                <MiniProjectCard project={workPage1Projects[0]} size="medium" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
               </div>
-              <div style={{ gridColumn: '2 / 3', gridRow: '1 / 3' }}>
-                <MiniProjectCard project={workPage2Projects[1]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
-              </div>
-              <div style={{ gridColumn: '1 / 2', gridRow: '2 / 3', aspectRatio: '16 / 9' }}>
-                <MiniProjectCard project={workPage2Projects[2]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
+              <div style={{ gridRow: '2 / 3', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3.75px' }}>
+                <div>
+                  <MiniProjectCard project={workPage2Projects[0]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
+                </div>
+                <div>
+                  <MiniProjectCard project={workPage2Projects[1]} size="small" hoveredImage={hoveredImage} setHoveredImage={setHoveredImage} />
+                </div>
               </div>
             </div>
           </div>
