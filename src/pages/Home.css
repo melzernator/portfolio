@@ -47,3 +47,20 @@
   line-height: 1.5;
   margin-top: 12px;
 }
+
+@media (min-width: 900px) {
+  .home-content {
+    padding: 60px 60px 0;
+  }
+
+  .home-title {
+    font-size: 160px;
+    white-space: nowrap;
+    margin-bottom: 24px;
+  }
+
+  .home-subtitle {
+    font-size: 28px;
+    margin-top: 20px;
+  }
+}

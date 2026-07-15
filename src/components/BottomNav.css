@@ -43,3 +43,19 @@
 .nav-item:active {
   opacity: 0.6;
 }
+
+@media (min-width: 900px) {
+  .bottom-nav {
+    width: 733px;
+    height: 60px;
+    padding: 0 32px;
+  }
+
+  .nav-item {
+    font-size: 32px;
+  }
+
+  .nav-item--logo {
+    font-size: 32px;
+  }
+}

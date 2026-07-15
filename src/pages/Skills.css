@@ -60,3 +60,57 @@
   object-fit: cover;
   border-radius: 10px;
 }
+
+.skills-grid {
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .skills-page .page-scroll {
+    padding-bottom: 120px;
+  }
+
+  .skills-page > .page-scroll > .skill-section {
+    padding: 0 60px;
+    margin-bottom: 40px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 0;
+    padding: 0 60px;
+  }
+
+  .skills-col {
+    padding-right: 40px;
+  }
+
+  .skills-col:last-child {
+    padding-right: 0;
+    padding-left: 40px;
+    border-left: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .skills-col .skill-section {
+    padding: 0;
+    margin-bottom: 56px;
+  }
+
+  .skill-title {
+    font-size: 56px;
+  }
+
+  .skill-body,
+  .skill-meta {
+    font-size: 18px;
+  }
+
+  .skill-image-full img {
+    height: 440px;
+  }
+
+  .skill-image-pair img {
+    height: 300px;
+  }
+}

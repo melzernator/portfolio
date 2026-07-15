@@ -14,7 +14,7 @@ export default function Skills({ onNavigate }) {
       <div className="page-scroll">
         <h1 className="page-title">skills</h1>
 
-        {/* Asking why */}
+        {/* Asking why - full width */}
         <section className="skill-section">
           <h2 className="skill-title">asking why</h2>
           <p className="skill-body">
@@ -22,48 +22,54 @@ export default function Skills({ onNavigate }) {
           </p>
         </section>
 
-        {/* 3D modeling */}
-        <section className="skill-section">
-          <h2 className="skill-title">3D modeling</h2>
-          <p className="skill-meta">5 years of experience</p>
-          <div className="skill-image-full">
-            <img src={imgModelingImg} alt="3D modeling" />
-          </div>
-        </section>
+        <div className="skills-grid">
+          <div className="skills-col">
+            {/* 3D modeling */}
+            <section className="skill-section">
+              <h2 className="skill-title">3D modeling</h2>
+              <p className="skill-meta">5 years of experience</p>
+              <div className="skill-image-full">
+                <img src={imgModelingImg} alt="3D modeling" />
+              </div>
+            </section>
 
-        {/* Cutting metal */}
-        <section className="skill-section">
-          <h2 className="skill-title">cutting metal</h2>
-          <div className="skill-image-pair">
-            <img src={imgCuttingLeft} alt="cutting metal" />
-            <img src={imgCuttingRight} alt="metal grinding" />
-          </div>
-        </section>
+            {/* Cutting metal */}
+            <section className="skill-section">
+              <h2 className="skill-title">cutting metal</h2>
+              <div className="skill-image-pair">
+                <img src={imgCuttingLeft} alt="cutting metal" />
+                <img src={imgCuttingRight} alt="metal grinding" />
+              </div>
+            </section>
 
-        {/* PCB design */}
-        <section className="skill-section">
-          <h2 className="skill-title">PCB design</h2>
-          <p className="skill-meta">3 years of experience</p>
-          <div className="skill-image-full">
-            <img src={imgPCBImg} alt="PCB design" />
+            {/* Soldering */}
+            <section className="skill-section">
+              <h2 className="skill-title">soldering wires</h2>
+              <div className="skill-image-full">
+                <img src={imgSolderingImg} alt="soldering" />
+              </div>
+            </section>
           </div>
-        </section>
 
-        {/* Welding */}
-        <section className="skill-section">
-          <h2 className="skill-title">welding</h2>
-          <div className="skill-image-full">
-            <img src={imgWeldingImg} alt="welding" />
-          </div>
-        </section>
+          <div className="skills-col">
+            {/* PCB design */}
+            <section className="skill-section">
+              <h2 className="skill-title">PCB design</h2>
+              <p className="skill-meta">3 years of experience</p>
+              <div className="skill-image-full">
+                <img src={imgPCBImg} alt="PCB design" />
+              </div>
+            </section>
 
-        {/* Soldering */}
-        <section className="skill-section">
-          <h2 className="skill-title">soldering wires</h2>
-          <div className="skill-image-full">
-            <img src={imgSolderingImg} alt="soldering" />
+            {/* Welding */}
+            <section className="skill-section">
+              <h2 className="skill-title">welding</h2>
+              <div className="skill-image-full">
+                <img src={imgWeldingImg} alt="welding" />
+              </div>
+            </section>
           </div>
-        </section>
+        </div>
       </div>
       <BottomNav active="skills" onNavigate={onNavigate} />
     </div>

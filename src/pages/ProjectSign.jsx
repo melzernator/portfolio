@@ -31,31 +31,36 @@ function Context() {
   return (
     <div className="proj-content">
       <h1 className="proj-main-title">context</h1>
+      <div className="proj-context-cols">
+        <div>
+          <h2 className="proj-section-title">what</h2>
+          <p className="proj-body">design and manufacturing of a human sized sign with embedded lights</p>
 
-      <h2 className="proj-section-title">what</h2>
-      <p className="proj-body">design and manufacturing of a human sized sign with embedded lights</p>
+          <h2 className="proj-section-title">who</h2>
+          <p className="proj-body">
+            Joel Swanson: design mentor<br />
+            Marvin Melzer: design &amp; manufacturing<br />
+            Fen: client (Cafe Owner)
+          </p>
 
-      <h2 className="proj-section-title">who</h2>
-      <p className="proj-body">
-        Joel Swanson: design mentor<br />
-        Marvin Melzer: design &amp; manufacturing<br />
-        Fen: client (Cafe Owner)
-      </p>
+          <h2 className="proj-section-title">where</h2>
+          <p className="proj-body">— </p>
 
-      <h2 className="proj-section-title">where</h2>
-      <p className="proj-body">— </p>
+          <h2 className="proj-section-title">when</h2>
+          <p className="proj-body">2025 - 4 months</p>
+        </div>
 
-      <h2 className="proj-section-title">when</h2>
-      <p className="proj-body">2025 - 4 months</p>
-
-      <h2 className="proj-section-title">objectives</h2>
-      <p className="proj-body">
-        easy to read from far distance<br /><br />
-        aesthetically pleasing<br /><br />
-        not blocking light for plants and interior<br /><br />
-        fits in cafes window<br /><br />
-        easy to maintain
-      </p>
+        <div>
+          <h2 className="proj-section-title">objectives</h2>
+          <p className="proj-body">
+            easy to read from far distance<br /><br />
+            aesthetically pleasing<br /><br />
+            not blocking light for plants and interior<br /><br />
+            fits in cafes window<br /><br />
+            easy to maintain
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

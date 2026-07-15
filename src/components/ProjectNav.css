@@ -53,3 +53,19 @@
 .project-nav__item:active {
   opacity: 0.6;
 }
+
+@media (min-width: 900px) {
+  .project-nav {
+    width: 900px;
+    height: 60px;
+    padding: 0 24px;
+  }
+
+  .project-nav__item {
+    font-size: 28px;
+  }
+
+  .project-nav__close {
+    font-size: 22px;
+  }
+}
