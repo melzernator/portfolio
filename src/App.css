@@ -15,6 +15,18 @@
   overflow: hidden;
 }
 
+@media (min-width: 900px) {
+  .app {
+    width: 100vw;
+    overflow: visible;
+  }
+
+  .page {
+    width: 100vw;
+    overflow: visible;
+  }
+}
+
 .page-scroll {
   flex: 1;
   overflow-y: auto;
@@ -48,15 +60,6 @@
 }
 
 @media (min-width: 900px) {
-  .app {
-    width: 100vw;
-    max-width: 100vw;
-  }
-
-  .page {
-    width: 100%;
-  }
-
   .page-scroll {
     padding-bottom: 100px;
   }
