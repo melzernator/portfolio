@@ -1,0 +1,55 @@
+.project-nav {
+  position: fixed;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 370px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  z-index: 100;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.project-nav__close {
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s;
+}
+
+.project-nav__close:active {
+  opacity: 0.5;
+}
+
+.project-nav__item {
+  font-family: 'Geist', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-nav__item--active {
+  color: #000;
+}
+
+.project-nav__item:active {
+  opacity: 0.6;
+}

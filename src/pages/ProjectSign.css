@@ -1,0 +1,68 @@
+.proj-page {
+  background: #fff;
+}
+
+.proj-scroll {
+  padding-bottom: 80px;
+}
+
+.proj-content {
+  padding: 0 20px;
+}
+
+.proj-main-title {
+  font-size: 75px;
+  font-weight: 900;
+  letter-spacing: -0.825px;
+  line-height: 0.92;
+  color: #000;
+  padding-top: 36px;
+  margin-bottom: 32px;
+}
+
+.proj-section-title {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.44px;
+  color: #000;
+  line-height: 1.5;
+  margin-top: 24px;
+  margin-bottom: 6px;
+}
+
+.proj-sub-title {
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+  color: #000;
+  line-height: 1.5;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.proj-body {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.187px;
+  color: #000;
+  line-height: 1.5;
+}
+
+.proj-intro {
+  margin-bottom: 24px;
+  font-size: 17px;
+}
+
+.proj-image {
+  margin-top: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.proj-image img {
+  width: 100%;
+  height: 467px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}

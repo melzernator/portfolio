@@ -1,0 +1,45 @@
+.bottom-nav {
+  position: fixed;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 370px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 100;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.nav-item {
+  font-family: 'Geist', sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.475px;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-item--logo {
+  font-weight: 900;
+  font-size: 25px;
+}
+
+.nav-item--active {
+  color: #000;
+}
+
+.nav-item:active {
+  opacity: 0.6;
+}
