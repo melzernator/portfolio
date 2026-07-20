@@ -10,7 +10,6 @@ import ProjectFan from './pages/ProjectFan'
 export default function App() {
   const [view, setView] = useState('home')
   const [project, setProject] = useState(null)
-  const [projectTab, setProjectTab] = useState('context')
 
   function navigate(page) {
     setProject(null)
@@ -19,7 +18,6 @@ export default function App() {
 
   function openProject(proj) {
     setProject(proj)
-    setProjectTab('context')
   }
 
   function closeProject() {
@@ -30,7 +28,7 @@ export default function App() {
   if (project === 'sign') {
     return (
       <div className="app">
-        <ProjectSign tab={projectTab} onTabChange={setProjectTab} onClose={closeProject} />
+        <ProjectSign onClose={closeProject} />
       </div>
     )
   }
@@ -38,7 +36,7 @@ export default function App() {
   if (project === 'fan') {
     return (
       <div className="app">
-        <ProjectFan tab={projectTab} onTabChange={setProjectTab} onClose={closeProject} />
+        <ProjectFan onClose={closeProject} />
       </div>
     )
   }

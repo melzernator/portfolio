@@ -8,16 +8,7 @@
 
 .proj-content {
   padding: 0 20px;
-}
-
-.proj-main-title {
-  font-size: 75px;
-  font-weight: 900;
-  letter-spacing: -0.825px;
-  line-height: 0.92;
-  color: #000;
-  padding-top: 36px;
-  margin-bottom: 32px;
+  padding-top: 8px;
 }
 
 .proj-section-title {
@@ -25,19 +16,13 @@
   font-weight: 700;
   letter-spacing: -0.44px;
   color: #000;
-  line-height: 1.5;
-  margin-top: 24px;
-  margin-bottom: 6px;
+  line-height: 1.2;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
-.proj-sub-title {
-  font-size: 25px;
-  font-weight: 600;
-  letter-spacing: -0.275px;
-  color: #000;
-  line-height: 1.5;
-  margin-top: 16px;
-  margin-bottom: 4px;
+.proj-section-title:first-child {
+  margin-top: 24px;
 }
 
 .proj-body {
@@ -45,12 +30,8 @@
   font-weight: 500;
   letter-spacing: -0.187px;
   color: #000;
-  line-height: 1.5;
-}
-
-.proj-intro {
-  margin-bottom: 24px;
-  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .proj-image {
@@ -61,52 +42,48 @@
 
 .proj-image img {
   width: 100%;
-  height: 467px;
+  height: 300px;
   object-fit: cover;
   border-radius: 10px;
   display: block;
 }
 
-.proj-context-cols {
-  display: block;
+.proj-image--tall img {
+  height: 440px;
+}
+
+.proj-mono {
+  font-family: 'Geist Mono', monospace;
+  font-weight: 500;
 }
 
 @media (min-width: 900px) {
   .proj-content {
     padding: 0 60px;
-  }
-
-  .proj-main-title {
-    font-size: 120px;
-    padding-top: 60px;
-    margin-bottom: 40px;
+    padding-top: 8px;
   }
 
   .proj-section-title {
-    font-size: 60px;
-    margin-top: 32px;
-  }
-
-  .proj-sub-title {
-    font-size: 32px;
+    font-size: 56px;
+    margin-top: 56px;
+    margin-bottom: 14px;
   }
 
   .proj-body {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .proj-image img {
-    height: 600px;
+    height: 460px;
   }
 
-  .proj-context-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    margin-top: 0;
+  .proj-image--tall img {
+    height: 700px;
   }
 
-  .proj-context-cols .proj-section-title:first-child {
-    margin-top: 0;
+  .proj-2col .proj-image img,
+  .proj-3col .proj-image img,
+  .proj-2col .proj-image-labeled img {
+    height: 380px;
   }
 }

@@ -68,6 +68,14 @@ export default function Skills({ onNavigate }) {
                 <img src={imgWeldingImg} alt="welding" />
               </div>
             </section>
+
+            {/* Design thinking */}
+            <section className="skill-section">
+              <h2 className="skill-title">design thinking</h2>
+              <p className="skill-body">
+                uncovering layers of 'why' helps reveal the real design problem
+              </p>
+            </section>
           </div>
         </div>
       </div>
