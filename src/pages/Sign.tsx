@@ -1,22 +1,20 @@
 import BackButton from '../components/BackButton';
-import hero from '../assets/figma/sign-hero.png';
-import designAnnotated from '../assets/figma/sign-design.png';
-import orchid from '../assets/figma/sign-orchid.png';
-import cafe from '../assets/figma/sign-cafe.png';
-import proto1 from '../assets/figma/sign-proto-1.png';
-import proto2 from '../assets/figma/sign-proto-2.png';
-import proto3 from '../assets/figma/sign-proto-3.png';
-import fusion from '../assets/figma/sign-fusion.png';
-import buildLetter from '../assets/figma/sign-build-letter.png';
-import build2 from '../assets/figma/sign-build-2.png';
-import installPaper from '../assets/figma/sign-install-paper.png';
-import installBig from '../assets/figma/sign-install-big.png';
-import clamp1 from '../assets/figma/sign-clamp-1.png';
-import clamp2 from '../assets/figma/sign-clamp-2.png';
-import test1 from '../assets/figma/sign-test-1.png';
-import test2 from '../assets/figma/sign-test-2.png';
-import test3 from '../assets/figma/sign-test-3.png';
-import insight2 from '../assets/figma/sign-insight-2.png';
+import hero from '../assets/sign/sign-render.webp';
+import designAnnotated from '../assets/sign/sign-design.webp';
+import orchids from '../assets/sign/sign-orchids-1.webp';
+import prototype from '../assets/sign/sign-prototype.webp';
+import cncVideo from '../assets/sign/sign-CNC.mp4';
+import solderingImg from '../assets/sign/sign-soldering.webp';
+import assemblingImg from '../assets/sign/sign-assembling.webp';
+import assemblingVideo from '../assets/sign/sign-assembling.mp4';
+import assemblyImg from '../assets/sign/sign-assembly.webp';
+import fastener from '../assets/sign/sign-fastener.webp';
+import clamp from '../assets/sign/sign-clamp.webp';
+import outside1 from '../assets/sign/sign-outside-1.webp';
+import outside2 from '../assets/sign/sign-outside-2.webp';
+import inside from '../assets/sign/sign-inside.webp';
+import daylight from '../assets/sign/sign-daylight.webp';
+import insightImg from '../assets/sign/sign-insight.webp';
 
 export default function Sign() {
   return (
@@ -64,10 +62,12 @@ export default function Sign() {
               well with pink
             </figcaption>
           </figure>
-          <div className="project__col">
-            <img className="project__figure" src={orchid} alt="Orchids in the cafe" />
-            <img className="project__figure" src={cafe} alt="Sketch of the sign" />
-          </div>
+          <figure className="project__figure">
+            <img src={orchids} alt="Orchids in the cafe" />
+            <figcaption className="caption">
+              pink matches the orchids in the cafe
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -86,27 +86,14 @@ export default function Sign() {
         </div>
         <div className="project__row">
           <figure className="project__figure">
-            <img src={proto1} alt="Neon prototype" />
+            <img src={prototype} alt="Neon prototype" />
             <figcaption className="caption caption--overlay caption--tl">
               color matches design — iterating channel thickness → light stripes are held
               by tension
             </figcaption>
           </figure>
-          <img className="project__figure project__figure--wide" src={proto2} alt="Acrylic channel prototype" />
-        </div>
-      </section>
-
-      <section className="project__section">
-        <h2 className="project__heading">production</h2>
-        <div className="project__row">
-          <figure className="project__figure">
-            <img src={fusion} alt="Fusion360 model" />
-            <figcaption className="caption caption--overlay caption--tl caption--white">
-              modeled in Fusion360 to narrow down exact dimensions
-            </figcaption>
-          </figure>
           <figure className="project__figure project__figure--wide">
-            <img src={proto3} alt="CNC cutting acrylic" />
+            <video src={cncVideo} autoPlay loop muted playsInline />
             <figcaption className="caption caption--overlay caption--bl">
               dialed in cutting speeds → acrylic does not melt or chip though carving
             </figcaption>
@@ -121,14 +108,14 @@ export default function Sign() {
           stripes
         </p>
         <div className="project__row project__row--three">
-          <img className="project__figure" src={buildLetter} alt="Soldering light stripes" />
-          <img className="project__figure" src={build2} alt="Assembling the sign" />
+          <img className="project__figure" src={solderingImg} alt="Soldering light stripes" />
           <figure className="project__figure">
-            <img src={insight2} alt="Building one letter at a time" />
+            <video src={assemblingVideo} autoPlay loop muted playsInline />
             <figcaption className="caption caption--overlay caption--bl">
               building one letter at a time
             </figcaption>
           </figure>
+          <img className="project__figure" src={assemblingImg} alt="Assembling the sign" />
         </div>
       </section>
 
@@ -137,27 +124,27 @@ export default function Sign() {
         <div className="project__row">
           <div className="project__col">
             <figure className="project__figure">
-              <img src={installPaper} alt="Protective paper film" />
+              <img src={assemblyImg} alt="Sign sections during assembly" />
               <figcaption className="caption">
                 keeping the protective paper film on as long as possible to protect
                 acrylic from scratches during production
               </figcaption>
             </figure>
             <figure className="project__figure">
-              <img src={clamp1} alt="C-clamps mounted on window frame" />
-              <figcaption className="caption caption--overlay caption--tl">
+              <img src={clamp} alt="C-clamps mounted on window frame" />
+              <figcaption className="caption">
                 using c-clamps mounted on window frame for non destructive mount
               </figcaption>
             </figure>
             <figure className="project__figure">
-              <img src={clamp2} alt="Clamp detail" />
+              <img src={fastener} alt="Clamp detail" />
               <figcaption className="caption">
                 clamps hold the signs sections in place — soft Nylon tips prevent acrylic
                 crazing
               </figcaption>
             </figure>
           </div>
-          <img className="project__figure project__figure--wide" src={installBig} alt="Installing the sign" />
+          <img className="project__figure project__figure--wide" src={outside2} alt="Installing the sign" />
         </div>
       </section>
 
@@ -165,19 +152,19 @@ export default function Sign() {
         <h2 className="project__heading">test</h2>
         <div className="project__row project__row--three">
           <figure className="project__figure">
-            <img src={test1} alt="Sign from a distance" />
+            <img src={outside1} alt="Sign from a distance" />
             <figcaption className="caption caption--overlay caption--tl">
               easy to read from a distance
             </figcaption>
           </figure>
           <figure className="project__figure">
-            <img src={test2} alt="Sign from inside" />
+            <img src={inside} alt="Sign from inside" />
             <figcaption className="caption caption--overlay caption--tl">
               the sign blends in with its background when looked at from inside
             </figcaption>
           </figure>
           <figure className="project__figure">
-            <img src={test3} alt="Orchids in sunlight" />
+            <img src={daylight} alt="Sign in daylight" />
             <figcaption className="caption caption--overlay caption--tl caption--black">
               the orchids get plenty of sunlight
             </figcaption>
@@ -201,6 +188,7 @@ export default function Sign() {
             remove acrylics paper cover first and then insert light stripes to avoid
             paper pieces to be stuck in channels
           </p>
+          <img className="project__figure" src={insightImg} alt="Paper stuck in channels" style={{ marginTop: 16 }} />
         </div>
       </section>
     </div>

@@ -1,10 +1,10 @@
 import Nav from '../components/Nav';
-import modeling from '../assets/figma/skills-3d-modeling.png';
-import pcb from '../assets/figma/skills-pcb.png';
-import cutting1 from '../assets/figma/skills-cutting-1.png';
-import cutting2 from '../assets/figma/skills-cutting-2.png';
-import soldering from '../assets/figma/skills-soldering.png';
-import welding from '../assets/figma/skills-welding.png';
+import modeling from '../assets/skills/3Dmodeling.png';
+import pcb from '../assets/skills/PCBdesign.png';
+import flex from '../assets/skills/flex.png';
+import dremel from '../assets/skills/dremel.png';
+import soldering from '../assets/skills/soldering.png';
+import welding from '../assets/skills/welding.png';
 
 type Skill = {
   label: string;
@@ -16,8 +16,8 @@ type Skill = {
 const skills: Skill[] = [
   { label: '3D modeling', img: modeling, labelColor: 'white' },
   { label: 'PCB design', img: pcb, labelColor: 'black' },
-  { label: 'cutting metal', img: cutting1, labelColor: 'black', tall: true },
-  { label: '', img: cutting2, labelColor: 'black', tall: true },
+  { label: 'cutting metal', img: flex, labelColor: 'black', tall: true },
+  { label: '', img: dremel, labelColor: 'black', tall: true },
   { label: 'soldering wires', img: soldering, labelColor: 'white', tall: true },
   { label: 'welding', img: welding, labelColor: 'white', tall: true },
 ];

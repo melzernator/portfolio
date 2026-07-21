@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import signModel from '../assets/creations/sign.glb';
+import fanModel from '../assets/creations/fan.glb';
 
 type ModelDef = {
   url: string;
@@ -10,8 +12,8 @@ type ModelDef = {
 };
 
 const MODELS: ModelDef[] = [
-  { url: '/project-3d-models/sign.glb', route: '#/creations/sign', size: 3.2 },
-  { url: '/project-3d-models/fan.glb', route: '#/creations/fan', size: 2.6 },
+  { url: signModel, route: '#/creations/sign', size: 3.2 },
+  { url: fanModel, route: '#/creations/fan', size: 2.6 },
 ];
 
 type Floater = {

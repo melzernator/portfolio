@@ -1,18 +1,15 @@
 import Nav from '../components/Nav';
-import cuLogo from '../assets/figma/about-cu.png';
-import atlasLogo from '../assets/figma/about-atlas.png';
-import braunLogo from '../assets/figma/about-braun.png';
-import tudLogo from '../assets/figma/about-tud.png';
-import flagUs from '../assets/figma/about-flag-us.png';
-import flagDe from '../assets/figma/about-flag-de.png';
-import portrait from '../assets/figma/about-portrait.png';
+import cuLogo from '../assets/about/CUBoulder.png';
+import atlasLogo from '../assets/about/atlas.png';
+import braunLogo from '../assets/about/braun.png';
+import tudLogo from '../assets/about/TUDarmstadt.png';
+import flagUs from '../assets/about/usa.png';
+import flagDe from '../assets/about/deutschland.png';
 
 export default function About() {
   return (
     <div className="page about">
       <h1 className="page-title">about</h1>
-
-      <img className="about__portrait" src={portrait} alt="Portrait of Marvin Melzer" />
 
       <p className="about__intro">
         Marvin Melzer is a German craftsman with a passion for thoughtfully designed

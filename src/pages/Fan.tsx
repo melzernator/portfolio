@@ -1,14 +1,15 @@
 import BackButton from '../components/BackButton';
-import openFront from '../assets/figma/fan-open-front.png';
-import hl70 from '../assets/figma/fan-hl70.png';
-import deskFan from '../assets/figma/fan-desk.png';
-import bladeRatio from '../assets/figma/fan-blade-ratio.png';
-import protoOpen from '../assets/figma/fan-proto-open.png';
-import protoClosed from '../assets/figma/fan-proto-closed.png';
-import rotate from '../assets/figma/fan-rotate.png';
-import closedSide from '../assets/figma/fan-closed-side.png';
-import renderLaying from '../assets/figma/fan-render-laying.png';
-import renderStanding from '../assets/figma/fan-render-standing.png';
+import renderOpen from '../assets/fan/fan-render-open.webp';
+import hl70a from '../assets/fan/HL70-1.webp';
+import hl70b from '../assets/fan/HL70-2.webp';
+import bladeRatio from '../assets/fan/blade-ratio.webp';
+import functionVideo from '../assets/fan/fan-function.mp4';
+import printFront from '../assets/fan/fan-print-front.webp';
+import printClosed from '../assets/fan/fan-print-closed.webp';
+import printSide from '../assets/fan/fan-print-side.webp';
+import printClosedSide from '../assets/fan/fan-pint-closed-side.webp';
+import renderLaying from '../assets/fan/fan-render-laying.webp';
+import renderStanding from '../assets/fan/fan-render-standing.webp';
 
 export default function Fan() {
   return (
@@ -32,7 +33,7 @@ export default function Fan() {
           <h2>objective</h2>
           <p>redesign the fan</p>
         </div>
-        <img className="project__hero" src={openFront} alt="Redesigned fan render" />
+        <img className="project__hero" src={renderOpen} alt="Redesigned fan render" />
       </section>
 
       <section className="project__section">
@@ -50,14 +51,14 @@ export default function Fan() {
             </p>
           </div>
           <figure className="project__figure">
-            <img src={hl70} alt="Braun HL70 from 1971" />
+            <img src={hl70a} alt="Braun HL70 from 1971" />
             <figcaption className="caption">
               the HL70 designed by Reinhold Weiss and Jürgen Greubel in{' '}
               <strong>1971</strong>
             </figcaption>
           </figure>
           <figure className="project__figure">
-            <img src={deskFan} alt="Fan on an office desk" />
+            <img src={hl70b} alt="HL70 on an office desk" />
             <figcaption className="caption">a fan for office desks</figcaption>
           </figure>
         </div>
@@ -70,7 +71,7 @@ export default function Fan() {
         </p>
         <div className="project__row">
           <figure className="project__figure project__figure--wide">
-            <img src={protoOpen} alt="Rotational stand doubling as protective cover" />
+            <video src={functionVideo} autoPlay loop muted playsInline />
             <figcaption className="caption">
               the rotational stand doubles as a protective cover
             </figcaption>
@@ -97,29 +98,29 @@ export default function Fan() {
               mind
             </p>
             <figure className="project__figure">
-              <img src={protoOpen} alt="Prototype in open position" />
+              <img src={printFront} alt="3D print in open position" />
               <figcaption className="caption">open position</figcaption>
             </figure>
             <figure className="project__figure">
-              <img src={protoClosed} alt="Prototype in closed position" />
+              <img src={printClosed} alt="3D print in closed position" />
               <figcaption className="caption">
                 closed position for transportation
               </figcaption>
             </figure>
             <figure className="project__figure">
-              <img src={rotate} alt="Rotating the fan" />
+              <img src={printSide} alt="Rotating the fan" />
               <figcaption className="caption">
                 rotate to adjust air flow direction
               </figcaption>
             </figure>
             <figure className="project__figure">
-              <img src={closedSide} alt="Closed prototype side view" />
+              <img src={printClosedSide} alt="Closed 3D print, side view" />
               <figcaption className="caption">closed - side view</figcaption>
             </figure>
           </div>
           <div className="project__col project__col--wide">
             <figure className="project__figure">
-              <img src={openFront} alt="Render, open front" />
+              <img src={renderOpen} alt="Render, open front" />
               <figcaption className="caption caption--overlay caption--bl">
                 rendered by Jordan Groskamp
               </figcaption>
