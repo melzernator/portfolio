@@ -371,6 +371,15 @@ a {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* normalize mixed aspect ratios so 3-col rows line up */
+.project__row--three .project__figure img,
+.project__row--three .project__figure video,
+.project__row--three img.project__figure {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
 .project__row--split {
   grid-template-columns: 1fr 2fr;
   margin-bottom: 24px;
@@ -395,6 +404,16 @@ a {
   margin: 0;
   border-radius: var(--radius);
   overflow: hidden;
+  width: 100%;
+  min-width: 0;
+}
+
+/* bare <img class="project__figure"> (no <figure> wrapper) */
+img.project__figure,
+video.project__figure {
+  display: block;
+  height: auto;
+  object-fit: cover;
 }
 
 .project__figure img {
