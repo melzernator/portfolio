@@ -273,16 +273,24 @@ a {
   letter-spacing: -0.828px;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+  margin-bottom: 13px;
+}
+
+.about__entry-body {
+  width: fit-content;
 }
 
 .about__logos {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  width: 100%;
   gap: 14px;
   margin-bottom: 8px;
 }
 
 .about__logos img {
+  height: 36px;
   width: auto;
   object-fit: contain;
 }
@@ -633,7 +641,7 @@ video.project__figure {
   }
 
   .about__logos img {
-    height: 25px !important;
+    height: 25px;
   }
 
   .about__entry-body p {

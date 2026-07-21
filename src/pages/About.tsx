@@ -1,10 +1,10 @@
 import Nav from '../components/Nav';
 import cuLogo from '../assets/about/CUBoulder.png';
-import atlasLogo from '../assets/about/atlas.png';
+import atlasLogo from '../assets/about/atlas-black.gif';
 import braunLogo from '../assets/about/braun.png';
-import tudLogo from '../assets/about/TUDarmstadt.png';
-import flagUs from '../assets/about/usa.png';
-import flagDe from '../assets/about/deutschland.png';
+import tudLogo from '../assets/about/TUDarmstadt.svg';
+import flagUs from '../assets/about/usa.svg';
+import flagDe from '../assets/about/deutschland.svg';
 
 export default function About() {
   return (
@@ -25,9 +25,9 @@ export default function About() {
           <span className="about__year">2 0 2 7</span>
           <div className="about__entry-body">
             <div className="about__logos">
-              <img src={cuLogo} alt="CU Boulder" style={{ height: 54 }} />
-              <img src={atlasLogo} alt="ATLAS Institute" style={{ height: 47 }} />
-              <img src={flagUs} alt="USA" style={{ height: 48 }} />
+              <img src={flagUs} alt="USA" style={{ height: 45, marginLeft: 2 }} />
+              <img src={cuLogo} alt="CU Boulder" style={{ height: 45 }} />
+              <img src={atlasLogo} alt="ATLAS Institute" style={{ height: 45 }} />
             </div>
             <p>
               Master of Science
@@ -40,9 +40,9 @@ export default function About() {
         <div className="about__entry">
           <span className="about__year">2 0 2 5</span>
           <div className="about__entry-body">
-            <div className="about__logos">
-              <img src={braunLogo} alt="Braun" style={{ height: 61 }} />
-              <img src={flagDe} alt="Germany" style={{ height: 48 }} />
+            <div className="about__logos" style={{ transform: 'translateY(8px)' }}>
+              <img src={flagDe} alt="Germany" style={{ height: 45, marginLeft: 2 }} />
+              <img src={braunLogo} alt="Braun" style={{ height: 65 }} />
             </div>
             <p>
               Internship 7 months
@@ -55,9 +55,9 @@ export default function About() {
         <div className="about__entry">
           <span className="about__year">2 0 2 4</span>
           <div className="about__entry-body">
-            <div className="about__logos">
-              <img src={tudLogo} alt="TU Darmstadt" style={{ height: 54 }} />
-              <img src={flagDe} alt="Germany" style={{ height: 48 }} />
+            <div className="about__logos" style={{ transform: 'translateY(8px)' }}>
+              <img src={flagDe} alt="Germany" style={{ height: 45, marginLeft: 2 }} />
+              <img src={tudLogo} alt="TU Darmstadt" style={{ height: 60 }} />
             </div>
             <p>
               Bachelor of Science
