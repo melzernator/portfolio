@@ -12,6 +12,8 @@ export default function About() {
     <div className="page about">
       <h1 className="page-title">about</h1>
 
+      <img className="about__portrait" src={portrait} alt="Portrait of Marvin Melzer" />
+
       <p className="about__intro">
         Marvin Melzer is a German craftsman with a passion for thoughtfully designed
         consumer products.
@@ -20,8 +22,6 @@ export default function About() {
         Comfortable at the whiteboard and in the shop, he enjoys transforming ambitious
         ideas into functional prototypes.
       </p>
-
-      <img className="about__portrait" src={portrait} alt="Portrait of Marvin Melzer" />
 
       <div className="about__timeline">
         <div className="about__entry">

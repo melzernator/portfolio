@@ -161,43 +161,27 @@ a {
 
 .creations {
   overflow: hidden;
+  height: 100vh;
+  padding: 0;
 }
 
-.creations__object {
-  position: absolute;
-  transition: transform 0.2s ease;
+.creations__canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
 }
 
-.creations__object:hover {
-  transform: scale(1.05);
-}
-
-.creations__object--sign {
-  left: 24%;
-  top: 42%;
-  width: 190px;
-  transform: rotate(-27deg);
-}
-
-.creations__object--sign:hover {
-  transform: rotate(-27deg) scale(1.05);
-}
-
-.creations__object--fan {
-  left: 66%;
-  top: 46%;
-  width: 160px;
-  transform: rotate(-30deg);
-}
-
-.creations__object--fan:hover {
-  transform: rotate(-30deg) scale(1.05);
-}
-
-.creations__object img {
+.creations__canvas canvas {
+  display: block;
   width: 100%;
-  height: auto;
-  border-radius: 6px;
+  height: 100%;
+}
+
+.creations__header {
+  position: relative;
+  z-index: 2;
+  padding: 30px 36px 0;
+  pointer-events: none;
 }
 
 /* ---------- skills ---------- */
@@ -484,4 +468,203 @@ a {
 
 .project__insights .project__text {
   max-width: 432px;
+}
+
+/* ---------- image ratios (from Figma mobile frames) ---------- */
+
+@media (max-width: 767px) {
+  .skills__card,
+  .skills__card--tall {
+    height: auto;
+  }
+
+  .skills__card {
+    aspect-ratio: 4 / 3; /* 350 x 262.5 */
+  }
+
+  .skills__card--tall {
+    aspect-ratio: 350 / 467;
+  }
+
+  .project__hero {
+    aspect-ratio: 350 / 467;
+    object-fit: cover;
+  }
+
+  .fan .project__hero {
+    aspect-ratio: 350 / 196.6; /* render is 16:9-ish in Figma */
+  }
+
+  .project__figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* ---------- mobile layout (Figma "Mobile" page, 390px frames) ---------- */
+
+@media (max-width: 767px) {
+  .page {
+    padding: 20px 20px 140px;
+  }
+
+  .page-title {
+    font-size: 75px;
+    letter-spacing: -0.83px;
+  }
+
+  .page-subtitle {
+    margin: 16px 0 0 2px;
+    font-size: 17px;
+    letter-spacing: -0.187px;
+  }
+
+  /* pill nav */
+  .pill-nav {
+    bottom: 30px;
+    width: calc(100% - 20px);
+    max-width: 370px;
+    height: 46px;
+    border-radius: 23px;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 18px;
+  }
+
+  .pill-nav a {
+    font-size: 25px;
+    letter-spacing: -0.475px;
+    line-height: 46px;
+  }
+
+  /* home */
+  .home__header {
+    padding: 20px 20px 0;
+  }
+
+  .home__title {
+    font-size: 75px;
+    letter-spacing: -0.83px;
+    white-space: normal;
+  }
+
+  .home__subtitle {
+    margin: 8px 0 0 4px;
+    font-size: 17px;
+    letter-spacing: -0.187px;
+  }
+
+  /* creations */
+  .creations__header {
+    padding: 20px 20px 0;
+  }
+
+  /* skills */
+  .skills__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .skills__label {
+    font-size: 30px;
+    top: 12px;
+    left: 16px;
+  }
+
+  /* about */
+  .about__intro {
+    font-size: 17px;
+    letter-spacing: -0.187px;
+    max-width: none;
+    margin: 16px 0 0;
+  }
+
+  .about__portrait {
+    position: static;
+    width: 152px;
+    height: 204px;
+    float: right;
+    margin: 16px 0 12px 16px;
+  }
+
+  .about__timeline {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .about__year {
+    font-size: 17px;
+  }
+
+  .about__logos {
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .about__logos img {
+    height: 25px !important;
+  }
+
+  .about__entry-body p {
+    font-size: 17px;
+    letter-spacing: -0.187px;
+    white-space: normal;
+  }
+
+  /* project pages */
+  .project {
+    padding-top: 76px;
+  }
+
+  .back-button {
+    top: 14px;
+    left: 10px;
+    font-size: 25px;
+  }
+
+  .project__intro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .project__intro .project__hero {
+    order: -1;
+  }
+
+  .project__facts h2 {
+    font-size: 40px;
+  }
+
+  .project__section {
+    margin-top: 56px;
+  }
+
+  .project__row,
+  .project__row--three,
+  .project__row--split {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project__heading--center {
+    text-align: left;
+  }
+
+  .project__text,
+  .project__text--wide,
+  .project__text--full {
+    max-width: none;
+  }
+
+  .project__insights {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .caption--overlay {
+    max-width: 85%;
+  }
 }
