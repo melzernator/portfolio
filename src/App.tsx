@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import Creations from './pages/Creations';
@@ -10,7 +10,7 @@ import Fan from './pages/Fan';
 const NAV_ROUTES = new Set(['/', '/creations', '/skills', '/about']);
 
 function getRoute(): string {
-  return window.location.hash.replace(/^#/, '') || '/';
+  return window.location.pathname || '/';
 }
 
 function renderPage(route: string) {
@@ -32,14 +32,22 @@ function renderPage(route: string) {
 
 export default function App() {
   const [route, setRoute] = useState(getRoute);
+  const shellRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onHashChange = () => {
+    // Migrate old hash URLs (#/creations → /creations)
+    const hash = window.location.hash.replace(/^#/, '');
+    if (hash && hash.startsWith('/')) {
+      window.history.replaceState(null, '', hash);
+      setRoute(hash);
+    }
+
+    const onPopState = () => {
       setRoute(getRoute());
-      window.scrollTo(0, 0);
+      shellRef.current?.scrollTo(0, 0);
     };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   const showNav = NAV_ROUTES.has(route) || !route.startsWith('/creations/');
@@ -48,7 +56,9 @@ export default function App() {
 
   return (
     <>
-      {renderPage(route)}
+      <div className="app-shell" ref={shellRef}>
+        {renderPage(route)}
+      </div>
       {showNav && <Nav variant={isHome ? 'dark' : 'light'} activePath={activePath} />}
     </>
   );

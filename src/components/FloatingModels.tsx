@@ -3,22 +3,25 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import signModel from '../assets/creations/sign.glb';
 import fanModel from '../assets/creations/fan.glb';
+import cherokeeModel from '../assets/creations/cherokee.glb';
+import { navigate } from '../router';
 
 type ModelDef = {
   url: string;
-  route: string;
+  route?: string;
   /** target size in world units */
   size: number;
 };
 
 const MODELS: ModelDef[] = [
-  { url: signModel, route: '#/creations/sign', size: 3.2 },
-  { url: fanModel, route: '#/creations/fan', size: 2.6 },
+  { url: signModel, route: '/creations/sign', size: 3.2 },
+  { url: fanModel, route: '/creations/fan', size: 2.6 },
+  { url: cherokeeModel, size: 2.8 },
 ];
 
 type Floater = {
   group: THREE.Group;
-  route: string;
+  route?: string;
   radius: number; // bounding sphere radius for collision / wall checks
   velocity: THREE.Vector2;
   spin: THREE.Vector3;
@@ -75,9 +78,10 @@ export default function FloatingModels() {
       bounds.yMax = halfY - headerPx * worldPerPx - 0.2;
       bounds.yMin = -halfY + navPx * worldPerPx + 0.2;
 
-      // shrink models on small viewports so both fit in the allowed band
+      // shrink models on small viewports so they all fit in the allowed band
       const spanY = Math.max(bounds.yMax - bounds.yMin, 0.5);
-      const maxR = Math.min(bounds.x / 2.2, spanY / 2.2);
+      const fit = Math.max(MODELS.length, 2) + 0.2;
+      const maxR = Math.min(bounds.x / fit, spanY / 2.2);
       for (const f of floaters) {
         f.baseScale = Math.min(1, maxR / f.radius);
       }
@@ -104,15 +108,17 @@ export default function FloatingModels() {
         const group = new THREE.Group();
         group.add(model);
 
-        // start each model in its own half of the screen so they never overlap
-        const startX = (i === 0 ? -0.5 : 0.5) * bounds.x;
+        // start models spaced across the screen so they don't overlap
+        const t = MODELS.length === 1 ? 0.5 : i / (MODELS.length - 1);
+        const startX = (t - 0.5) * bounds.x * 1.6;
         const midY = (bounds.yMin + bounds.yMax) / 2;
         const spanY = Math.max(bounds.yMax - bounds.yMin, 0.5);
         group.position.set(startX, midY + (Math.random() - 0.5) * spanY * 0.5, 0);
 
         scene.add(group);
         const spanYNow = Math.max(bounds.yMax - bounds.yMin, 0.5);
-        const maxRNow = Math.min(bounds.x / 2.2, spanYNow / 2.2);
+        const fitNow = Math.max(MODELS.length, 2) + 0.2;
+        const maxRNow = Math.min(bounds.x / fitNow, spanYNow / 2.2);
         const baseScale = Math.min(1, maxRNow / (def.size / 2));
         group.scale.setScalar(baseScale);
         floaters.push({
@@ -145,7 +151,7 @@ export default function FloatingModels() {
       pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     };
     const onClick = () => {
-      if (hovered) window.location.hash = hovered.route.replace(/^#/, '');
+      if (hovered?.route) navigate(hovered.route);
     };
     renderer.domElement.addEventListener('pointermove', onPointerMove);
     renderer.domElement.addEventListener('click', onClick);
