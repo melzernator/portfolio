@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import signModel from '../assets/creations/sign.glb';
-import fanModel from '../assets/creations/fan.glb';
-import cherokeeModel from '../assets/creations/cherokee.glb';
+import signModel from '../assets/workspace/sign.glb';
+import fanModel from '../assets/workspace/fan.glb';
+import cherokeeModel from '../assets/workspace/cherokee.glb';
 import { navigate } from '../router';
 
 type ModelDef = {
@@ -69,7 +69,7 @@ export default function FloatingModels() {
       const halfX = halfY * camera.aspect;
 
       // pixel-space exclusion zones -> world units
-      const header = document.querySelector('.creations__header');
+      const header = document.querySelector('.workspace__header');
       const headerPx = header ? header.getBoundingClientRect().bottom : 240;
       const navPx = 120; // bottom pill nav + margin
       const worldPerPx = (halfY * 2) / h;
@@ -259,5 +259,5 @@ export default function FloatingModels() {
     };
   }, []);
 
-  return <div ref={containerRef} className="creations__canvas" />;
+  return <div ref={containerRef} className="workspace__canvas" />;
 }

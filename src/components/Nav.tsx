@@ -7,7 +7,7 @@ type NavProps = {
 
 const links = [
   { label: 'M', href: '/', className: 'nav-logo' },
-  { label: 'creations', href: '/creations', className: '' },
+  { label: 'workspace', href: '/workspace', className: '' },
   { label: 'skills', href: '/skills', className: '' },
   { label: 'about', href: '/about', className: '' },
 ];
