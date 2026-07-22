@@ -14,8 +14,8 @@ type ModelDef = {
 };
 
 const MODELS: ModelDef[] = [
-  { url: signModel, route: '/creations/sign', size: 3.2 },
-  { url: fanModel, route: '/creations/fan', size: 2.6 },
+  { url: signModel, route: 'https://melzer.org/sign', size: 3.2 },
+  { url: fanModel, route: 'https://melzer.org/fan', size: 2.6 },
   { url: cherokeeModel, size: 2.8 },
 ];
 
@@ -151,7 +151,12 @@ export default function FloatingModels() {
       pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     };
     const onClick = () => {
-      if (hovered?.route) navigate(hovered.route);
+      if (!hovered?.route) return;
+      if (/^https?:\/\//.test(hovered.route)) {
+        window.location.href = hovered.route;
+      } else {
+        navigate(hovered.route);
+      }
     };
     renderer.domElement.addEventListener('pointermove', onPointerMove);
     renderer.domElement.addEventListener('click', onClick);

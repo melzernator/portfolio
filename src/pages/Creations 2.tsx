@@ -8,10 +8,10 @@ export default function Creations() {
       <h1 className="page-title">creations</h1>
       <p className="page-subtitle">tap on objects to see how I made them</p>
 
-      <a href="/creations/sign" className="creations__object creations__object--sign">
+      <a href="https://melzer.org/sign" className="creations__object creations__object--sign">
         <img src={signImg} alt="Fens Cafe sign" />
       </a>
-      <a href="/creations/fan" className="creations__object creations__object--fan">
+      <a href="https://melzer.org/fan" className="creations__object creations__object--fan">
         <img src={fanImg} alt="Braun HL70 fan redesign" />
       </a>
 
