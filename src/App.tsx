@@ -14,6 +14,8 @@ function getRoute(): string {
 
 function normalizeRoute(path: string): string {
   if (path === '/creations' || path === '/workspace') return '/';
+  if (path === '/sign') return '/workspace/sign';
+  if (path === '/fan') return '/workspace/fan';
   if (path.startsWith('/creations/')) return path.replace(/^\/creations/, '/workspace');
   return path;
 }

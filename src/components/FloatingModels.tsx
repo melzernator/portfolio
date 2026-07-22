@@ -14,8 +14,8 @@ type ModelDef = {
 };
 
 const MODELS: ModelDef[] = [
-  { url: signModel, route: 'https://melzer.org/sign', size: 3.2 },
-  { url: fanModel, route: 'https://melzer.org/fan', size: 2.6 },
+  { url: signModel, route: '/workspace/sign', size: 3.2 },
+  { url: fanModel, route: '/workspace/fan', size: 2.6 },
   { url: cherokeeModel, size: 2.8 },
 ];
 

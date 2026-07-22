@@ -15,6 +15,8 @@ export default function About() {
         <br />
         Comfortable at the whiteboard and in the shop, he enjoys transforming ambitious
         ideas into functional prototypes.
+        <br />
+        <a href="mailto:marvin@melzer.org">press to contact</a>
       </p>
 
       <div className="about__timeline">
