@@ -1,10 +1,9 @@
-import Nav from '../components/Nav';
-import modeling from '../assets/skills/3Dmodeling.png';
-import pcb from '../assets/skills/PCBdesign.png';
-import flex from '../assets/skills/flex.png';
-import dremel from '../assets/skills/dremel.png';
-import soldering from '../assets/skills/soldering.png';
-import welding from '../assets/skills/welding.png';
+import modeling from '../assets/skills/3D-design.webp';
+import pcb from '../assets/skills/pcb-design.webp';
+import flex from '../assets/skills/flex.webp';
+import dremel from '../assets/skills/dremel.webp';
+import soldering from '../assets/skills/soldering.webp';
+import welding from '../assets/skills/welding.webp';
 
 type Skill = {
   label: string;
@@ -14,7 +13,7 @@ type Skill = {
 };
 
 const skills: Skill[] = [
-  { label: '3D modeling', img: modeling, labelColor: 'white' },
+  { label: '3D design', img: modeling, labelColor: 'white' },
   { label: 'PCB design', img: pcb, labelColor: 'black' },
   { label: 'cutting metal', img: flex, labelColor: 'black', tall: true },
   { label: '', img: dremel, labelColor: 'black', tall: true },
@@ -39,8 +38,6 @@ export default function Skills() {
           </figure>
         ))}
       </div>
-
-      <Nav />
     </div>
   );
 }

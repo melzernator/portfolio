@@ -1,4 +1,3 @@
-import Nav from '../components/Nav';
 import ambience from '../assets/home/ambience1.mp4';
 
 export default function Home() {
@@ -17,7 +16,6 @@ export default function Home() {
         <h1 className="home__title">Marvin’s Portfolio</h1>
         <p className="home__subtitle">design and fabrication</p>
       </header>
-      <Nav variant="dark" />
     </div>
   );
 }

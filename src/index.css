@@ -94,7 +94,8 @@ a {
   transition: color 0.15s ease;
 }
 
-.pill-nav a:hover {
+.pill-nav a:hover,
+.pill-nav a.is-active {
   color: var(--black);
 }
 

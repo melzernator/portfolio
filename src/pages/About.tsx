@@ -1,4 +1,3 @@
-import Nav from '../components/Nav';
 import cuLogo from '../assets/about/CUBoulder.png';
 import atlasLogo from '../assets/about/atlas-black.gif';
 import braunLogo from '../assets/about/braun.png';
@@ -67,8 +66,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
-      <Nav />
     </div>
   );
 }
