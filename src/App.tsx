@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import Nav from './components/Nav';
-import Home from './pages/Home';
 import Workspace from './pages/Workspace';
 import Skills from './pages/Skills';
 import About from './pages/About';
@@ -14,15 +13,13 @@ function getRoute(): string {
 }
 
 function normalizeRoute(path: string): string {
-  if (path === '/creations') return '/workspace';
+  if (path === '/creations' || path === '/workspace') return '/';
   if (path.startsWith('/creations/')) return path.replace(/^\/creations/, '/workspace');
   return path;
 }
 
 function renderPage(route: string) {
   switch (route) {
-    case '/workspace':
-      return <Workspace />;
     case '/skills':
       return <Skills />;
     case '/about':
@@ -32,7 +29,7 @@ function renderPage(route: string) {
     case '/workspace/fan':
       return <Fan />;
     default:
-      return <Home />;
+      return <Workspace />;
   }
 }
 
@@ -41,7 +38,6 @@ export default function App() {
   const shellRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Migrate old hash /creations URLs
     const hash = window.location.hash.replace(/^#/, '');
     if (hash && hash.startsWith('/')) {
       const next = normalizeRoute(hash);
@@ -67,14 +63,16 @@ export default function App() {
   const isDetail = route === '/workspace/sign' || route === '/workspace/fan';
   const showNav = !isDetail;
   const activePath = NAV_ROUTES.has(route) ? route : '/';
-  const isHome = activePath === '/';
+  const isWorkspace = activePath === '/' || activePath === '/workspace';
 
   return (
     <>
       <div className="app-shell" ref={shellRef}>
         {renderPage(route)}
       </div>
-      {showNav && <Nav variant={isHome ? 'dark' : 'light'} activePath={activePath} />}
+      {showNav && (
+        <Nav variant={isWorkspace ? 'dark' : 'light'} activePath={activePath} />
+      )}
     </>
   );
 }

@@ -1,22 +1,19 @@
 import FloatingModels from '../components/FloatingModels';
-import space from '../assets/workspace/space.mp4';
+import space from '../assets/workspace/space.gif';
 
 export default function Workspace() {
   return (
     <div className="page workspace">
-      <video
+      <img
         className="workspace__video"
         src={space}
-        autoPlay
-        loop
-        muted
-        playsInline
+        alt=""
         aria-hidden
       />
       <FloatingModels />
       <div className="workspace__header">
-        <h1 className="page-title">workspace</h1>
-        <p className="page-subtitle">tap on objects to see how I made them</p>
+        <h1 className="workspace__title">Marvin’s Workspace</h1>
+        <p className="page-subtitle">Design and Fabrication.</p>
       </div>
     </div>
   );

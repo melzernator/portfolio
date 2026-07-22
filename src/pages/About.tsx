@@ -8,8 +8,6 @@ import flagDe from '../assets/about/deutschland.svg';
 export default function About() {
   return (
     <div className="page about">
-      <h1 className="page-title">about</h1>
-
       <p className="about__intro">
         Marvin Melzer is a German craftsman with a passion for thoughtfully designed
         consumer products.

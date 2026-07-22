@@ -6,15 +6,14 @@ type NavProps = {
 };
 
 const links = [
-  { label: 'M', href: '/', className: 'nav-logo' },
-  { label: 'workspace', href: '/workspace', className: '' },
-  { label: 'skills', href: '/skills', className: '' },
-  { label: 'about', href: '/about', className: '' },
+  { label: 'workspace', href: '/' },
+  { label: 'skills', href: '/skills' },
+  { label: 'about', href: '/about' },
 ];
 
 function isActive(href: string, activePath: string) {
   if (href === '/') {
-    return activePath === '/' || activePath === '';
+    return activePath === '/' || activePath === '' || activePath === '/workspace';
   }
   return activePath === href;
 }
@@ -29,7 +28,7 @@ export default function Nav({ variant = 'light', activePath = '/' }: NavProps) {
             key={link.label}
             href={link.href}
             onClick={onLinkClick}
-            className={[link.className, active ? 'is-active' : ''].filter(Boolean).join(' ')}
+            className={active ? 'is-active' : undefined}
             aria-current={active ? 'page' : undefined}
           >
             {link.label}
