@@ -1,20 +1,21 @@
 import BackButton from '../components/BackButton';
-import hero from '../assets/sign/sign-render.webp';
 import designAnnotated from '../assets/sign/sign-design.webp';
 import orchids from '../assets/sign/sign-orchids-1.webp';
 import prototype from '../assets/sign/sign-prototype.webp';
+import prototyping2 from '../assets/sign/sign-prototyping-2.webp';
+import renderImg from '../assets/sign/sign-render.webp';
 import cncVideo from '../assets/sign/sign-CNC.mp4';
 import solderingImg from '../assets/sign/sign-soldering.webp';
-import assemblingImg from '../assets/sign/sign-assembling.webp';
+import assemblingImg from '../assets/sign/sign-assembly.webp';
 import assemblingVideo from '../assets/sign/sign-assembling.mp4';
-import assemblyImg from '../assets/sign/sign-assembly.webp';
-import fastener from '../assets/sign/sign-fastener.webp';
-import clamp from '../assets/sign/sign-clamp.webp';
 import outside1 from '../assets/sign/sign-outside-1.webp';
-import outside2 from '../assets/sign/sign-outside-2.webp';
 import inside from '../assets/sign/sign-inside.webp';
 import daylight from '../assets/sign/sign-daylight.webp';
 import insightImg from '../assets/sign/sign-insight.webp';
+import installation1 from '../assets/sign/installation-1.mp4';
+import installation2 from '../assets/sign/installation-2.webp';
+import installation3 from '../assets/sign/installation-3.webp';
+import installationRight from '../assets/sign/installation-right.webp';
 
 export default function Sign() {
   return (
@@ -48,7 +49,7 @@ export default function Sign() {
             easy to maintain
           </p>
         </div>
-        <img className="project__hero" src={hero} alt="Fens Cafe neon sign" />
+        <img className="project__hero" src={outside1} alt="Fens Cafe neon sign" />
       </section>
 
       <section className="project__section">
@@ -73,7 +74,7 @@ export default function Sign() {
 
       <section className="project__section">
         <h2 className="project__heading">prototyping</h2>
-        <div className="project__row project__row--split">
+        <div className="project__row project__row--split project__row--split-even">
           <p className="project__text">
             it was crucial to dial in manufacturing techniques and materials to avoid
             wasting resources
@@ -84,7 +85,7 @@ export default function Sign() {
             cast acrylic resists melting more than extruded acrylic while cutting
           </p>
         </div>
-        <div className="project__row">
+        <div className="project__row project__row--match-height">
           <figure className="project__figure">
             <img src={prototype} alt="Neon prototype" />
             <figcaption className="caption caption--overlay caption--tl">
@@ -93,10 +94,22 @@ export default function Sign() {
             </figcaption>
           </figure>
           <figure className="project__figure project__figure--wide">
-            <video src={cncVideo} autoPlay loop muted playsInline />
+            <img src={prototyping2} alt="Neon prototyping" />
             <figcaption className="caption caption--overlay caption--bl">
               dialed in cutting speeds → acrylic does not melt or chip though carving
             </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className="project__section">
+        <h2 className="project__heading">production</h2>
+        <div className="project__row project__row--split project__row--sync-height">
+          <figure className="project__figure">
+            <img src={renderImg} alt="Sign render" />
+          </figure>
+          <figure className="project__figure">
+            <video src={cncVideo} autoPlay loop muted playsInline />
           </figure>
         </div>
       </section>
@@ -121,30 +134,33 @@ export default function Sign() {
 
       <section className="project__section">
         <h2 className="project__heading">installation</h2>
-        <div className="project__row">
+        <div className="project__row project__row--split project__row--fill-tall">
           <div className="project__col">
-            <figure className="project__figure">
-              <img src={assemblyImg} alt="Sign sections during assembly" />
-              <figcaption className="caption">
-                keeping the protective paper film on as long as possible to protect
-                acrylic from scratches during production
-              </figcaption>
-            </figure>
-            <figure className="project__figure">
-              <img src={clamp} alt="C-clamps mounted on window frame" />
-              <figcaption className="caption">
-                using c-clamps mounted on window frame for non destructive mount
-              </figcaption>
-            </figure>
-            <figure className="project__figure">
-              <img src={fastener} alt="Clamp detail" />
-              <figcaption className="caption">
-                clamps hold the signs sections in place — soft Nylon tips prevent acrylic
-                crazing
-              </figcaption>
-            </figure>
+            <video
+              className="project__figure"
+              src={installation1}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+            <img
+              className="project__figure"
+              src={installation2}
+              alt="Installing the sign"
+            />
+            <img
+              className="project__figure"
+              src={installation3}
+              alt="Mounting the sign"
+            />
           </div>
-          <img className="project__figure project__figure--wide" src={outside2} alt="Installing the sign" />
+          <figure className="project__figure">
+            <img
+              src={installationRight}
+              alt="Installed sign on the cafe window"
+            />
+          </figure>
         </div>
       </section>
 
