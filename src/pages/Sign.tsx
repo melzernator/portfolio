@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import BackButton from '../components/BackButton';
 import designAnnotated from '../assets/sign/sign-design.webp';
+import orchid from '../assets/sign/sign-orchid.webp';
 import orchids from '../assets/sign/sign-orchids-1.webp';
 import prototype from '../assets/sign/sign-prototype.webp';
 import prototyping2 from '../assets/sign/sign-prototyping-2.webp';
@@ -8,7 +10,9 @@ import cncVideo from '../assets/sign/sign-CNC.mp4';
 import solderingImg from '../assets/sign/sign-soldering.webp';
 import assemblingImg from '../assets/sign/sign-assembly.webp';
 import assemblingVideo from '../assets/sign/sign-assembling.mp4';
-import outside1 from '../assets/sign/sign-outside-1.webp';
+import signOff from '../assets/sign/sign-off.webp';
+import signOn from '../assets/sign/sign-on.webp';
+import outside1 from '../assets/sign/sign-outside-2.webp';
 import inside from '../assets/sign/sign-inside.webp';
 import daylight from '../assets/sign/sign-daylight.webp';
 import insightImg from '../assets/sign/sign-insight.webp';
@@ -18,6 +22,8 @@ import installation3 from '../assets/sign/installation-3.webp';
 import installationRight from '../assets/sign/installation-right.webp';
 
 export default function Sign() {
+  const [isOn, setIsOn] = useState(true);
+
   return (
     <div className="page project sign">
       <BackButton />
@@ -49,26 +55,41 @@ export default function Sign() {
             easy to maintain
           </p>
         </div>
-        <img className="project__hero" src={outside1} alt="Fens Cafe neon sign" />
+        <div className="sign__hero">
+          <button
+            type="button"
+            className={`sign__power${isOn ? ' is-on' : ''}`}
+            aria-pressed={isOn}
+            aria-label={isOn ? 'Turn sign off' : 'Turn sign on'}
+            onClick={() => setIsOn((on) => !on)}
+          >
+            <span className="sign__power-track" aria-hidden="true">
+              <span className="sign__power-knob" />
+            </span>
+            <span className="sign__power-label">{isOn ? 'on' : 'off'}</span>
+          </button>
+          <img
+            className="project__hero"
+            src={isOn ? signOn : signOff}
+            alt={isOn ? 'Fens Cafe neon sign lit' : 'Fens Cafe neon sign unlit'}
+          />
+        </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">design</h2>
-        <div className="project__row">
-          <figure className="project__figure project__figure--wide">
-            <img src={designAnnotated} alt="Annotated sign design" />
-            <figcaption className="caption caption--overlay caption--tl">
-              stroke weight matches light stripe thickness · multiple strokes make the
-              letters more visible · pink matches the orchids in the cafe · white goes
-              well with pink
-            </figcaption>
-          </figure>
+        <div className="project__row project__row--fill-stack">
           <figure className="project__figure">
-            <img src={orchids} alt="Orchids in the cafe" />
-            <figcaption className="caption">
-              pink matches the orchids in the cafe
-            </figcaption>
+            <img src={designAnnotated} alt="Annotated sign design" />
           </figure>
+          <div className="project__col">
+            <figure className="project__figure">
+              <img src={orchids} alt="Orchids in the cafe" />
+            </figure>
+            <figure className="project__figure">
+              <img src={orchid} alt="Purple orchid blooms" />
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -88,16 +109,9 @@ export default function Sign() {
         <div className="project__row project__row--match-height">
           <figure className="project__figure">
             <img src={prototype} alt="Neon prototype" />
-            <figcaption className="caption caption--overlay caption--tl">
-              color matches design — iterating channel thickness → light stripes are held
-              by tension
-            </figcaption>
           </figure>
-          <figure className="project__figure project__figure--wide">
+          <figure className="project__figure">
             <img src={prototyping2} alt="Neon prototyping" />
-            <figcaption className="caption caption--overlay caption--bl">
-              dialed in cutting speeds → acrylic does not melt or chip though carving
-            </figcaption>
           </figure>
         </div>
       </section>
@@ -124,9 +138,6 @@ export default function Sign() {
           <img className="project__figure" src={solderingImg} alt="Soldering light stripes" />
           <figure className="project__figure">
             <video src={assemblingVideo} autoPlay loop muted playsInline />
-            <figcaption className="caption caption--overlay caption--bl">
-              building one letter at a time
-            </figcaption>
           </figure>
           <img className="project__figure" src={assemblingImg} alt="Assembling the sign" />
         </div>
@@ -169,21 +180,12 @@ export default function Sign() {
         <div className="project__row project__row--three">
           <figure className="project__figure">
             <img src={outside1} alt="Sign from a distance" />
-            <figcaption className="caption caption--overlay caption--tl">
-              easy to read from a distance
-            </figcaption>
           </figure>
           <figure className="project__figure">
             <img src={inside} alt="Sign from inside" />
-            <figcaption className="caption caption--overlay caption--tl">
-              the sign blends in with its background when looked at from inside
-            </figcaption>
           </figure>
           <figure className="project__figure">
             <img src={daylight} alt="Sign in daylight" />
-            <figcaption className="caption caption--overlay caption--tl caption--black">
-              the orchids get plenty of sunlight
-            </figcaption>
           </figure>
         </div>
       </section>
