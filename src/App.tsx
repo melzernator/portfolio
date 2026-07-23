@@ -14,9 +14,6 @@ function getRoute(): string {
 
 function normalizeRoute(path: string): string {
   if (path === '/creations' || path === '/workspace') return '/';
-  if (path === '/sign') return '/workspace/sign';
-  if (path === '/fan') return '/workspace/fan';
-  if (path.startsWith('/creations/')) return path.replace(/^\/creations/, '/workspace');
   return path;
 }
 
@@ -26,9 +23,9 @@ function renderPage(route: string) {
       return <Skills />;
     case '/about':
       return <About />;
-    case '/workspace/sign':
+    case '/sign':
       return <Sign />;
-    case '/workspace/fan':
+    case '/fan':
       return <Fan />;
     default:
       return <Workspace />;
@@ -62,7 +59,7 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  const isDetail = route === '/workspace/sign' || route === '/workspace/fan';
+  const isDetail = route === '/sign' || route === '/fan';
   const showNav = !isDetail;
   const activePath = NAV_ROUTES.has(route) ? route : '/';
   const isWorkspace = activePath === '/' || activePath === '/workspace';

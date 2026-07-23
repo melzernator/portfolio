@@ -8,6 +8,8 @@ import flagDe from '../assets/about/deutschland.svg';
 export default function About() {
   return (
     <div className="page about">
+      <h1 className="page-title">about</h1>
+
       <p className="about__intro">
         Marvin Melzer is a German craftsman with a passion for thoughtfully designed
         consumer products.
@@ -24,9 +26,9 @@ export default function About() {
           <span className="about__year">2 0 2 7</span>
           <div className="about__entry-body">
             <div className="about__logos">
-              <img src={flagUs} alt="USA" style={{ height: 45, marginLeft: 2 }} />
-              <img src={cuLogo} alt="CU Boulder" style={{ height: 45 }} />
-              <img src={atlasLogo} alt="ATLAS Institute" style={{ height: 45 }} />
+              <img className="about__logo about__logo--flag" src={flagUs} alt="USA" />
+              <img className="about__logo" src={cuLogo} alt="CU Boulder" />
+              <img className="about__logo" src={atlasLogo} alt="ATLAS Institute" />
             </div>
             <p>
               Master of Science
@@ -39,9 +41,9 @@ export default function About() {
         <div className="about__entry">
           <span className="about__year">2 0 2 5</span>
           <div className="about__entry-body">
-            <div className="about__logos" style={{ transform: 'translateY(8px)' }}>
-              <img src={flagDe} alt="Germany" style={{ height: 45, marginLeft: 2 }} />
-              <img src={braunLogo} alt="Braun" style={{ height: 65 }} />
+            <div className="about__logos about__logos--lift">
+              <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
+              <img className="about__logo about__logo--braun" src={braunLogo} alt="Braun" />
             </div>
             <p>
               Internship 7 months
@@ -54,9 +56,9 @@ export default function About() {
         <div className="about__entry">
           <span className="about__year">2 0 2 4</span>
           <div className="about__entry-body">
-            <div className="about__logos" style={{ transform: 'translateY(8px)' }}>
-              <img src={flagDe} alt="Germany" style={{ height: 45, marginLeft: 2 }} />
-              <img src={tudLogo} alt="TU Darmstadt" style={{ height: 60 }} />
+            <div className="about__logos about__logos--lift">
+              <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
+              <img className="about__logo about__logo--tud" src={tudLogo} alt="TU Darmstadt" />
             </div>
             <p>
               Bachelor of Science

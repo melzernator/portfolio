@@ -155,16 +155,20 @@ export default function Sign() {
               muted
               playsInline
             />
-            <img
-              className="project__figure"
-              src={installation2}
-              alt="Installing the sign"
-            />
-            <img
-              className="project__figure"
-              src={installation3}
-              alt="Mounting the sign"
-            />
+            <figure className="project__figure">
+              <img src={installation2} alt="Installing the sign" />
+              <figcaption className="caption caption--overlay caption--tl">
+                non destructive mount
+              </figcaption>
+            </figure>
+            <figure className="project__figure">
+              <img src={installation3} alt="Mounting the sign" />
+              <figcaption className="caption caption--overlay caption--tl caption--black caption--third">
+                clamps hold the sign sections in place
+                <br />
+                soft nylon tips prevent acrylic crazing
+              </figcaption>
+            </figure>
           </div>
           <figure className="project__figure">
             <img
@@ -180,12 +184,15 @@ export default function Sign() {
         <div className="project__row project__row--three">
           <figure className="project__figure">
             <img src={outside1} alt="Sign from a distance" />
+            <figcaption className="caption">easy to read</figcaption>
           </figure>
           <figure className="project__figure">
             <img src={inside} alt="Sign from inside" />
+            <figcaption className="caption">unobtrusive</figcaption>
           </figure>
           <figure className="project__figure">
             <img src={daylight} alt="Sign in daylight" />
+            <figcaption className="caption">flowers get daylight</figcaption>
           </figure>
         </div>
       </section>

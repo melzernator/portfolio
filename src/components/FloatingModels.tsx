@@ -14,8 +14,8 @@ type ModelDef = {
 };
 
 const MODELS: ModelDef[] = [
-  { url: signModel, route: '/workspace/sign', size: 3.2 },
-  { url: fanModel, route: '/workspace/fan', size: 2.6 },
+  { url: signModel, route: '/sign', size: 3.2 },
+  { url: fanModel, route: '/fan', size: 2.6 },
   { url: cherokeeModel, size: 2.8 },
 ];
 

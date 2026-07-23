@@ -92,6 +92,7 @@ export default function Skills() {
 
   return (
     <div className="page skills">
+      <h1 className="page-title">skills</h1>
       <div className="skills__grid">
         {skills.map((skill, i) => {
           const isFlipped = flipped.has(i);
