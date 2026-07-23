@@ -76,8 +76,7 @@ export default function Workspace() {
       <div ref={hostRef} className="workspace__video-host" />
       <FloatingModels />
       <div className="workspace__header">
-        <h1 className="workspace__title">Marvin’s Work Space</h1>
-        <p className="page-subtitle">Design and Fabrication.</p>
+        <h1 className="workspace__title">melzer's work space</h1>
       </div>
     </div>
   );

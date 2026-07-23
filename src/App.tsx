@@ -5,6 +5,7 @@ import Skills from './pages/Skills';
 import About from './pages/About';
 import Sign from './pages/Sign';
 import Fan from './pages/Fan';
+import Atas from './pages/Atas';
 
 const NAV_ROUTES = new Set(['/', '/workspace', '/skills', '/about']);
 
@@ -27,6 +28,8 @@ function renderPage(route: string) {
       return <Sign />;
     case '/fan':
       return <Fan />;
+    case '/atas':
+      return <Atas />;
     default:
       return <Workspace />;
   }
@@ -59,7 +62,7 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  const isDetail = route === '/sign' || route === '/fan';
+  const isDetail = route === '/sign' || route === '/fan' || route === '/atas';
   const showNav = !isDetail;
   const activePath = NAV_ROUTES.has(route) ? route : '/';
   const isWorkspace = activePath === '/' || activePath === '/workspace';
