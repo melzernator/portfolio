@@ -439,7 +439,7 @@ a {
 
 .about__entry-body {
   width: fit-content;
-  font-size: var(--text-body);
+  font-size: var(--text-lead);
 }
 
 .about__logos {
@@ -484,6 +484,10 @@ a {
 }
 
 @media (max-width: 1500px) {
+  .about__entry-body {
+    font-size: var(--text-lg);
+  }
+
   .about__entry-body p {
     white-space: normal;
   }
