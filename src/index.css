@@ -396,7 +396,7 @@ a {
 
 .about__intro {
   max-width: 896px;
-  font-size: var(--text-lead);
+  font-size: var(--text-body);
   font-weight: 500;
   letter-spacing: -0.023em;
   line-height: 1.5;
@@ -439,7 +439,7 @@ a {
 
 .about__entry-body {
   width: fit-content;
-  font-size: var(--text-lead);
+  font-size: var(--text-body);
 }
 
 .about__logos {
@@ -484,10 +484,6 @@ a {
 }
 
 @media (max-width: 1500px) {
-  .about__entry-body {
-    font-size: var(--text-lg);
-  }
-
   .about__entry-body p {
     white-space: normal;
   }
