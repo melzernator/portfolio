@@ -261,9 +261,9 @@ a {
 
 .skills__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-top: 60px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 36px;
+  margin-top: 38px;
 }
 
 .skills__card {
@@ -271,13 +271,38 @@ a {
   margin: 0;
   padding: 0;
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   background: transparent;
-  height: 500px;
   cursor: pointer;
   perspective: 1200px;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.25s ease;
+}
+
+/* grid spans + aspect ratios from the Figma frame (1368px content width) */
+.skills__card--banner {
+  grid-column: span 6;
+  aspect-ratio: 1368 / 463;
+}
+
+.skills__card--sm {
+  grid-column: span 2;
+  aspect-ratio: 4 / 3;
+}
+
+.skills__card--wide {
+  grid-column: span 3;
+  aspect-ratio: 16 / 9;
+}
+
+.skills__card--tall {
+  grid-column: span 2;
+  aspect-ratio: 3 / 4;
+}
+
+.skills__card--lg {
+  grid-column: span 3;
+  aspect-ratio: 4 / 3;
 }
 
 .skills__card:hover {
@@ -287,10 +312,6 @@ a {
 .skills__card:focus-visible {
   outline: 2px solid var(--black);
   outline-offset: 4px;
-}
-
-.skills__card--tall {
-  height: 880px;
 }
 
 .skills__flip {
@@ -305,10 +326,14 @@ a {
   transform: rotateY(180deg);
 }
 
+.skills__card--flip-x.is-flipped .skills__flip {
+  transform: rotateX(180deg);
+}
+
 .skills__face {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -322,74 +347,185 @@ a {
   transition: transform 0.35s ease;
 }
 
-.skills__card:hover .skills__face--front img {
+.skills__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d9d9d9;
+  transition: transform 0.35s ease;
+}
+
+.skills__placeholder span {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.skills__card:hover .skills__face--front img,
+.skills__card:hover .skills__placeholder {
   transform: scale(1.04);
+}
+
+.skills__label {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  height: clamp(36px, 3.2vw, 46px);
+  padding: 0 18px;
+  border-radius: 23px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(6px);
+  font-size: clamp(var(--text-md), 2.8vw, var(--text-xl));
+  font-weight: 700;
+  letter-spacing: -0.011em;
+  color: var(--black);
+  white-space: nowrap;
+}
+
+.skills__label--plain {
+  padding: 0;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  backdrop-filter: none;
+  line-height: 1.5;
 }
 
 .skills__face--back {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 20px;
-  padding: 28px 28px 32px;
+  padding: clamp(20px, 2.5vw, 36px) clamp(20px, 3.1vw, 45px);
   background: #111;
   color: var(--white);
   transform: rotateY(180deg);
   text-align: left;
 }
 
+.skills__card--flip-x .skills__face--back {
+  transform: rotateX(180deg);
+}
+
 .skills__back-title {
   margin: 0;
-  font-size: var(--text-xl);
+  font-size: clamp(var(--text-md), 2.8vw, var(--text-xl));
   font-weight: 700;
   letter-spacing: -0.011em;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 .skills__back-meta {
-  margin: 0;
+  margin: clamp(12px, 1.7vw, 24px) 0 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: clamp(10px, 1.4vw, 20px);
+  max-width: 260px;
 }
 
 .skills__back-meta div {
   margin: 0;
 }
 
-.skills__back-meta dt {
-  margin: 0 0 2px;
-  font-size: var(--text-meta);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-}
-
+.skills__back-meta dt,
 .skills__back-meta dd {
   margin: 0;
-  font-size: var(--text-md);
-  font-weight: 500;
-  letter-spacing: -0.011em;
-  line-height: 1.4;
-}
-
-.skills__label {
-  position: absolute;
-  top: 20px;
-  left: 24px;
-  font-size: var(--text-title);
-  font-weight: 700;
-  letter-spacing: -0.011em;
+  font-size: clamp(13px, 1.2vw, var(--text-body));
+  letter-spacing: -0.019em;
   line-height: 1.5;
 }
 
-.skills__label--white {
-  color: var(--white);
+.skills__back-meta dt {
+  font-weight: 700;
 }
 
-.skills__label--black {
-  color: var(--black);
+.skills__back-meta dd {
+  font-weight: 400;
+}
+
+/* placeholder tiles for the program logos on the back sides */
+.skills__icons {
+  position: absolute;
+  top: clamp(60px, 6vw, 90px);
+  right: clamp(20px, 3.1vw, 45px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.skills__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 4px;
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+/* design banner back side */
+
+.skills__face--design {
+  padding: 0;
+}
+
+.skills__design-intro {
+  position: absolute;
+  top: 30px;
+  left: 38px;
+  width: 260px;
+}
+
+.skills__design-intro p {
+  margin: 4px 0 0;
+  font-size: clamp(13px, 1.2vw, var(--text-body));
+  font-weight: 500;
+  letter-spacing: -0.019em;
+  line-height: 1.5;
+}
+
+.skills__cloud {
+  position: absolute;
+  inset: 0;
+}
+
+.skills__cloud span {
+  position: absolute;
+  font-size: clamp(var(--text-sm), 2.8vw, var(--text-xl));
+  font-weight: 700;
+  letter-spacing: -0.011em;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.skills__design-assets {
+  position: absolute;
+  inset: 0;
+}
+
+.skills__design-img {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.skills__design-img span {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 /* ---------- about ---------- */
@@ -1001,16 +1137,16 @@ video.project__figure {
 /* ---------- image ratios (from Figma mobile frames) ---------- */
 
 @media (max-width: 767px) {
-  .skills__card,
-  .skills__card--tall {
-    height: auto;
+  .skills__card--banner,
+  .skills__card--sm,
+  .skills__card--wide,
+  .skills__card--lg {
+    grid-column: auto;
+    aspect-ratio: 4 / 3;
   }
 
-  .skills__card {
-    aspect-ratio: 4 / 3; /* 350 x 262.5 */
-  }
-
   .skills__card--tall {
+    grid-column: auto;
     aspect-ratio: 350 / 467;
   }
 
@@ -1018,17 +1154,50 @@ video.project__figure {
     transform: none;
   }
 
-  .skills__back-title {
-    font-size: var(--text-lg);
-  }
-
-  .skills__back-meta dd {
-    font-size: var(--text-sm);
-  }
-
   .skills__face--back {
     padding: 20px;
-    gap: 14px;
+  }
+
+  .skills__back-meta {
+    margin-top: 12px;
+    gap: 10px;
+  }
+
+  .skills__icons {
+    top: 20px;
+    right: 20px;
+    flex-direction: row;
+  }
+
+  .skills__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* design banner back flows as a normal column on mobile */
+  .skills__face--design {
+    padding: 20px;
+  }
+
+  .skills__design-intro {
+    position: static;
+    width: auto;
+  }
+
+  .skills__cloud {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    margin-top: 16px;
+  }
+
+  .skills__cloud span {
+    position: static;
+  }
+
+  .skills__design-assets {
+    display: none;
   }
 
   .project__hero {
@@ -1119,9 +1288,9 @@ video.project__figure {
   }
 
   .skills__label {
-    font-size: var(--text-lg);
-    top: 12px;
+    top: 16px;
     left: 16px;
+    padding: 0 14px;
   }
 
   /* about */
