@@ -107,8 +107,8 @@ a {
   align-items: center;
   gap: 27px;
   padding: 0 24px;
-  height: 36px;
-  border-radius: 18px;
+  height: 46px;
+  border-radius: 23px;
   backdrop-filter: blur(10px);
   z-index: 100;
 }
@@ -126,7 +126,7 @@ a {
   font-weight: 600;
   letter-spacing: -0.019em;
   color: var(--muted);
-  line-height: 36px;
+  line-height: 46px;
   transition: color 0.15s ease;
 }
 
@@ -339,7 +339,8 @@ a {
   -webkit-backface-visibility: hidden;
 }
 
-.skills__face--front img {
+.skills__face--front img,
+.skills__face--front video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -347,24 +348,8 @@ a {
   transition: transform 0.35s ease;
 }
 
-.skills__placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #d9d9d9;
-  transition: transform 0.35s ease;
-}
-
-.skills__placeholder span {
-  font-family: var(--font-mono);
-  font-size: var(--text-meta);
-  color: rgba(0, 0, 0, 0.35);
-}
-
 .skills__card:hover .skills__face--front img,
-.skills__card:hover .skills__placeholder {
+.skills__card:hover .skills__face--front video {
   transform: scale(1.04);
 }
 
@@ -445,33 +430,6 @@ a {
   font-weight: 400;
 }
 
-/* placeholder tiles for the program logos on the back sides */
-.skills__icons {
-  position: absolute;
-  top: clamp(60px, 6vw, 90px);
-  right: clamp(20px, 3.1vw, 45px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
-}
-
-.skills__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  padding: 4px;
-  border: 1px dashed rgba(255, 255, 255, 0.4);
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.5);
-  overflow: hidden;
-}
-
 /* design banner back side */
 
 .skills__face--design {
@@ -507,32 +465,48 @@ a {
   white-space: nowrap;
 }
 
-.skills__design-assets {
+.skills__icons {
   position: absolute;
-  inset: 0;
-}
-
-.skills__design-img {
-  position: absolute;
+  top: clamp(60px, 6vw, 90px);
+  right: clamp(20px, 3.1vw, 45px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.12);
-  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
 }
 
-.skills__design-img span {
-  font-family: var(--font-mono);
-  font-size: var(--text-meta);
-  color: rgba(255, 255, 255, 0.45);
+.skills__icon {
+  width: clamp(36px, 3.5vw, 48px);
+  height: clamp(36px, 3.5vw, 48px);
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.skills__design-logo {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: var(--radius);
+  display: block;
 }
 
 /* ---------- about ---------- */
 
+.about__layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 40px;
+  row-gap: 48px;
+  align-items: start;
+  margin-top: 12px;
+}
+
 .about__intro {
+  grid-column: 1 / 3;
+  grid-row: 1;
   max-width: 896px;
-  font-size: var(--text-body);
+  font-size: var(--text-lead);
   font-weight: 500;
   letter-spacing: -0.023em;
   line-height: 1.5;
@@ -540,27 +514,26 @@ a {
 }
 
 .about__portrait {
-  position: absolute;
-  top: 90px;
-  right: 36px;
-  width: 358px;
-  height: 479px;
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  width: 100%;
+  max-width: 394px;
+  aspect-ratio: 394 / 527;
   object-fit: cover;
   border-radius: var(--radius);
   filter: blur(10px);
-}
-
-.about__timeline {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 120px;
 }
 
 .about__entry {
   display: flex;
   gap: 20px;
   align-items: flex-end;
+  min-width: 0;
+}
+
+.about__entry--end {
+  justify-content: flex-end;
 }
 
 .about__year {
@@ -620,6 +593,10 @@ a {
 }
 
 @media (max-width: 1500px) {
+  .about__intro {
+    font-size: var(--text-lg);
+  }
+
   .about__entry-body {
     font-size: var(--text-lg);
   }
@@ -640,6 +617,31 @@ a {
   grid-template-columns: 468px 1fr;
   gap: 32px;
   align-items: start;
+}
+
+/* title sits in the left column; hero spans both rows so its top edge
+   aligns with the top of the title */
+.sign .project__intro,
+.atas .project__intro {
+  grid-template-rows: auto 1fr;
+}
+
+.project__intro .page-title {
+  grid-column: 1;
+  grid-row: 1;
+  white-space: nowrap;
+}
+
+.sign .project__intro .project__facts,
+.atas .project__intro .project__facts {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.sign .project__intro > .sign__hero,
+.atas .project__intro > .project__hero {
+  grid-column: 2;
+  grid-row: 1 / span 2;
 }
 
 .project__facts h2 {
@@ -729,7 +731,31 @@ a {
 }
 
 .project__section {
+  position: relative;
   margin-top: 90px;
+}
+
+/* section marker: vertical line from the subtitle down to the section's
+   last asset, with a short horizontal cap pointing at the subtitle. */
+.project__section::before,
+.project__section::after {
+  content: '';
+  position: absolute;
+  left: -26px;
+  /* heading is --text-title at line-height 1.5; start at its vertical center */
+  top: calc(var(--text-title) * 0.75);
+  background: var(--black);
+  border-radius: 1.5px;
+}
+
+.project__section::before {
+  width: 3px;
+  bottom: 0;
+}
+
+.project__section::after {
+  width: 21px;
+  height: 3px;
 }
 
 .project__heading {
@@ -998,6 +1024,23 @@ video.project__figure {
   grid-template-columns: 280px 1fr;
 }
 
+/* push the who? block down so its bottom lines up with the hero image */
+.atas .project__intro .project__facts {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.atas .project__facts h2:last-of-type {
+  margin-top: auto;
+}
+
+/* the A.T.A.S. title overflows its 280px column, so pull the hero in a bit */
+.atas .project__intro > .project__hero {
+  width: calc(100% - 160px);
+  justify-self: end;
+}
+
 .atas__wants {
   display: flex;
   flex-wrap: wrap;
@@ -1074,6 +1117,7 @@ video.project__figure {
 
 .atas__concept-bottom {
   margin-top: 24px;
+  align-items: stretch;
 }
 
 .atas__wheels {
@@ -1084,20 +1128,10 @@ video.project__figure {
   min-width: 0;
 }
 
-.atas__wheels .caption {
-  margin-top: 0;
-}
-
-.atas__wheels-row {
-  display: flex;
-  gap: 24px;
-  align-items: flex-end;
-}
-
-.atas__wheels-row img {
-  width: calc(50% - 12px);
+.atas__wheels img {
+  width: 100%;
   height: auto;
-  min-width: 0;
+  border-radius: var(--radius);
 }
 
 /* keep white-background artwork un-clipped */
@@ -1134,6 +1168,116 @@ video.project__figure {
   }
 }
 
+/* ---------- fan (Figma frame: 1440 canvas, 50px margins, 50px gaps) ---------- */
+
+.fan {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.fan__title {
+  margin: 0 0 8px;
+  font-size: clamp(var(--text-xl), 9vw, var(--text-5xl));
+  font-weight: 900;
+  letter-spacing: -0.011em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.fan .project__intro {
+  grid-template-columns: 413fr 877fr;
+  gap: 50px;
+}
+
+.fan .project__hero {
+  aspect-ratio: 877 / 492;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* text column + two square photos */
+.fan__why {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.fan__why .project__figure img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* wide video + blade-ratio sketch with caption below */
+.fan__design {
+  display: grid;
+  grid-template-columns: 877fr 413fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.fan__design video {
+  aspect-ratio: 877 / 493;
+  object-fit: cover;
+}
+
+.fan__blade img {
+  aspect-ratio: 413 / 445;
+  object-fit: cover;
+}
+
+/* full-width render stack (inside design section) */
+.fan__renders {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.fan__renders .project__figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* full-width build shots + narrow/wide pair */
+.fan__build {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.fan__build-hero img {
+  aspect-ratio: 1337 / 918;
+  object-fit: cover;
+}
+
+.fan__build-wide img {
+  aspect-ratio: 1332 / 626;
+  object-fit: cover;
+}
+
+.fan__build-row {
+  display: grid;
+  grid-template-columns: 506fr 784fr;
+  gap: 50px;
+}
+
+.fan__build-row .project__figure:first-child img {
+  aspect-ratio: 506 / 672;
+  object-fit: cover;
+}
+
+.fan__build-row .project__figure:last-child img {
+  aspect-ratio: 784 / 672;
+  object-fit: cover;
+}
+
+.fan .project__insights {
+  gap: 50px;
+}
+
 /* ---------- image ratios (from Figma mobile frames) ---------- */
 
 @media (max-width: 767px) {
@@ -1167,6 +1311,9 @@ video.project__figure {
     top: 20px;
     right: 20px;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 45%;
   }
 
   .skills__icon {
@@ -1196,8 +1343,10 @@ video.project__figure {
     position: static;
   }
 
-  .skills__design-assets {
-    display: none;
+  .skills__design-logo {
+    position: static;
+    width: 40px !important;
+    margin-top: 16px;
   }
 
   .project__hero {
@@ -1294,6 +1443,11 @@ video.project__figure {
   }
 
   /* about */
+  .about__layout {
+    display: block;
+    margin-top: 0;
+  }
+
   .about__intro {
     font-size: var(--text-body);
     letter-spacing: -0.011em;
@@ -1302,17 +1456,22 @@ video.project__figure {
   }
 
   .about__portrait {
-    position: static;
-    width: 152px;
-    height: 204px;
     float: right;
+    width: 152px;
     margin: 16px 0 12px 16px;
   }
 
-  .about__timeline {
-    grid-template-columns: 1fr;
-    gap: 28px;
+  .about__entry {
+    margin-top: 28px;
+  }
+
+  .about__entry:first-of-type {
     margin-top: 40px;
+    clear: both;
+  }
+
+  .about__entry--end {
+    justify-content: flex-start;
   }
 
   .about__year {
@@ -1349,9 +1508,28 @@ video.project__figure {
     gap: 24px;
   }
 
+  .sign .project__intro,
+  .atas .project__intro {
+    grid-template-rows: none;
+  }
+
+  .project__intro .page-title,
+  .sign .project__intro .project__facts,
+  .atas .project__intro .project__facts,
+  .sign .project__intro > .sign__hero,
+  .atas .project__intro > .project__hero {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
   .project__intro .sign__hero,
   .project__intro .project__hero {
     order: -1;
+  }
+
+  .atas .project__intro > .project__hero {
+    width: 100%;
+    justify-self: stretch;
   }
 
   .project__facts h2 {
@@ -1360,6 +1538,12 @@ video.project__figure {
 
   .project__section {
     margin-top: 56px;
+  }
+
+  /* no room for section marker lines in the narrow mobile margin */
+  .project__section::before,
+  .project__section::after {
+    display: none;
   }
 
   .project__row,
@@ -1428,5 +1612,36 @@ video.project__figure {
 
   .caption--overlay {
     max-width: 85%;
+  }
+
+  /* fan */
+  .fan {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .fan__title {
+    font-size: var(--text-2xl);
+  }
+
+  .fan .project__intro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .fan__why,
+  .fan__design,
+  .fan__build-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .fan__renders,
+  .fan__build {
+    gap: 20px;
+  }
+
+  .fan .project__insights {
+    gap: 28px;
   }
 }

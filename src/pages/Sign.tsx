@@ -1,25 +1,27 @@
 import { useState } from 'react';
 import BackButton from '../components/BackButton';
-import designAnnotated from '../assets/sign/sign-design.webp';
-import orchid from '../assets/sign/sign-orchid.webp';
-import orchids from '../assets/sign/sign-orchids-1.webp';
-import prototype from '../assets/sign/sign-prototype.webp';
-import prototyping2 from '../assets/sign/sign-prototyping-2.webp';
-import renderImg from '../assets/sign/sign-render.webp';
+import { img } from '../lib/img';
 import cncVideo from '../assets/sign/sign-CNC.mp4';
-import solderingImg from '../assets/sign/sign-soldering.webp';
-import assemblingImg from '../assets/sign/sign-assembly.webp';
 import assemblingVideo from '../assets/sign/sign-assembling.mp4';
-import signOff from '../assets/sign/sign-off.webp';
-import signOn from '../assets/sign/sign-on.webp';
-import outside1 from '../assets/sign/sign-outside-2.webp';
-import inside from '../assets/sign/sign-inside.webp';
-import daylight from '../assets/sign/sign-daylight.webp';
-import insightImg from '../assets/sign/sign-insight.webp';
 import installation1 from '../assets/sign/installation-1.mp4';
-import installation2 from '../assets/sign/installation-2.webp';
-import installation3 from '../assets/sign/installation-3.webp';
-import installationRight from '../assets/sign/installation-right.webp';
+
+const designAnnotated = img('sign/sign-design');
+const orchid = img('sign/sign-orchid');
+const orchids = img('sign/sign-orchids-1');
+const prototype = img('sign/sign-prototype');
+const prototyping2 = img('sign/sign-prototyping-2');
+const renderImg = img('sign/sign-render');
+const solderingImg = img('sign/sign-soldering');
+const assemblingImg = img('sign/sign-assembly');
+const signOff = img('sign/sign-off');
+const signOn = img('sign/sign-on');
+const outside1 = img('sign/sign-outside-2');
+const inside = img('sign/sign-inside');
+const daylight = img('sign/sign-daylight');
+const insightImg = img('sign/sign-insight');
+const installation2 = img('sign/installation-2');
+const installation3 = img('sign/installation-3');
+const installationRight = img('sign/installation-right');
 
 export default function Sign() {
   const [isOn, setIsOn] = useState(true);
@@ -29,6 +31,7 @@ export default function Sign() {
       <BackButton />
 
       <section className="project__intro">
+        <h1 className="page-title">sign</h1>
         <div className="project__facts">
           <h2>what?</h2>
           <p>design and manufacturing of a human sized sign with embedded lights</p>

@@ -1,34 +1,36 @@
 import BackButton from '../components/BackButton';
-import hero from '../assets/atas/atas-hero.png';
-import hero2 from '../assets/atas/atas-hero-2.png';
-import problem1 from '../assets/atas/atas-problem-1.png';
-import competition1 from '../assets/atas/atas-competition-1.png';
-import competition2 from '../assets/atas/atas-competition-2.png';
-import competition3 from '../assets/atas/atas-competition-3.png';
-import competition4 from '../assets/atas/atas-competition-4.png';
+import { img } from '../lib/img';
 import competitionVideo from '../assets/atas/atas-competition-5.mp4';
-import ideation1 from '../assets/atas/atas-ideation-1.png';
-import ideation2 from '../assets/atas/atas-ideation-2.png';
-import ideation3 from '../assets/atas/atas-ideation-3.png';
-import ideation4 from '../assets/atas/atas-ideation-4.png';
-import ideation5 from '../assets/atas/atas-ideation-5.png';
-import ideation6 from '../assets/atas/atas-ideation-6.png';
-import ideation7 from '../assets/atas/atas-ideation-7.png';
-import concept1 from '../assets/atas/atas-concept-1.png';
-import concept2 from '../assets/atas/atas-concept-2.png';
-import concept3 from '../assets/atas/atas-concept-3.png';
-import concept4 from '../assets/atas/atas-concept-4.png';
-import concept5 from '../assets/atas/atas-concept-5.png';
-import concept6 from '../assets/atas/atas-concept-6.png';
-import manufacturingVideo from '../assets/atas/atas-manufacturing-1.mov';
-import manufacturing2 from '../assets/atas/atas-manufacturing-2.png';
-import processing1 from '../assets/atas/atas-processing-1.png';
-import processing2 from '../assets/atas/atas-processing-2.png';
-import processing3 from '../assets/atas/atas-processing-3.png';
-import assembly1 from '../assets/atas/atas-assembly-1.png';
-import assembly2 from '../assets/atas/atas-assembly-2.png';
-import assembly3 from '../assets/atas/atas-assembly-3.png';
-import test1 from '../assets/atas/atas-test-1.png';
+import manufacturingVideo from '../assets/atas/atas-manufacturing-1.mp4';
+
+const hero = img('atas/atas-hero');
+const hero2 = img('atas/atas-hero-2');
+const problem1 = img('atas/atas-problem-1');
+const competition1 = img('atas/atas-competition-1');
+const competition2 = img('atas/atas-competition-2');
+const competition3 = img('atas/atas-competition-3');
+const competition4 = img('atas/atas-competition-4');
+const ideation1 = img('atas/atas-ideation-1');
+const ideation2 = img('atas/atas-ideation-2');
+const ideation3 = img('atas/atas-ideation-3');
+const ideation4 = img('atas/atas-ideation-4');
+const ideation5 = img('atas/atas-ideation-5');
+const ideation6 = img('atas/atas-ideation-6');
+const ideation7 = img('atas/atas-ideation-7');
+const concept1 = img('atas/atas-concept-1');
+const concept2 = img('atas/atas-concept-2');
+const concept3 = img('atas/atas-concept-3');
+const concept4 = img('atas/atas-concept-4');
+const concept5 = img('atas/atas-concept-5');
+const concept6 = img('atas/atas-concept-6');
+const manufacturing2 = img('atas/atas-manufacturing-2');
+const processing1 = img('atas/atas-processing-1');
+const processing2 = img('atas/atas-processing-2');
+const processing3 = img('atas/atas-processing-3');
+const assembly1 = img('atas/atas-assembly-1');
+const assembly2 = img('atas/atas-assembly-2');
+const assembly3 = img('atas/atas-assembly-3');
+const test1 = img('atas/atas-test-1');
 
 const CLIENT_WANTS = [
   'keep four wheel dynamic',
@@ -44,22 +46,25 @@ export default function Atas() {
       <BackButton />
 
       <section className="project__intro">
+        <h1 className="page-title">A.T.A.S.</h1>
         <div className="project__facts">
           <h2>what?</h2>
-          <p>design of a wheelchair modification to enable off road terrain accessibility</p>
+          <p>
+            design of a wheelchair modification to enable off road terrain
+            accessibility - <strong>A</strong>ll <strong>T</strong>errain{' '}
+            <strong>A</strong>ccess <strong>S</strong>ystem
+          </p>
           <h2>why?</h2>
-          <p>to gain experience in product design</p>
+          <p>to include disabled people outdoors through design</p>
           <h2>when?</h2>
           <p>four months in 2026</p>
           <h2>where?</h2>
-          <p>during a class at CU Boulder in Colorado</p>
+          <p>Boulder, Colorado</p>
           <h2>who?</h2>
           <p>
             Marvin Melzer: designer
             <br />
             Bob: client
-            <br />
-            Jared Arp: Teacher
           </p>
         </div>
         <img className="project__hero" src={hero} alt="Wheelchair attachment rolling through a puddle" />
@@ -159,14 +164,8 @@ export default function Atas() {
         </div>
         <div className="atas__grid3 atas__concept-bottom">
           <div className="atas__wheels">
-            <p className="caption">
-              the wide shark wheel profile improves traction and helps channel mud and
-              water away from rolling surface
-            </p>
-            <div className="atas__wheels-row">
-              <img src={concept3} alt="Shark wheel profile" />
-              <img src={concept4} alt="Shark wheel close-up" />
-            </div>
+            <img src={concept4} alt="Shark wheel close-up" />
+            <img src={concept3} alt="Shark wheel profile" />
           </div>
           <figure className="project__figure">
             <img src={concept5} alt="Assembled caster with spring" />

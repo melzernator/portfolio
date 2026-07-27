@@ -1,4 +1,23 @@
 import { useState } from 'react';
+import { img } from '../lib/img';
+import cncRoutingVideo from '../assets/skills/cnc-routing.mp4';
+import cncCuttingVideo from '../assets/skills/cnc-cutting.mp4';
+
+const designImg = img('skills/design');
+const modellingImg = img('skills/3D-modelling');
+const printingImg = img('skills/3d-printing');
+const renderingImg = img('skills/rendering');
+const cuttingImg = img('skills/cutting');
+const joiningImg = img('skills/joining');
+const finishingImg = img('skills/finishing');
+const circuitDesignImg = img('skills/circuit design');
+const solderingImg = img('skills/soldering');
+const fusionLogo = img('skills/fusion');
+const keyshotLogo = img('skills/keyshot');
+const photoshopLogo = img('skills/photoshop');
+const vizcomLogo = img('skills/vizcom');
+const altiumLogo = img('skills/altium');
+const figmaLogo = img('skills/figma');
 
 type Skill = {
   /** label on the front pill */
@@ -9,59 +28,66 @@ type Skill = {
   variant: 'sm' | 'wide' | 'tall' | 'lg';
   /** flip around horizontal (X) or vertical (Y) axis; default vertical */
   flip?: 'horizontal' | 'vertical';
-  /** Figma layer name of the photo, so assets can be dropped in later */
-  asset: string;
+  /** front-side media */
+  src: string;
+  media?: 'image' | 'video';
   meta: { label: string; value: string }[];
-  /** Figma layer names of the small logos/icons on the back side */
-  icons?: string[];
+  /** tool logos shown on the back */
+  icons?: { src: string; alt: string }[];
 };
 
 const skills: Skill[] = [
   {
     front: '3d modelling',
-    back: '3d-modelling',
+    back: '3d modelling',
     variant: 'sm',
-    asset: 'IMG_8148',
+    src: modellingImg,
     meta: [
-      { label: 'Experience', value: '5 years' },
-      { label: 'Tools', value: 'fusion 360' },
-      { label: 'Learning to use', value: 'solidworks' },
+      { label: 'experience', value: '5 years' },
+      { label: 'tools', value: 'fusion 360' },
+      { label: 'learning to use', value: 'solidworks' },
     ],
-    icons: ['image 145'],
+    icons: [{ src: fusionLogo, alt: 'fusion 360' }],
   },
   {
     front: '3d printing',
-    back: '3D Printing',
+    back: '3d printing',
     variant: 'sm',
-    asset: 'image 137',
+    src: printingImg,
     meta: [
-      { label: 'Experience', value: '5 years' },
-      { label: 'Materials', value: 'PLA, PETG, TPU' },
-      { label: 'Learning to use', value: 'resin printing' },
+      { label: 'experience', value: '5 years' },
+      { label: 'materials', value: 'pla, petg, tpu' },
+      { label: 'learning to use', value: 'resin printing' },
     ],
   },
   {
     front: 'rendering',
-    back: 'Rendering',
+    back: 'rendering',
     variant: 'sm',
-    asset: 'image 138',
+    src: renderingImg,
     meta: [
-      { label: 'Experience', value: '1 year' },
-      { label: 'Tools', value: 'KeyShot, Fusion360, Photoshop' },
-      { label: 'Learning to use', value: 'Vizcom' },
+      { label: 'experience', value: '1 year' },
+      { label: 'tools', value: 'keyshot, fusion360, photoshop' },
+      { label: 'learning to use', value: 'vizcom' },
     ],
-    icons: ['image 146', 'screenshot 1', 'screenshot 2', 'screenshot 3'],
+    icons: [
+      { src: fusionLogo, alt: 'fusion 360' },
+      { src: photoshopLogo, alt: 'photoshop' },
+      { src: keyshotLogo, alt: 'keyshot' },
+      { src: vizcomLogo, alt: 'vizcom' },
+    ],
   },
   {
     front: 'cnc routing',
     back: 'cnc routing',
     variant: 'wide',
     flip: 'horizontal',
-    asset: 'IMG_5198',
+    src: cncRoutingVideo,
+    media: 'video',
     meta: [
-      { label: 'Experience', value: '6 cuts' },
-      { label: 'Materials', value: 'wood, acrylic' },
-      { label: 'Learning to use', value: '5 axis cnc routing for mould making' },
+      { label: 'experience', value: '6 cuts' },
+      { label: 'materials', value: 'wood, acrylic' },
+      { label: 'learning to use', value: '5 axis cnc routing for mould making' },
     ],
   },
   {
@@ -69,44 +95,45 @@ const skills: Skill[] = [
     back: 'cnc cutting',
     variant: 'wide',
     flip: 'horizontal',
-    asset: 'cnc-plasma',
+    src: cncCuttingVideo,
+    media: 'video',
     meta: [
-      { label: 'Experience', value: '20 cuts' },
-      { label: 'Materials', value: 'acrylic, cardboard, MDF, wood' },
-      { label: 'Learning to use', value: '-' },
+      { label: 'experience', value: '20 cuts' },
+      { label: 'materials', value: 'acrylic, cardboard, mdf, wood' },
+      { label: 'learning to use', value: '-' },
     ],
   },
   {
     front: 'cutting',
     back: 'cutting',
     variant: 'tall',
-    asset: 'EE06D747',
+    src: cuttingImg,
     meta: [
-      { label: 'Experience', value: '10 years' },
-      { label: 'Tools', value: 'chainsaw, table saw, Dremel, router, angle grinder, drill press' },
-      { label: 'Learning to do', value: 'glass cutting' },
+      { label: 'experience', value: '10 years' },
+      { label: 'tools', value: 'chainsaw, table saw, dremel, router, angle grinder, drill press' },
+      { label: 'learning to do', value: 'glass cutting' },
     ],
   },
   {
     front: 'joining',
     back: 'joining',
     variant: 'tall',
-    asset: 'image 95',
+    src: joiningImg,
     meta: [
-      { label: 'Experience', value: '10 years' },
-      { label: 'Tools', value: 'welding, soldering, glueing' },
-      { label: 'Learning to do', value: 'woodstretching' },
+      { label: 'experience', value: '10 years' },
+      { label: 'tools', value: 'welding, soldering, glueing' },
+      { label: 'learning to do', value: 'woodstretching' },
     ],
   },
   {
     front: 'finishing',
     back: 'finishing',
     variant: 'tall',
-    asset: 'image 93',
+    src: finishingImg,
     meta: [
-      { label: 'Experience', value: '10 years' },
-      { label: 'Tools', value: 'sand blasting, sanding' },
-      { label: 'Learning to do', value: 'powder coating & polishing' },
+      { label: 'experience', value: '10 years' },
+      { label: 'tools', value: 'sand blasting, sanding' },
+      { label: 'learning to do', value: 'powder coating & polishing' },
     ],
   },
   {
@@ -114,35 +141,36 @@ const skills: Skill[] = [
     back: 'circuit design',
     variant: 'lg',
     flip: 'horizontal',
-    asset: 'IMG_8162',
+    src: circuitDesignImg,
     meta: [
-      { label: 'Experience', value: '4 years' },
-      { label: 'Tools', value: 'pen & paper, Fusion360, Altium' },
-      { label: 'Learning to do', value: '-' },
+      { label: 'experience', value: '4 years' },
+      { label: 'tools', value: 'pen & paper, fusion360, altium' },
+      { label: 'learning to do', value: '-' },
     ],
-    icons: ['image 144', 'image 147'],
+    icons: [
+      { src: fusionLogo, alt: 'fusion 360' },
+      { src: altiumLogo, alt: 'altium' },
+    ],
   },
   {
     front: 'circuit assembly',
     back: 'circuit assembly',
     variant: 'lg',
     flip: 'horizontal',
-    asset: 'image 130',
+    src: solderingImg,
     meta: [
-      { label: 'Experience', value: '4 years' },
-      { label: 'Tools', value: 'soldering iron, reflow oven, pick & place, oscilloscope, multimeter' },
-      { label: 'Learning to do', value: '-' },
+      { label: 'experience', value: '4 years' },
+      { label: 'tools', value: 'soldering iron, reflow oven, pick & place, oscilloscope, multimeter' },
+      { label: 'learning to do', value: '-' },
     ],
   },
 ];
 
-/* swap for an <img> once the asset files are added */
-function AssetPlaceholder({ name }: { name: string }) {
-  return (
-    <div className="skills__placeholder">
-      <span>{name}</span>
-    </div>
-  );
+function SkillMedia({ src, media = 'image', alt }: { src: string; media?: 'image' | 'video'; alt: string }) {
+  if (media === 'video') {
+    return <video src={src} autoPlay loop muted playsInline aria-hidden="true" />;
+  }
+  return <img src={src} alt={alt} />;
 }
 
 export default function Skills() {
@@ -172,8 +200,8 @@ export default function Skills() {
         >
           <div className="skills__flip">
             <div className="skills__face skills__face--front">
-              <AssetPlaceholder name="image 139" />
-              <span className="skills__label skills__label--plain">design</span>
+              <SkillMedia src={designImg} alt="" />
+              <span className="skills__label">design</span>
             </div>
             <div className="skills__face skills__face--back skills__face--design">
               <div className="skills__design-intro">
@@ -186,26 +214,12 @@ export default function Skills() {
                 <span style={{ left: '54.3%', top: '46.9%' }}>ideation</span>
                 <span style={{ left: '41.1%', top: '70.5%' }}>prototyping</span>
               </div>
-              <div className="skills__design-assets">
-                <div
-                  className="skills__design-img"
-                  style={{ left: '69.2%', top: '8.9%', width: '17.4%', height: '82.2%' }}
-                >
-                  <span>image 143</span>
-                </div>
-                <div
-                  className="skills__design-img"
-                  style={{ left: '89.7%', top: '18.9%', width: '6.9%', aspectRatio: '1 / 1' }}
-                >
-                  <span>image 140</span>
-                </div>
-                <div
-                  className="skills__design-img"
-                  style={{ left: '87.8%', top: '59.4%', width: '10.7%', aspectRatio: '1 / 1' }}
-                >
-                  <span>image 142</span>
-                </div>
-              </div>
+              <img
+                className="skills__design-logo"
+                src={figmaLogo}
+                alt="figma"
+                style={{ left: '89.7%', top: '18.9%', width: '6.9%' }}
+              />
             </div>
           </div>
         </button>
@@ -225,7 +239,7 @@ export default function Skills() {
           >
             <div className="skills__flip">
               <div className="skills__face skills__face--front">
-                <AssetPlaceholder name={skill.asset} />
+                <SkillMedia src={skill.src} media={skill.media} alt="" />
                 <span className="skills__label">{skill.front}</span>
               </div>
               <div className="skills__face skills__face--back">
@@ -241,9 +255,7 @@ export default function Skills() {
                 {skill.icons && (
                   <div className="skills__icons">
                     {skill.icons.map((icon) => (
-                      <span key={icon} className="skills__icon">
-                        {icon}
-                      </span>
+                      <img key={icon.alt} className="skills__icon" src={icon.src} alt={icon.alt} />
                     ))}
                   </div>
                 )}

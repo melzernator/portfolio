@@ -1,27 +1,36 @@
-import cuLogo from '../assets/about/CUBoulder.png';
+import { img } from '../lib/img';
 import atlasLogo from '../assets/about/atlas-black.gif';
-import braunLogo from '../assets/about/braun.png';
-import tudLogo from '../assets/about/TUDarmstadt.svg';
-import flagUs from '../assets/about/usa.svg';
-import flagDe from '../assets/about/deutschland.svg';
+
+const cuLogo = img('about/CUBoulder');
+const braunLogo = img('about/braun');
+const tudLogo = img('about/TUDarmstadt');
+const flagUs = img('about/usa');
+const flagDe = img('about/deutschland');
+const marvinPortrait = img('about/marvin');
 
 export default function About() {
   return (
     <div className="page about">
       <h1 className="page-title">about</h1>
 
-      <p className="about__intro">
-        Marvin Melzer is a German craftsman with a passion for thoughtfully designed
-        consumer products.
-        <br />
-        <br />
-        Comfortable at the whiteboard and in the shop, he enjoys transforming ambitious
-        ideas into functional prototypes.
-        <br />
-        <a href="mailto:marvin@melzer.org">press to contact</a>
-      </p>
+      <div className="about__layout">
+        <p className="about__intro">
+          Marvin Melzer is a German craftsman with a passion for thoughtfully designed
+          consumer products.
+          <br />
+          <br />
+          Comfortable at the whiteboard and in the shop, he enjoys transforming ambitious
+          ideas into functional prototypes.
+          <br />
+          <a href="mailto:marvin@melzer.org">press to contact</a>
+        </p>
 
-      <div className="about__timeline">
+        <img
+          className="about__portrait"
+          src={marvinPortrait}
+          alt="Marvin Melzer"
+        />
+
         <div className="about__entry">
           <span className="about__year">2 0 2 7</span>
           <div className="about__entry-body">
@@ -53,7 +62,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="about__entry">
+        <div className="about__entry about__entry--end">
           <span className="about__year">2 0 2 4</span>
           <div className="about__entry-body">
             <div className="about__logos about__logos--lift">
