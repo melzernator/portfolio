@@ -1101,18 +1101,55 @@ video.project__figure {
 }
 
 .atas__concept-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 24px;
-  align-items: stretch;
+  align-items: flex-start;
+  margin-top: 24px;
 }
 
 .atas__concept-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
   min-width: 0;
+}
+
+/* flex ≈ aspect ratio so both images share height without cropping */
+.atas__concept-col:first-child {
+  flex: calc(2305 / 1729) 1 0;
+}
+
+.atas__concept-col:last-child {
+  flex: calc(1910 / 2085) 1 0;
+}
+
+.atas__concept-col > .project__figure {
+  width: 100%;
+}
+
+.atas__concept-col > .project__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.atas__test-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* flex ≈ aspect ratio so image + video share height without cropping */
+.atas__test-row > .project__figure:first-child {
+  flex: calc(3004 / 4005) 1 0;
+}
+
+.atas__test-row > .project__figure:last-child {
+  flex: calc(2344 / 1080) 1 0;
+}
+
+.atas__test-row > .project__figure img,
+.atas__test-row > .project__figure video {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .atas__concept-bottom {
@@ -1149,9 +1186,28 @@ video.project__figure {
   }
 
   .atas__grid3,
-  .atas__grid4,
-  .atas__concept-top {
+  .atas__grid4 {
     grid-template-columns: 1fr;
+  }
+
+  .atas__concept-top {
+    flex-direction: column;
+  }
+
+  .atas__concept-col:first-child,
+  .atas__concept-col:last-child {
+    flex: none;
+    width: 100%;
+  }
+
+  .atas__test-row {
+    flex-direction: column;
+  }
+
+  .atas__test-row > .project__figure:first-child,
+  .atas__test-row > .project__figure:last-child {
+    flex: none;
+    width: 100%;
   }
 
   .atas__span2 {

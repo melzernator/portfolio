@@ -1,7 +1,9 @@
 import BackButton from '../components/BackButton';
 import { img } from '../lib/img';
 import competitionVideo from '../assets/atas/atas-competition-5.mp4';
+import conceptVideo from '../assets/atas/atas-concept-7.mov';
 import manufacturingVideo from '../assets/atas/atas-manufacturing-1.mp4';
+import testVideo from '../assets/atas/atas-test-2.mov';
 
 const hero = img('atas/atas-hero');
 const hero2 = img('atas/atas-hero-2');
@@ -145,13 +147,11 @@ export default function Atas() {
 
       <section className="project__section">
         <h2 className="project__heading">concept</h2>
+        <figure className="project__figure">
+          <video src={conceptVideo} autoPlay loop muted playsInline />
+        </figure>
         <div className="atas__concept-top">
           <div className="atas__concept-col">
-            <p className="project__text">
-              The system adds mobility to wheelchairs without permanently changing the
-              chair. It uses a low-profile geometry to avoid footrest interference, and
-              returns to standard indoor use when not needed.
-            </p>
             <figure className="project__figure">
               <img src={concept1} alt="Wheelchair with the attachment on wet pavement" />
             </figure>
@@ -220,9 +220,12 @@ export default function Atas() {
 
       <section className="project__section">
         <h2 className="project__heading">test</h2>
-        <div className="atas__grid3">
+        <div className="atas__test-row">
           <figure className="project__figure">
             <img src={test1} alt="Riding down a snowy slope with the attachment" />
+          </figure>
+          <figure className="project__figure">
+            <video src={testVideo} autoPlay loop muted playsInline />
           </figure>
         </div>
       </section>
