@@ -152,6 +152,78 @@ a {
   letter-spacing: -0.019em;
 }
 
+/* ---------- zoomable assets (fullscreen viewer) ---------- */
+
+/* the wrapper carries the asset's layout classes (e.g. .project__hero),
+   so the inner asset just fills it and inherits the visual treatment */
+.zoomable {
+  position: relative;
+  cursor: pointer;
+}
+
+.zoomable > img,
+.zoomable > video {
+  width: 100%;
+  height: 100%;
+  max-height: inherit;
+  object-fit: inherit;
+  border-radius: inherit;
+}
+
+/* decorative hover hint only — not interactive */
+.zoomable__expand {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  color: var(--black);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.zoomable:hover .zoomable__expand {
+  opacity: 1;
+}
+
+.zoomable__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  cursor: pointer;
+}
+
+/* max-* instead of percentage height — Safari doesn't resolve height: 100%
+   reliably here and lets the asset overflow the viewport */
+.zoomable__overlay > img,
+.zoomable__overlay > video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* reuses .back-button visuals; reset button chrome */
+.zoomable__back {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--black);
+}
+
 /* ---------- home ---------- */
 
 .home {
@@ -619,29 +691,34 @@ a {
   align-items: start;
 }
 
-/* title sits in the left column; hero spans both rows so its top edge
-   aligns with the top of the title */
+/* title in row 1; facts + hero in row 2 so the hero top aligns with
+   the bottom of the title */
 .sign .project__intro,
-.atas .project__intro {
+.atas .project__intro,
+.fan .project__intro {
   grid-template-rows: auto 1fr;
+  row-gap: 0;
 }
 
-.project__intro .page-title {
+.project__intro .page-title,
+.fan .project__intro .fan__title {
   grid-column: 1;
   grid-row: 1;
   white-space: nowrap;
 }
 
 .sign .project__intro .project__facts,
-.atas .project__intro .project__facts {
+.atas .project__intro .project__facts,
+.fan .project__intro .project__facts {
   grid-column: 1;
   grid-row: 2;
 }
 
 .sign .project__intro > .sign__hero,
-.atas .project__intro > .project__hero {
+.atas .project__intro > .project__hero,
+.fan .project__intro > .project__hero {
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 2;
 }
 
 .project__facts h2 {
@@ -901,7 +978,8 @@ a {
   border-radius: inherit;
 }
 
-.project__row + .project__row {
+.project__row + .project__row,
+.project__figure + .project__row {
   margin-top: 24px;
 }
 
@@ -956,6 +1034,11 @@ video.project__figure {
   letter-spacing: -0.011em;
   line-height: 1.5;
   max-width: 432px;
+}
+
+/* matches one column of .project__row (1fr 1fr, gap 24px) */
+.project__text--half {
+  max-width: calc((100% - 24px) / 2);
 }
 
 .project__text--wide {
@@ -1041,7 +1124,88 @@ video.project__figure {
   justify-self: end;
 }
 
-.atas__wants {
+.sign__assemble-video {
+  object-position: center 8%;
+}
+
+/* sign insights: stacked copy on the left, tall photo on the right */
+.sign__insights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 48px 40px;
+  align-items: stretch;
+}
+
+.sign__insights::before,
+.sign__insights::after {
+  display: none;
+}
+
+.sign__insight {
+  position: relative;
+  max-width: 432px;
+  grid-column: 1;
+}
+
+.sign__insight::before,
+.sign__insight::after {
+  content: '';
+  position: absolute;
+  left: -26px;
+  top: calc(var(--text-title) * 0.75);
+  background: var(--black);
+  border-radius: 1.5px;
+}
+
+.sign__insight::before {
+  width: 3px;
+  bottom: 0;
+}
+
+.sign__insight::after {
+  width: 21px;
+  height: 3px;
+}
+
+.sign__insight .project__heading {
+  margin-bottom: 16px;
+}
+
+.sign__insight .project__text {
+  max-width: none;
+}
+
+.sign__insight--with-media {
+  display: flex;
+  flex-direction: column;
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.sign__insight-photo {
+  margin-top: 20px;
+}
+
+.sign__insight-aside {
+  grid-row: 2;
+  grid-column: 2;
+  position: relative;
+  align-self: stretch;
+  min-height: 0;
+}
+
+.sign__insight-aside img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.atas__wants,
+.sign__wants {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -1051,7 +1215,8 @@ video.project__figure {
   padding: 0;
 }
 
-.atas__wants li {
+.atas__wants li,
+.sign__wants li {
   font-size: var(--text-caption);
   font-weight: 500;
   letter-spacing: -0.011em;
@@ -1181,7 +1346,8 @@ video.project__figure {
     grid-template-columns: 1fr;
   }
 
-  .atas__wants {
+  .atas__wants,
+  .sign__wants {
     flex-direction: column;
   }
 
@@ -1232,7 +1398,7 @@ video.project__figure {
 }
 
 .fan__title {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: clamp(var(--text-xl), 9vw, var(--text-5xl));
   font-weight: 900;
   letter-spacing: -0.011em;
@@ -1242,7 +1408,7 @@ video.project__figure {
 
 .fan .project__intro {
   grid-template-columns: 413fr 877fr;
-  gap: 50px;
+  gap: 0 50px;
 }
 
 .fan .project__hero {
@@ -1265,12 +1431,12 @@ video.project__figure {
   object-fit: cover;
 }
 
-/* wide video + blade-ratio sketch with caption below */
+/* wide video + blade-ratio sketch: video sets height, sketch fills to match */
 .fan__design {
   display: grid;
   grid-template-columns: 877fr 413fr;
   gap: 50px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .fan__design video {
@@ -1278,8 +1444,16 @@ video.project__figure {
   object-fit: cover;
 }
 
+.fan__blade {
+  position: relative;
+  align-self: stretch;
+}
+
 .fan__blade img {
-  aspect-ratio: 413 / 445;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -1297,42 +1471,6 @@ video.project__figure {
   object-fit: cover;
 }
 
-/* full-width build shots + narrow/wide pair */
-.fan__build {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}
-
-.fan__build-hero img {
-  aspect-ratio: 1337 / 918;
-  object-fit: cover;
-}
-
-.fan__build-wide img {
-  aspect-ratio: 1332 / 626;
-  object-fit: cover;
-}
-
-.fan__build-row {
-  display: grid;
-  grid-template-columns: 506fr 784fr;
-  gap: 50px;
-}
-
-.fan__build-row .project__figure:first-child img {
-  aspect-ratio: 506 / 672;
-  object-fit: cover;
-}
-
-.fan__build-row .project__figure:last-child img {
-  aspect-ratio: 784 / 672;
-  object-fit: cover;
-}
-
-.fan .project__insights {
-  gap: 50px;
-}
 
 /* ---------- image ratios (from Figma mobile frames) ---------- */
 
@@ -1565,15 +1703,20 @@ video.project__figure {
   }
 
   .sign .project__intro,
-  .atas .project__intro {
+  .atas .project__intro,
+  .fan .project__intro {
     grid-template-rows: none;
+    gap: 24px;
   }
 
   .project__intro .page-title,
+  .fan .project__intro .fan__title,
   .sign .project__intro .project__facts,
   .atas .project__intro .project__facts,
+  .fan .project__intro .project__facts,
   .sign .project__intro > .sign__hero,
-  .atas .project__intro > .project__hero {
+  .atas .project__intro > .project__hero,
+  .fan .project__intro > .project__hero {
     grid-column: auto;
     grid-row: auto;
   }
@@ -1598,7 +1741,9 @@ video.project__figure {
 
   /* no room for section marker lines in the narrow mobile margin */
   .project__section::before,
-  .project__section::after {
+  .project__section::after,
+  .sign__insight::before,
+  .sign__insight::after {
     display: none;
   }
 
@@ -1656,6 +1801,7 @@ video.project__figure {
   }
 
   .project__text,
+  .project__text--half,
   .project__text--wide,
   .project__text--full {
     max-width: none;
@@ -1664,6 +1810,31 @@ video.project__figure {
   .project__insights {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .sign__insights {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 28px;
+  }
+
+  .sign__insight,
+  .sign__insight--with-media,
+  .sign__insight-aside {
+    grid-row: auto;
+    grid-column: auto;
+    max-width: none;
+  }
+
+  .sign__insight-aside {
+    position: static;
+    height: auto;
+  }
+
+  .sign__insight-aside img {
+    position: static;
+    height: auto;
+    aspect-ratio: 3 / 4;
   }
 
   .caption--overlay {
@@ -1686,18 +1857,21 @@ video.project__figure {
   }
 
   .fan__why,
-  .fan__design,
-  .fan__build-row {
+  .fan__design {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
-  .fan__renders,
-  .fan__build {
-    gap: 20px;
+  .fan__blade {
+    position: static;
   }
 
-  .fan .project__insights {
-    gap: 28px;
+  .fan__blade img {
+    position: static;
+    height: auto;
+  }
+
+  .fan__renders {
+    gap: 20px;
   }
 }

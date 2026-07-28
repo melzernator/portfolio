@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import FloatingModels from '../components/FloatingModels';
-import space from '../assets/workspace/space.mp4';
+import { video } from '../lib/video';
+
+const space = video('workspace/space');
 
 export default function Workspace() {
   const hostRef = useRef<HTMLDivElement>(null);

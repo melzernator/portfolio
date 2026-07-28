@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import BackButton from '../components/BackButton';
+import Zoomable from '../components/Zoomable';
 import { img } from '../lib/img';
-import cncVideo from '../assets/sign/sign-CNC.mp4';
-import assemblingVideo from '../assets/sign/sign-assembling.mp4';
-import installation1 from '../assets/sign/installation-1.mp4';
+import { video } from '../lib/video';
 
 const designAnnotated = img('sign/sign-design');
 const orchid = img('sign/sign-orchid');
@@ -19,9 +18,20 @@ const outside1 = img('sign/sign-outside-2');
 const inside = img('sign/sign-inside');
 const daylight = img('sign/sign-daylight');
 const insightImg = img('sign/sign-insight');
+const insightImg2 = img('sign/sign-insight-2');
 const installation2 = img('sign/installation-2');
 const installation3 = img('sign/installation-3');
 const installationRight = img('sign/installation-right');
+const cncVideo = video('sign/sign-CNC');
+const assemblingVideo = video('sign/sign-assembling');
+const installation1 = video('sign/installation-1');
+
+const CLIENT_WANTS = [
+  'easy to read',
+  'aesthetic',
+  'transparent',
+  'easy to maintain',
+];
 
 export default function Sign() {
   const [isOn, setIsOn] = useState(true);
@@ -47,16 +57,6 @@ export default function Sign() {
             <br />
             Fen: client (Cafe Owner)
           </p>
-          <h2>objectives</h2>
-          <p>
-            easy to read
-            <br />
-            aesthetic
-            <br />
-            transparent
-            <br />
-            easy to maintain
-          </p>
         </div>
         <div className="sign__hero">
           <button
@@ -71,27 +71,37 @@ export default function Sign() {
             </span>
             <span className="sign__power-label">{isOn ? 'on' : 'off'}</span>
           </button>
-          <img
-            className="project__hero"
-            src={isOn ? signOn : signOff}
-            alt={isOn ? 'Fens Cafe neon sign lit' : 'Fens Cafe neon sign unlit'}
-          />
+          <Zoomable className="project__hero">
+            <img
+              src={isOn ? signOn : signOff}
+              alt={isOn ? 'Fens Cafe neon sign lit' : 'Fens Cafe neon sign unlit'}
+            />
+          </Zoomable>
         </div>
+      </section>
+
+      <section className="project__section">
+        <h2 className="project__heading">what the client wants</h2>
+        <ul className="sign__wants">
+          {CLIENT_WANTS.map((want) => (
+            <li key={want}>{want}</li>
+          ))}
+        </ul>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">design</h2>
         <div className="project__row project__row--fill-stack">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={designAnnotated} alt="Annotated sign design" />
-          </figure>
+          </Zoomable>
           <div className="project__col">
-            <figure className="project__figure">
+            <Zoomable as="figure" className="project__figure">
               <img src={orchids} alt="Orchids in the cafe" />
-            </figure>
-            <figure className="project__figure">
+            </Zoomable>
+            <Zoomable as="figure" className="project__figure">
               <img src={orchid} alt="Purple orchid blooms" />
-            </figure>
+            </Zoomable>
           </div>
         </div>
       </section>
@@ -110,39 +120,46 @@ export default function Sign() {
           </p>
         </div>
         <div className="project__row project__row--match-height">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={prototype} alt="Neon prototype" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={prototyping2} alt="Neon prototyping" />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">production</h2>
         <div className="project__row project__row--split project__row--sync-height">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={renderImg} alt="Sign render" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <video src={cncVideo} autoPlay loop muted playsInline />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">build</h2>
-        <p className="project__text project__text--full">
-          hand soldered 250 transparent wires with minimal gauge to connect all light
-          stripes
-        </p>
         <div className="project__row project__row--three">
-          <img className="project__figure" src={solderingImg} alt="Soldering light stripes" />
-          <figure className="project__figure">
-            <video src={assemblingVideo} autoPlay loop muted playsInline />
-          </figure>
-          <img className="project__figure" src={assemblingImg} alt="Assembling the sign" />
+          <Zoomable as="figure" className="project__figure">
+            <img src={solderingImg} alt="Soldering light stripes" />
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
+            <video
+              className="sign__assemble-video"
+              src={assemblingVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
+            <img src={assemblingImg} alt="Assembling the sign" />
+          </Zoomable>
         </div>
       </section>
 
@@ -150,58 +167,42 @@ export default function Sign() {
         <h2 className="project__heading">installation</h2>
         <div className="project__row project__row--split project__row--fill-tall">
           <div className="project__col">
-            <video
-              className="project__figure"
-              src={installation1}
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-            <figure className="project__figure">
+            <Zoomable as="figure" className="project__figure">
+              <video src={installation1} autoPlay loop muted playsInline />
+            </Zoomable>
+            <Zoomable as="figure" className="project__figure">
               <img src={installation2} alt="Installing the sign" />
-              <figcaption className="caption caption--overlay caption--tl">
-                non destructive mount
-              </figcaption>
-            </figure>
-            <figure className="project__figure">
+            </Zoomable>
+            <Zoomable as="figure" className="project__figure">
               <img src={installation3} alt="Mounting the sign" />
-              <figcaption className="caption caption--overlay caption--tl caption--black caption--third">
-                clamps hold the sign sections in place
-                <br />
-                soft nylon tips prevent acrylic crazing
-              </figcaption>
-            </figure>
+            </Zoomable>
           </div>
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img
               src={installationRight}
               alt="Installed sign on the cafe window"
             />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">test</h2>
         <div className="project__row project__row--three">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={outside1} alt="Sign from a distance" />
-            <figcaption className="caption">easy to read</figcaption>
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={inside} alt="Sign from inside" />
-            <figcaption className="caption">unobtrusive</figcaption>
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={daylight} alt="Sign in daylight" />
-            <figcaption className="caption">flowers get daylight</figcaption>
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
-      <section className="project__section project__insights">
-        <div>
+      <section className="project__section sign__insights">
+        <div className="sign__insight">
           <h2 className="project__heading">insight one</h2>
           <p className="project__text">
             five months in, the switch died. customers started thinking the cafe was
@@ -210,14 +211,22 @@ export default function Sign() {
             it's open.
           </p>
         </div>
-        <div>
+        <div className="sign__insight sign__insight--with-media">
           <h2 className="project__heading">insight two</h2>
           <p className="project__text">
             remove acrylics paper cover first and then insert light stripes to avoid
             paper pieces to be stuck in channels
           </p>
-          <img className="project__figure" src={insightImg} alt="Paper stuck in channels" style={{ marginTop: 16 }} />
+          <Zoomable as="figure" className="project__figure sign__insight-photo">
+            <img src={insightImg} alt="Inserting light stripes into acrylic channels" />
+          </Zoomable>
         </div>
+        <Zoomable as="figure" className="project__figure sign__insight-aside">
+          <img
+            src={insightImg2}
+            alt="Light stripes seated in acrylic channels"
+          />
+        </Zoomable>
       </section>
     </div>
   );

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { img } from '../lib/img';
-import cncRoutingVideo from '../assets/skills/cnc-routing.mp4';
-import cncCuttingVideo from '../assets/skills/cnc-cutting.mp4';
+import { video } from '../lib/video';
 
 const designImg = img('skills/design');
 const modellingImg = img('skills/3D-modelling');
@@ -18,6 +17,8 @@ const photoshopLogo = img('skills/photoshop');
 const vizcomLogo = img('skills/vizcom');
 const altiumLogo = img('skills/altium');
 const figmaLogo = img('skills/figma');
+const cncRoutingVideo = video('skills/cnc-routing');
+const cncCuttingVideo = video('skills/cnc-cutting');
 
 type Skill = {
   /** label on the front pill */

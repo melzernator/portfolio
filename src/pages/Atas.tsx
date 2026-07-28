@@ -1,10 +1,12 @@
 import BackButton from '../components/BackButton';
+import Zoomable from '../components/Zoomable';
 import { img } from '../lib/img';
-import competitionVideo from '../assets/atas/atas-competition-5.mp4';
-import conceptVideo from '../assets/atas/atas-concept-7.mov';
-import manufacturingVideo from '../assets/atas/atas-manufacturing-1.mp4';
-import testVideo from '../assets/atas/atas-test-2.mov';
+import { video } from '../lib/video';
 
+const competitionVideo = video('atas/atas-competition-5');
+const conceptVideo = video('atas/atas-concept-7');
+const manufacturingVideo = video('atas/atas-manufacturing-1');
+const testVideo = video('atas/atas-test-2');
 const hero = img('atas/atas-hero');
 const hero2 = img('atas/atas-hero-2');
 const problem1 = img('atas/atas-problem-1');
@@ -69,18 +71,20 @@ export default function Atas() {
             Bob: client
           </p>
         </div>
-        <img className="project__hero" src={hero} alt="Wheelchair attachment rolling through a puddle" />
+        <Zoomable className="project__hero">
+          <img src={hero} alt="Wheelchair attachment rolling through a puddle" />
+        </Zoomable>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">the problem</h2>
         <div className="project__row">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={problem1} alt="Wheelchair stuck in beach sand" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={hero2} alt="Wheelchair caster blocked by a rock on gravel" />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
@@ -96,137 +100,141 @@ export default function Atas() {
       <section className="project__section">
         <h2 className="project__heading">why other solutions don&rsquo;t work</h2>
         <div className="atas__grid3">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={competition1} alt="Wheelchair with front attachment wheel" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={competition2} alt="Folded wheelchair with powered attachment" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={competition3} alt="Off-road front wheel attachment" />
-          </figure>
+          </Zoomable>
         </div>
         <div className="atas__grid3 atas__comp-row2">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={competition4} alt="All-terrain handcycle trike" />
-          </figure>
-          <figure className="project__figure atas__span2">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure atas__span2">
             <video src={competitionVideo} autoPlay loop muted playsInline />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">ideation</h2>
         <div className="atas__grid3">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={ideation1} alt="Cardboard arm mockup" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={ideation2} alt="Cardboard wheel mockup held in hand" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={ideation3} alt="Cardboard roller concept" />
-          </figure>
+          </Zoomable>
         </div>
         <div className="atas__grid4">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={ideation4} alt="First caster prototype held against the chair" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={ideation5} alt="Prototype mounted on the workbench" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={ideation6} alt="Laser-cut tri-wheel prototype" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={ideation7} alt="Tri-wheel prototype with template parts" />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">concept</h2>
-        <figure className="project__figure">
+        <Zoomable as="figure" className="project__figure">
           <video src={conceptVideo} autoPlay loop muted playsInline />
-        </figure>
+        </Zoomable>
         <div className="atas__concept-top">
           <div className="atas__concept-col">
-            <figure className="project__figure">
+            <Zoomable as="figure" className="project__figure">
               <img src={concept1} alt="Wheelchair with the attachment on wet pavement" />
-            </figure>
+            </Zoomable>
           </div>
           <div className="atas__concept-col">
-            <figure className="project__figure atas__figure--plain">
+            <Zoomable as="figure" className="project__figure atas__figure--plain">
               <img src={concept2} alt="Tri-wheel assembly with springs" />
-            </figure>
+            </Zoomable>
           </div>
         </div>
         <div className="atas__grid3 atas__concept-bottom">
           <div className="atas__wheels">
-            <img src={concept4} alt="Shark wheel close-up" />
-            <img src={concept3} alt="Shark wheel profile" />
+            <Zoomable>
+              <img src={concept4} alt="Shark wheel close-up" />
+            </Zoomable>
+            <Zoomable>
+              <img src={concept3} alt="Shark wheel profile" />
+            </Zoomable>
           </div>
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={concept5} alt="Assembled caster with spring" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={concept6} alt="Assembly mounted next to the wheelchair wheel" />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">manufacturing</h2>
         <div className="project__row">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <video src={manufacturingVideo} autoPlay loop muted playsInline />
-          </figure>
-          <figure className="project__figure atas__figure--plain">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure atas__figure--plain">
             <img src={manufacturing2} alt="CAD drawing of the plate with dimensions" />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">post processing</h2>
         <div className="atas__grid3">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={processing1} alt="Three cut plates before finishing" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={processing2} alt="Deburred plates" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={processing3} alt="Full set of finished plates" />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">assembly</h2>
         <div className="atas__grid3">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={assembly1} alt="Hand-drawn assembly plan" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={assembly2} alt="All parts laid out before assembly" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <img src={assembly3} alt="Assembling the caster unit" />
-          </figure>
+          </Zoomable>
         </div>
       </section>
 
       <section className="project__section">
         <h2 className="project__heading">test</h2>
         <div className="atas__test-row">
-          <figure className="project__figure">
+          <Zoomable as="figure" className="project__figure">
             <img src={test1} alt="Riding down a snowy slope with the attachment" />
-          </figure>
-          <figure className="project__figure">
+          </Zoomable>
+          <Zoomable as="figure" className="project__figure">
             <video src={testVideo} autoPlay loop muted playsInline />
-          </figure>
+          </Zoomable>
         </div>
       </section>
     </div>
