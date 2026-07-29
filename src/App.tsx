@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Nav from './components/Nav';
+import ThemeToggle from './components/ThemeToggle';
 import Workspace from './pages/Workspace';
 import Skills from './pages/Skills';
 import About from './pages/About';
@@ -65,7 +66,6 @@ export default function App() {
   const isDetail = route === '/sign' || route === '/fan' || route === '/atas';
   const showNav = !isDetail;
   const activePath = NAV_ROUTES.has(route) ? route : '/';
-  const isWorkspace = activePath === '/' || activePath === '/workspace';
   const isWorkspacePage = route === '/';
 
   return (
@@ -74,9 +74,10 @@ export default function App() {
       <div className="app-shell" ref={shellRef}>
         {renderPage(route)}
       </div>
-      {showNav && (
-        <Nav variant={isWorkspace ? 'dark' : 'light'} activePath={activePath} />
-      )}
+      <ThemeToggle />
+      {/* the translucent pill adapts its colors to the theme via CSS,
+          so the same variant works on every page in both modes */}
+      {showNav && <Nav variant="light" activePath={activePath} />}
     </>
   );
 }

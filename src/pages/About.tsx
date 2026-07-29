@@ -1,14 +1,23 @@
 import { img } from '../lib/img';
-import atlasLogo from '../assets/about/atlas-black.gif';
+import { useTheme } from '../lib/theme';
+import atlasLogoBlack from '../assets/about/atlas-black.gif';
+import atlasLogoWhite from '../assets/about/atlas-white.gif';
 
 const cuLogo = img('about/CUBoulder');
-const braunLogo = img('about/braun');
-const tudLogo = img('about/TUDarmstadt');
+const braunLogoBlack = img('about/braun-black');
+const braunLogoWhite = img('about/braun-white');
+const tudLogoBlack = img('about/TUDarmstadt-black');
+const tudLogoWhite = img('about/TUDarmstadt-white');
 const flagUs = img('about/usa');
 const flagDe = img('about/deutschland');
 const marvinPortrait = img('about/marvin');
 
 export default function About() {
+  const dark = useTheme() === 'dark';
+  const atlasLogo = dark ? atlasLogoWhite : atlasLogoBlack;
+  const braunLogo = dark ? braunLogoWhite : braunLogoBlack;
+  const tudLogo = dark ? tudLogoWhite : tudLogoBlack;
+
   return (
     <div className="page about">
       <h1 className="page-title">about</h1>

@@ -1,11 +1,16 @@
 import { useEffect, useRef } from 'react';
 import FloatingModels from '../components/FloatingModels';
 import { video } from '../lib/video';
+import { useTheme } from '../lib/theme';
 
-const space = video('workspace/space');
+const spaceWhite = video('workspace/space-white');
+// space.mp4 is the dark/black variant
+const spaceBlack = video('workspace/space');
 
 export default function Workspace() {
   const hostRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
+  const space = theme === 'dark' ? spaceBlack : spaceWhite;
 
   useEffect(() => {
     const host = hostRef.current;
@@ -71,7 +76,7 @@ export default function Workspace() {
       video.load();
       video.remove();
     };
-  }, []);
+  }, [space]);
 
   return (
     <div className="page workspace">

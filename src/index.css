@@ -60,7 +60,16 @@ body,
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: url('./assets/background.jpg') center / cover no-repeat;
+  background: url('./assets/background-white.jpg') center / cover no-repeat;
+}
+
+[data-theme='dark'] .site-bg {
+  background-image: url('./assets/background-black.jpg');
+}
+
+/* multiply-blended grit disappears on dark backgrounds */
+[data-theme='dark'] .site-bg::after {
+  mix-blend-mode: screen;
 }
 
 /* Soft animated grit — static-like, barely perceptible */
@@ -136,6 +145,11 @@ a {
   font-weight: 900;
   letter-spacing: -0.012em;
   line-height: 1;
+  color: var(--black);
+}
+
+[data-theme='dark'] .page-title {
+  color: var(--white);
 }
 
 .page-subtitle {
@@ -199,9 +213,36 @@ a {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  color: var(--black);
   font-size: var(--text-lg);
   font-weight: 600;
   letter-spacing: -0.019em;
+}
+
+/* ---------- theme toggle ---------- */
+
+/* mirrors .back-button visuals, pinned to the opposite corner */
+.theme-toggle {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  color: var(--black);
+  cursor: pointer;
+}
+
+.theme-toggle svg {
+  display: block;
 }
 
 /* ---------- zoomable assets (fullscreen viewer) ---------- */
@@ -369,6 +410,10 @@ a {
   z-index: 2;
   padding: 30px 36px 0;
   pointer-events: none;
+  color: var(--black);
+}
+
+[data-theme='dark'] .workspace__header {
   color: var(--white);
 }
 
@@ -508,10 +553,15 @@ a {
   display: flex;
   flex-direction: column;
   padding: clamp(20px, 2.5vw, 36px) clamp(20px, 3.1vw, 45px);
-  background: #111;
-  color: var(--white);
+  background: var(--white);
+  color: var(--black);
   transform: rotateY(180deg);
   text-align: left;
+}
+
+[data-theme='dark'] .skills__face--back {
+  background: #111;
+  color: var(--white);
 }
 
 .skills__card--flip-x .skills__face--back {
@@ -1926,4 +1976,63 @@ video.project__figure {
   .fan__renders {
     gap: 20px;
   }
+
+  .theme-toggle {
+    top: 14px;
+    right: 10px;
+  }
+}
+
+/* ---------- dark mode ---------- */
+
+[data-theme='dark'] {
+  --muted: rgba(255, 255, 255, 0.55);
+}
+
+html[data-theme='dark'],
+[data-theme='dark'] body,
+[data-theme='dark'] #root {
+  background: var(--black);
+  color: var(--white);
+}
+
+[data-theme='dark'] .workspace {
+  background: var(--black);
+}
+
+/* light-variant pill sits on the dark paper bg: brighten it, white links */
+[data-theme='dark'] .pill-nav--light {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme='dark'] .pill-nav--light a:hover,
+[data-theme='dark'] .pill-nav--light a.is-active {
+  color: var(--white);
+}
+
+/* tile label pills: match frosted white pill-nav in both themes */
+[data-theme='dark'] .skills__label {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  color: var(--white);
+}
+
+[data-theme='dark'] .skills__card:focus-visible {
+  outline-color: var(--white);
+}
+
+[data-theme='dark'] .caption {
+  color: var(--white);
+}
+
+/* overlay captions keep their explicit colors over imagery */
+[data-theme='dark'] .caption--black {
+  color: var(--black);
+}
+
+[data-theme='dark'] .project__section::before,
+[data-theme='dark'] .project__section::after,
+[data-theme='dark'] .sign__insight::before,
+[data-theme='dark'] .sign__insight::after {
+  background: var(--white);
 }
