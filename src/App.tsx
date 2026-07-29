@@ -66,9 +66,11 @@ export default function App() {
   const showNav = !isDetail;
   const activePath = NAV_ROUTES.has(route) ? route : '/';
   const isWorkspace = activePath === '/' || activePath === '/workspace';
+  const isWorkspacePage = route === '/';
 
   return (
     <>
+      {!isWorkspacePage && <div className="site-bg" aria-hidden="true" />}
       <div className="app-shell" ref={shellRef}>
         {renderPage(route)}
       </div>
