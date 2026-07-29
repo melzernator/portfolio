@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import signModel from '../assets/workspace/sign.glb';
 import fanModel from '../assets/workspace/fan.glb';
+import cherokeeModel from '../assets/workspace/cherokee.glb';
 import atasModel from '../assets/workspace/atas.glb';
 import { navigate } from '../router';
 
@@ -20,6 +21,7 @@ type ModelDef = {
 const MODELS: ModelDef[] = [
   { url: signModel, route: '/sign', size: 3.2, presentRotation: [Math.PI / 2, 0, 0], presentTilt: 0 },
   { url: fanModel, route: '/fan', size: 2.6, presentRotation: [0, -Math.PI / 2, 0] },
+  { url: cherokeeModel, size: 2.8 },
   { url: atasModel, route: '/atas', size: 3.0, presentRotation: [0, Math.PI, 0] },
 ];
 

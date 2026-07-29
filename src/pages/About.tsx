@@ -40,49 +40,51 @@ export default function About() {
           alt="Marvin Melzer"
         />
 
-        <div className="about__entry">
-          <span className="about__year">2 0 2 7</span>
-          <div className="about__entry-body">
-            <div className="about__logos">
-              <img className="about__logo about__logo--flag" src={flagUs} alt="USA" />
-              <img className="about__logo" src={cuLogo} alt="CU Boulder" />
-              <img className="about__logo" src={atlasLogo} alt="ATLAS Institute" />
+        <div className="about__timeline">
+          <div className="about__entry">
+            <span className="about__year">2 0 2 7</span>
+            <div className="about__entry-body">
+              <div className="about__logos">
+                <img className="about__logo about__logo--flag" src={flagUs} alt="USA" />
+                <img className="about__logo" src={cuLogo} alt="CU Boulder" />
+                <img className="about__logo about__logo--atlas" src={atlasLogo} alt="ATLAS Institute" />
+              </div>
+              <p>
+                Master of Science
+                <br />
+                Creative Tech &amp; Design
+              </p>
             </div>
-            <p>
-              Master of Science
-              <br />
-              Creative Tech &amp; Design
-            </p>
           </div>
-        </div>
 
-        <div className="about__entry">
-          <span className="about__year">2 0 2 5</span>
-          <div className="about__entry-body">
-            <div className="about__logos about__logos--lift">
-              <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
-              <img className="about__logo about__logo--braun" src={braunLogo} alt="Braun" />
+          <div className="about__entry">
+            <span className="about__year">2 0 2 5</span>
+            <div className="about__entry-body">
+              <div className="about__logos about__logos--lift">
+                <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
+                <img className="about__logo about__logo--braun" src={braunLogo} alt="Braun" />
+              </div>
+              <p>
+                Internship 7 months
+                <br />
+                R&amp;D and Design
+              </p>
             </div>
-            <p>
-              Internship 7 months
-              <br />
-              R&amp;D and Design
-            </p>
           </div>
-        </div>
 
-        <div className="about__entry about__entry--end">
-          <span className="about__year">2 0 2 4</span>
-          <div className="about__entry-body">
-            <div className="about__logos about__logos--lift">
-              <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
-              <img className="about__logo about__logo--tud" src={tudLogo} alt="TU Darmstadt" />
+          <div className="about__entry about__entry--end">
+            <span className="about__year">2 0 2 4</span>
+            <div className="about__entry-body">
+              <div className="about__logos about__logos--lift">
+                <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
+                <img className="about__logo about__logo--tud" src={tudLogo} alt="TU Darmstadt" />
+              </div>
+              <p>
+                Bachelor of Science
+                <br />
+                Electrical Engineering
+              </p>
             </div>
-            <p>
-              Bachelor of Science
-              <br />
-              Electrical Engineering
-            </p>
           </div>
         </div>
       </div>
