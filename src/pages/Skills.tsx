@@ -223,29 +223,31 @@ export default function Skills() {
           aria-pressed={isFlipped('design')}
           aria-label={isFlipped('design') ? 'Hide details for design' : 'Show details for design'}
         >
-          <div className="skills__flip">
-            <div className="skills__face skills__face--front">
-              <SkillMedia src={designImg} alt="" />
-              <span className="skills__label">design</span>
-              <FlipHint />
-            </div>
-            <div className="skills__face skills__face--back skills__face--design">
-              <div className="skills__design-intro">
-                <h2 className="skills__back-title">design</h2>
-                <p>asking why a couple of times can reveal the underlying design problem.</p>
+          <div className="skills__wiggle">
+            <div className="skills__flip">
+              <div className="skills__face skills__face--front">
+                <SkillMedia src={designImg} alt="" />
+                <span className="skills__label">design</span>
+                <FlipHint />
               </div>
-              <div className="skills__cloud">
-                <span style={{ left: '41.4%', top: '22%' }}>observation</span>
-                <span style={{ left: '32.6%', top: '46.9%' }}>testing</span>
-                <span style={{ left: '54.3%', top: '46.9%' }}>ideation</span>
-                <span style={{ left: '41.1%', top: '70.5%' }}>prototyping</span>
+              <div className="skills__face skills__face--back skills__face--design">
+                <div className="skills__design-intro">
+                  <h2 className="skills__back-title">design</h2>
+                  <p>asking why a couple of times can reveal the underlying design problem.</p>
+                </div>
+                <div className="skills__cloud">
+                  <span style={{ left: '41.4%', top: '22%' }}>observation</span>
+                  <span style={{ left: '32.6%', top: '46.9%' }}>testing</span>
+                  <span style={{ left: '54.3%', top: '46.9%' }}>ideation</span>
+                  <span style={{ left: '41.1%', top: '70.5%' }}>prototyping</span>
+                </div>
+                <img
+                  className="skills__design-logo"
+                  src={figmaLogo}
+                  alt="figma"
+                  style={{ left: '89.7%', top: '18.9%', width: '6.9%' }}
+                />
               </div>
-              <img
-                className="skills__design-logo"
-                src={figmaLogo}
-                alt="figma"
-                style={{ left: '89.7%', top: '18.9%', width: '6.9%' }}
-              />
             </div>
           </div>
         </button>
@@ -263,29 +265,31 @@ export default function Skills() {
                 : `Show details for ${skill.front}`
             }
           >
-            <div className="skills__flip">
-              <div className="skills__face skills__face--front">
-                <SkillMedia src={skill.src} media={skill.media} alt="" />
-                <span className="skills__label">{skill.front}</span>
-                <FlipHint />
-              </div>
-              <div className="skills__face skills__face--back">
-                <h2 className="skills__back-title">{skill.back}</h2>
-                <dl className="skills__back-meta">
-                  {skill.meta.map((row) => (
-                    <div key={row.label}>
-                      <dt>{row.label}</dt>
-                      <dd>{row.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-                {skill.icons && (
-                  <div className="skills__icons">
-                    {skill.icons.map((icon) => (
-                      <img key={icon.alt} className="skills__icon" src={icon.src} alt={icon.alt} />
+            <div className="skills__wiggle">
+              <div className="skills__flip">
+                <div className="skills__face skills__face--front">
+                  <SkillMedia src={skill.src} media={skill.media} alt="" />
+                  <span className="skills__label">{skill.front}</span>
+                  <FlipHint />
+                </div>
+                <div className="skills__face skills__face--back">
+                  <h2 className="skills__back-title">{skill.back}</h2>
+                  <dl className="skills__back-meta">
+                    {skill.meta.map((row) => (
+                      <div key={row.label}>
+                        <dt>{row.label}</dt>
+                        <dd>{row.value}</dd>
+                      </div>
                     ))}
-                  </div>
-                )}
+                  </dl>
+                  {skill.icons && (
+                    <div className="skills__icons">
+                      {skill.icons.map((icon) => (
+                        <img key={icon.alt} className="skills__icon" src={icon.src} alt={icon.alt} />
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </button>

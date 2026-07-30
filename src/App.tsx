@@ -8,8 +8,19 @@ import Fan from './pages/Fan';
 import Atas from './pages/Atas';
 import Phone from './pages/Phone';
 import Pendant from './pages/Pendant';
+import NotFound from './pages/NotFound';
 
 const NAV_ROUTES = new Set(['/', '/workspace', '/skills', '/about']);
+const KNOWN_ROUTES = new Set([
+  '/',
+  '/skills',
+  '/about',
+  '/sign',
+  '/fan',
+  '/atas',
+  '/phone',
+  '/pendant',
+]);
 
 function getRoute(): string {
   return window.location.pathname || '/';
@@ -22,6 +33,8 @@ function normalizeRoute(path: string): string {
 
 function renderPage(route: string) {
   switch (route) {
+    case '/':
+      return <Workspace />;
     case '/skills':
       return <Skills />;
     case '/about':
@@ -37,7 +50,7 @@ function renderPage(route: string) {
     case '/pendant':
       return <Pendant />;
     default:
-      return <Workspace />;
+      return <NotFound />;
   }
 }
 
@@ -74,13 +87,19 @@ export default function App() {
     route === '/atas' ||
     route === '/phone' ||
     route === '/pendant';
-  const showNav = !isDetail;
+  const isNotFound = !KNOWN_ROUTES.has(route);
+  const showNav = !isDetail && !isNotFound;
   const activePath = NAV_ROUTES.has(route) ? route : '/';
   const isWorkspacePage = route === '/';
 
   return (
     <>
-      {!isWorkspacePage && <div className="site-bg" aria-hidden="true" />}
+      {!isWorkspacePage && (
+        <div
+          className={`site-bg${isNotFound ? ' site-bg--dark' : ''}`}
+          aria-hidden="true"
+        />
+      )}
       <div className="app-shell" ref={shellRef}>
         {renderPage(route)}
       </div>

@@ -8,8 +8,12 @@ const EXT_PRIORITY: Record<string, number> = {
 };
 
 // Include uppercase extensions (e.g. .MOV) — Vite's brace globs are case-sensitive.
+// Exclude originals/ so source files stay in the repo but are not shipped in the build.
 const modules = import.meta.glob(
-  '/src/assets/**/*.{mp4,MP4,mov,MOV,gif,GIF}',
+  [
+    '/src/assets/**/*.{mp4,MP4,mov,MOV,gif,GIF}',
+    '!/src/assets/**/originals/**',
+  ],
   {
     eager: true,
     import: 'default',
@@ -41,8 +45,8 @@ function lookup(stemPath: string): string | undefined {
  *
  * Case-study layout (preferred when present):
  *   assets/<case>/mp4/<name>.mp4
- *   assets/<case>/originals/<name>.{mp4,mov,...}
  * Falls back to a flat file under `assets/<case>/<name>.*`.
+ * Files in `originals/` are excluded from the build and never resolved.
  */
 export function video(path: string): string {
   const cleaned = path.replace(/^\/?src\/assets\//, '').replace(VIDEO_EXT, '');
@@ -53,14 +57,12 @@ export function video(path: string): string {
     const name = cleaned.slice(slash + 1);
     const fromMp4 = lookup(`${dir}/mp4/${name}`);
     if (fromMp4) return fromMp4;
-    const fromOriginals = lookup(`${dir}/originals/${name}`);
-    if (fromOriginals) return fromOriginals;
   }
 
   const url = lookup(cleaned);
   if (!url) {
     throw new Error(
-      `Video not found: "${path}" (expected mp4/, originals/, or flat mp4/mov/gif under src/assets)`,
+      `Video not found: "${path}" (expected mp4/ or flat mp4/mov/gif under src/assets)`,
     );
   }
   return url;

@@ -82,6 +82,10 @@ body,
   background-image: url('./assets/background-black.webp');
 }
 
+.site-bg--dark {
+  background-image: url('./assets/background-black.webp');
+}
+
 /* Scroll lives here (not on the document) so the viewport width — and thus
    position:fixed nav centering — never changes when a page needs a scrollbar */
 .app-shell {
@@ -371,6 +375,46 @@ a {
   color: var(--white);
 }
 
+/* ---------- 404 ---------- */
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 30px 36px;
+  text-align: center;
+}
+
+.not-found__title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-sans);
+  font-size: clamp(var(--text-2xl), 8vw, var(--text-5xl));
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--white);
+}
+
+.not-found__link {
+  margin-top: 28px;
+  font-family: var(--font-sans);
+  font-size: clamp(var(--text-sm), 2.4vw, var(--text-md));
+  font-weight: 500;
+  letter-spacing: -0.019em;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s ease;
+}
+
+.not-found__link:hover {
+  color: var(--white);
+}
+
 .workspace__subtitle {
   margin: 0;
   font-size: var(--text-title);
@@ -480,6 +524,13 @@ a {
   outline-offset: 4px;
 }
 
+/* wiggle lives on a wrapper so it never fights the flip transform */
+.skills__wiggle {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
 .skills__flip {
   position: relative;
   width: 100%;
@@ -489,28 +540,38 @@ a {
 }
 
 /* soft periodic nudge so flip-ability is discoverable */
-.skills__card:not(.is-flipped) .skills__flip {
+.skills__card:not(.is-flipped) .skills__wiggle {
   animation: skills-wiggle-y 7s ease-in-out infinite;
 }
 
-.skills__card--flip-x:not(.is-flipped) .skills__flip {
+.skills__card--flip-x:not(.is-flipped) .skills__wiggle {
   animation-name: skills-wiggle-x;
 }
 
-.skills__card:nth-child(2):not(.is-flipped) .skills__flip { animation-delay: 0.35s; }
-.skills__card:nth-child(3):not(.is-flipped) .skills__flip { animation-delay: 0.7s; }
-.skills__card:nth-child(4):not(.is-flipped) .skills__flip { animation-delay: 1.05s; }
-.skills__card:nth-child(5):not(.is-flipped) .skills__flip { animation-delay: 1.4s; }
-.skills__card:nth-child(6):not(.is-flipped) .skills__flip { animation-delay: 0.2s; }
-.skills__card:nth-child(7):not(.is-flipped) .skills__flip { animation-delay: 0.55s; }
-.skills__card:nth-child(8):not(.is-flipped) .skills__flip { animation-delay: 0.9s; }
-.skills__card:nth-child(9):not(.is-flipped) .skills__flip { animation-delay: 1.25s; }
-.skills__card:nth-child(10):not(.is-flipped) .skills__flip { animation-delay: 0.45s; }
-.skills__card:nth-child(11):not(.is-flipped) .skills__flip { animation-delay: 0.8s; }
+/* pause wiggle while interacting so press → flip is uninterrupted */
+.skills__card:not(.is-flipped):hover .skills__wiggle,
+.skills__card:not(.is-flipped):focus-visible .skills__wiggle,
+.skills__card:not(.is-flipped):active .skills__wiggle {
+  animation-play-state: paused;
+}
+
+.skills__card:nth-child(2):not(.is-flipped) .skills__wiggle { animation-delay: 0.35s; }
+.skills__card:nth-child(3):not(.is-flipped) .skills__wiggle { animation-delay: 0.7s; }
+.skills__card:nth-child(4):not(.is-flipped) .skills__wiggle { animation-delay: 1.05s; }
+.skills__card:nth-child(5):not(.is-flipped) .skills__wiggle { animation-delay: 1.4s; }
+.skills__card:nth-child(6):not(.is-flipped) .skills__wiggle { animation-delay: 0.2s; }
+.skills__card:nth-child(7):not(.is-flipped) .skills__wiggle { animation-delay: 0.55s; }
+.skills__card:nth-child(8):not(.is-flipped) .skills__wiggle { animation-delay: 0.9s; }
+.skills__card:nth-child(9):not(.is-flipped) .skills__wiggle { animation-delay: 1.25s; }
+.skills__card:nth-child(10):not(.is-flipped) .skills__wiggle { animation-delay: 0.45s; }
+.skills__card:nth-child(11):not(.is-flipped) .skills__wiggle { animation-delay: 0.8s; }
+
+.skills__card.is-flipped .skills__wiggle {
+  animation: none;
+}
 
 .skills__card.is-flipped .skills__flip {
   transform: rotateY(180deg);
-  animation: none;
 }
 
 .skills__card--flip-x.is-flipped .skills__flip {
@@ -558,6 +619,15 @@ a {
   overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+/* explicit front transform avoids a one-frame mirrored title during flip */
+.skills__face--front {
+  transform: rotateY(0deg) translateZ(1px);
+}
+
+.skills__card--flip-x .skills__face--front {
+  transform: rotateX(0deg) translateZ(1px);
 }
 
 .skills__face--front img,
@@ -662,7 +732,7 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skills__card:not(.is-flipped) .skills__flip,
+  .skills__card:not(.is-flipped) .skills__wiggle,
   .skills__flip-hint {
     animation: none;
   }
@@ -2121,6 +2191,10 @@ video.project__figure {
     margin: 8px 0 0;
     font-size: var(--text-body);
     letter-spacing: -0.011em;
+  }
+
+  .not-found {
+    padding: 20px;
   }
 
   .workspace__load-status {

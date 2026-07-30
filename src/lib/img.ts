@@ -11,8 +11,12 @@ const EXT_PRIORITY: Record<string, number> = {
 };
 
 // Include uppercase extensions (e.g. .JPG) — Vite's brace globs are case-sensitive.
+// Exclude originals/ so source files stay in the repo but are not shipped in the build.
 const modules = import.meta.glob(
-  '/src/assets/**/*.{png,PNG,jpg,JPG,jpeg,JPEG,svg,SVG,webp,WEBP}',
+  [
+    '/src/assets/**/*.{png,PNG,jpg,JPG,jpeg,JPEG,svg,SVG,webp,WEBP}',
+    '!/src/assets/**/originals/**',
+  ],
   {
     eager: true,
     import: 'default',
@@ -45,8 +49,8 @@ function lookup(stemPath: string): string | undefined {
  *
  * Case-study layout (preferred when present):
  *   assets/<case>/webp/<name>.webp
- *   assets/<case>/originals/<name>.{png,jpg,...}
  * Falls back to a flat file under `assets/<case>/<name>.*`.
+ * Files in `originals/` are excluded from the build and never resolved.
  */
 export function img(path: string): string {
   const cleaned = path.replace(/^\/?src\/assets\//, '').replace(IMAGE_EXT, '');
@@ -57,14 +61,12 @@ export function img(path: string): string {
     const name = cleaned.slice(slash + 1);
     const fromWebp = lookup(`${dir}/webp/${name}`);
     if (fromWebp) return fromWebp;
-    const fromOriginals = lookup(`${dir}/originals/${name}`);
-    if (fromOriginals) return fromOriginals;
   }
 
   const url = lookup(cleaned);
   if (!url) {
     throw new Error(
-      `Image not found: "${path}" (expected webp/, originals/, or flat png/jpg/jpeg/svg/webp under src/assets)`,
+      `Image not found: "${path}" (expected webp/ or flat png/jpg/jpeg/svg/webp under src/assets)`,
     );
   }
   return url;
