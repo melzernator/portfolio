@@ -1,23 +1,14 @@
 import { img } from '../lib/img';
-import { useTheme } from '../lib/theme';
-import atlasLogoBlack from '../assets/about/atlas-black.gif';
-import atlasLogoWhite from '../assets/about/atlas-white.gif';
+import atlasLogo from '../assets/about/atlas-white.gif';
 
 const cuLogo = img('about/CUBoulder');
-const braunLogoBlack = img('about/braun-black');
-const braunLogoWhite = img('about/braun-white');
-const tudLogoBlack = img('about/TUDarmstadt-black');
-const tudLogoWhite = img('about/TUDarmstadt-white');
+const braunLogo = img('about/braun-white');
+const tudLogo = img('about/TUDarmstadt-white');
 const flagUs = img('about/usa');
 const flagDe = img('about/deutschland');
 const marvinPortrait = img('about/marvin');
 
 export default function About() {
-  const dark = useTheme() === 'dark';
-  const atlasLogo = dark ? atlasLogoWhite : atlasLogoBlack;
-  const braunLogo = dark ? braunLogoWhite : braunLogoBlack;
-  const tudLogo = dark ? tudLogoWhite : tudLogoBlack;
-
   return (
     <div className="page about">
       <h1 className="page-title">about</h1>
@@ -57,7 +48,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="about__entry">
+          <div className="about__entry about__entry--mid">
             <span className="about__year">2 0 2 5</span>
             <div className="about__entry-body">
               <div className="about__logos about__logos--lift">

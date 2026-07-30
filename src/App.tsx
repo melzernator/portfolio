@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import Nav from './components/Nav';
-import ThemeToggle from './components/ThemeToggle';
 import Workspace from './pages/Workspace';
 import Skills from './pages/Skills';
 import About from './pages/About';
@@ -74,9 +73,6 @@ export default function App() {
       <div className="app-shell" ref={shellRef}>
         {renderPage(route)}
       </div>
-      <ThemeToggle />
-      {/* the translucent pill adapts its colors to the theme via CSS,
-          so the same variant works on every page in both modes */}
       {showNav && <Nav variant="light" activePath={activePath} />}
     </>
   );

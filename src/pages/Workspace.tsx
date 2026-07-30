@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import FloatingModels from '../components/FloatingModels';
 import { video } from '../lib/video';
 
-// Workspace always uses the black space video — theme only flips nav chrome.
+// Workspace always uses the black space video.
 const space = video('workspace/space');
 
 export default function Workspace() {
