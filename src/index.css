@@ -853,6 +853,10 @@ a {
   display: block;
 }
 
+.skills__icon--link {
+  cursor: pointer;
+}
+
 .skills__design-logo {
   position: absolute;
   aspect-ratio: 1 / 1;
@@ -949,6 +953,13 @@ a {
 
 .about__logos--lift {
   transform: translateY(0.2em);
+}
+
+.about__logo-link {
+  display: inline-flex;
+  line-height: 0;
+  color: inherit;
+  text-decoration: none;
 }
 
 .about__logo {

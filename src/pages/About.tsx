@@ -1,5 +1,31 @@
+import type { ReactNode } from 'react';
 import { img } from '../lib/img';
+import { openInBackground } from '../lib/openInBackground';
 import atlasLogo from '../assets/about/atlas-white.gif';
+
+function LogoLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      className="about__logo-link"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        openInBackground(href);
+      }}
+    >
+      {children}
+    </a>
+  );
+}
 
 const cuLogo = img('about/CUBoulder');
 const braunLogo = img('about/braun-white');
@@ -41,8 +67,12 @@ export default function About() {
             <div className="about__entry-body">
               <div className="about__logos">
                 <img className="about__logo about__logo--flag" src={flagUs} alt="USA" />
-                <img className="about__logo" src={cuLogo} alt="CU Boulder" />
-                <img className="about__logo about__logo--atlas" src={atlasLogo} alt="ATLAS Institute" />
+                <LogoLink href="https://www.colorado.edu">
+                  <img className="about__logo" src={cuLogo} alt="CU Boulder" />
+                </LogoLink>
+                <LogoLink href="https://www.colorado.edu/atlas/">
+                  <img className="about__logo about__logo--atlas" src={atlasLogo} alt="ATLAS Institute" />
+                </LogoLink>
               </div>
               <p>
                 Master of Science
@@ -57,7 +87,9 @@ export default function About() {
             <div className="about__entry-body">
               <div className="about__logos about__logos--lift">
                 <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
-                <img className="about__logo about__logo--braun" src={braunLogo} alt="Braun" />
+                <LogoLink href="https://www.braunhousehold.com/en-us">
+                  <img className="about__logo about__logo--braun" src={braunLogo} alt="Braun" />
+                </LogoLink>
               </div>
               <p>
                 Internship 7 months
@@ -72,7 +104,9 @@ export default function About() {
             <div className="about__entry-body">
               <div className="about__logos about__logos--lift">
                 <img className="about__logo about__logo--flag" src={flagDe} alt="Germany" />
-                <img className="about__logo about__logo--tud" src={tudLogo} alt="TU Darmstadt" />
+                <LogoLink href="https://www.etit.tu-darmstadt.de/fachbereich/index.en.jsp">
+                  <img className="about__logo about__logo--tud" src={tudLogo} alt="TU Darmstadt" />
+                </LogoLink>
               </div>
               <p>
                 Bachelor of Science
