@@ -53,7 +53,7 @@ globalThis.FileReader = NodeFileReader;
 const APPEARANCE = {
   'Mahogany Veneer': { color: 0x4a2c1a, roughness: 0.55, metalness: 0.05 },
   'Walnut Veneer': { color: 0x5c3a21, roughness: 0.5, metalness: 0.05 },
-  // Match the midnight-green / dark teal frame from photos
+  // Default steel (e.g. pendant hardware)
   'Steel - Satin': { color: 0x1f3333, roughness: 0.32, metalness: 0.9 },
   // Pendant outer shell — clear acrylic
   'Glass - Clouds': {
@@ -77,6 +77,15 @@ const APPEARANCE = {
   },
 };
 
+const MODEL_APPEARANCE = {
+  phone: {
+    // Phone frame / base — white satin metal
+    'Steel - Satin': { color: 0xf2f2f0, roughness: 0.28, metalness: 0.95 },
+  },
+};
+
+const appearance = { ...APPEARANCE, ...(MODEL_APPEARANCE[name] || {}) };
+
 const buffer = fs.readFileSync(fbxPath).buffer;
 const group = new FBXLoader().parse(buffer, path.dirname(fbxPath) + '/');
 
@@ -86,7 +95,7 @@ group.traverse((obj) => {
   const converted = mats.map((m) => {
     if (!m) return m;
     const name = m.name || '';
-    const preset = APPEARANCE[name];
+    const preset = appearance[name];
     const finalColor = preset?.color ?? m.color?.getHex?.() ?? 0x888888;
     const opacity = preset?.opacity ?? 1;
     const transparent = preset?.transparent ?? opacity < 1;
