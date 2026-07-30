@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { img } from '../lib/img';
-import { openInBackground } from '../lib/openInBackground';
 import { video } from '../lib/video';
 
 const designImg = img('skills/design');
@@ -35,7 +34,7 @@ type Skill = {
   media?: 'image' | 'video';
   meta: { label: string; value: string }[];
   /** tool logos shown on the back */
-  icons?: { src: string; alt: string; href?: string }[];
+  icons?: { src: string; alt: string }[];
 };
 
 const skills: Skill[] = [
@@ -49,13 +48,7 @@ const skills: Skill[] = [
       { label: 'tools', value: 'fusion 360' },
       { label: 'learning to use', value: 'solidworks' },
     ],
-    icons: [
-      {
-        src: fusionLogo,
-        alt: 'fusion 360',
-        href: 'https://www.autodesk.com/education/edu-software/fusion',
-      },
-    ],
+    icons: [{ src: fusionLogo, alt: 'fusion 360' }],
   },
   {
     front: '3d printing',
@@ -79,14 +72,10 @@ const skills: Skill[] = [
       { label: 'learning to use', value: 'vizcom' },
     ],
     icons: [
-      {
-        src: fusionLogo,
-        alt: 'fusion 360',
-        href: 'https://www.autodesk.com/education/edu-software/fusion',
-      },
+      { src: fusionLogo, alt: 'fusion 360' },
       { src: photoshopLogo, alt: 'photoshop' },
-      { src: keyshotLogo, alt: 'keyshot', href: 'https://www.keyshot.com/' },
-      { src: vizcomLogo, alt: 'vizcom', href: 'https://vizcom.com' },
+      { src: keyshotLogo, alt: 'keyshot' },
+      { src: vizcomLogo, alt: 'vizcom' },
     ],
   },
   {
@@ -160,16 +149,8 @@ const skills: Skill[] = [
       { label: 'learning to do', value: '-' },
     ],
     icons: [
-      {
-        src: fusionLogo,
-        alt: 'fusion 360',
-        href: 'https://www.autodesk.com/education/edu-software/fusion',
-      },
-      {
-        src: altiumLogo,
-        alt: 'altium',
-        href: 'https://www.altium.com/altium-designer',
-      },
+      { src: fusionLogo, alt: 'fusion 360' },
+      { src: altiumLogo, alt: 'altium' },
     ],
   },
   {
@@ -261,23 +242,10 @@ export default function Skills() {
                   <span style={{ left: '41.1%', top: '70.5%' }}>prototyping</span>
                 </div>
                 <img
-                  className="skills__design-logo skills__icon--link"
+                  className="skills__design-logo"
                   src={figmaLogo}
                   alt="figma"
                   style={{ left: '89.7%', top: '18.9%', width: '6.9%' }}
-                  role="link"
-                  tabIndex={0}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    openInBackground('https://www.figma.com');
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      openInBackground('https://www.figma.com');
-                    }
-                  }}
                 />
               </div>
             </div>
@@ -316,31 +284,9 @@ export default function Skills() {
                   </dl>
                   {skill.icons && (
                     <div className="skills__icons">
-                      {skill.icons.map((icon) =>
-                        icon.href ? (
-                          <img
-                            key={icon.alt}
-                            className="skills__icon skills__icon--link"
-                            src={icon.src}
-                            alt={icon.alt}
-                            role="link"
-                            tabIndex={0}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              openInBackground(icon.href!);
-                            }}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                openInBackground(icon.href!);
-                              }
-                            }}
-                          />
-                        ) : (
-                          <img key={icon.alt} className="skills__icon" src={icon.src} alt={icon.alt} />
-                        ),
-                      )}
+                      {skill.icons.map((icon) => (
+                        <img key={icon.alt} className="skills__icon" src={icon.src} alt={icon.alt} />
+                      ))}
                     </div>
                   )}
                 </div>
