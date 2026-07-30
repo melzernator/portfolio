@@ -31,16 +31,36 @@ for (const [path, url] of Object.entries(modules)) {
   }
 }
 
+function lookup(stemPath: string): string | undefined {
+  return byStem[`/src/assets/${stemPath}`];
+}
+
 /**
  * Resolve a video under `src/assets` by path without requiring a fixed extension.
  * Pass e.g. `sign/sign-CNC` — finds `.mp4`, `.mov`, or `.gif`.
+ *
+ * Case-study layout (preferred when present):
+ *   assets/<case>/mp4/<name>.mp4
+ *   assets/<case>/originals/<name>.{mp4,mov,...}
+ * Falls back to a flat file under `assets/<case>/<name>.*`.
  */
 export function video(path: string): string {
   const cleaned = path.replace(/^\/?src\/assets\//, '').replace(VIDEO_EXT, '');
-  const url = byStem[`/src/assets/${cleaned}`];
+
+  const slash = cleaned.lastIndexOf('/');
+  if (slash !== -1) {
+    const dir = cleaned.slice(0, slash);
+    const name = cleaned.slice(slash + 1);
+    const fromMp4 = lookup(`${dir}/mp4/${name}`);
+    if (fromMp4) return fromMp4;
+    const fromOriginals = lookup(`${dir}/originals/${name}`);
+    if (fromOriginals) return fromOriginals;
+  }
+
+  const url = lookup(cleaned);
   if (!url) {
     throw new Error(
-      `Video not found: "${path}" (expected mp4, mov, or gif under src/assets)`,
+      `Video not found: "${path}" (expected mp4/, originals/, or flat mp4/mov/gif under src/assets)`,
     );
   }
   return url;

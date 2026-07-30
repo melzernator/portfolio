@@ -80,6 +80,7 @@ export default function Workspace() {
       <FloatingModels />
       <div className="workspace__header">
         <h1 className="workspace__title">melzer's work space</h1>
+        <p className="workspace__subtitle">about designing and manufacturing prototypes</p>
       </div>
     </div>
   );

@@ -174,6 +174,30 @@ function SkillMedia({ src, media = 'image', alt }: { src: string; media?: 'image
   return <img src={src} alt={alt} />;
 }
 
+/** Decorative cue — whole card is the click target */
+function FlipHint() {
+  return (
+    <span className="skills__flip-hint" aria-hidden="true">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 16 16"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3 5.5A5.5 5.5 0 0 1 12.5 4" />
+        <path d="M13 3v2.5H10.5" />
+        <path d="M13 10.5A5.5 5.5 0 0 1 3.5 12" />
+        <path d="M3 13v-2.5h2.5" />
+      </svg>
+      <span>flip</span>
+    </span>
+  );
+}
+
 export default function Skills() {
   const [flipped, setFlipped] = useState<Set<string>>(() => new Set());
 
@@ -203,6 +227,7 @@ export default function Skills() {
             <div className="skills__face skills__face--front">
               <SkillMedia src={designImg} alt="" />
               <span className="skills__label">design</span>
+              <FlipHint />
             </div>
             <div className="skills__face skills__face--back skills__face--design">
               <div className="skills__design-intro">
@@ -242,6 +267,7 @@ export default function Skills() {
               <div className="skills__face skills__face--front">
                 <SkillMedia src={skill.src} media={skill.media} alt="" />
                 <span className="skills__label">{skill.front}</span>
+                <FlipHint />
               </div>
               <div className="skills__face skills__face--back">
                 <h2 className="skills__back-title">{skill.back}</h2>

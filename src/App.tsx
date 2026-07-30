@@ -6,6 +6,8 @@ import About from './pages/About';
 import Sign from './pages/Sign';
 import Fan from './pages/Fan';
 import Atas from './pages/Atas';
+import Phone from './pages/Phone';
+import Pendant from './pages/Pendant';
 
 const NAV_ROUTES = new Set(['/', '/workspace', '/skills', '/about']);
 
@@ -30,6 +32,10 @@ function renderPage(route: string) {
       return <Fan />;
     case '/atas':
       return <Atas />;
+    case '/phone':
+      return <Phone />;
+    case '/pendant':
+      return <Pendant />;
     default:
       return <Workspace />;
   }
@@ -62,7 +68,12 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  const isDetail = route === '/sign' || route === '/fan' || route === '/atas';
+  const isDetail =
+    route === '/sign' ||
+    route === '/fan' ||
+    route === '/atas' ||
+    route === '/phone' ||
+    route === '/pendant';
   const showNav = !isDetail;
   const activePath = NAV_ROUTES.has(route) ? route : '/';
   const isWorkspacePage = route === '/';

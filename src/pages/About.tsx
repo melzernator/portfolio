@@ -15,14 +15,18 @@ export default function About() {
 
       <div className="about__layout">
         <p className="about__intro">
-          Marvin Melzer is a German craftsman with a passion for thoughtfully designed
-          consumer products.
+          Hi, I am Marvin Melzer a German craftsman with a passion for thoughtfully
+          designed consumer products.
           <br />
           <br />
-          Comfortable at the whiteboard and in the shop, he enjoys transforming ambitious
-          ideas into functional prototypes.
+          I am comfortable both ideating at the whiteboard and manufacturing in the shop.
+          I enjoy transforming ambitious ideas into functional prototypes.
           <br />
-          <a href="mailto:marvin@melzer.org">press to contact</a>
+          <br />
+          I am currently looking for prototyping roles.
+          <br />
+          here is my mail:{' '}
+          <a href="mailto:marvin@melzer.org">marvin [at] melzer [dot] org</a>
         </p>
 
         <img

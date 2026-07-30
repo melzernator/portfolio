@@ -202,21 +202,8 @@ export default function Sign() {
       </section>
 
       <section className="project__section sign__insights">
-        <div className="sign__insight">
-          <h2 className="project__heading">insight one</h2>
-          <p className="project__text">
-            five months in, the switch died. customers started thinking the cafe was
-            closed. it wasn't. the sign was just broken. idea: build a sign that only
-            lights up to say closed. if it ever breaks again, regulars will just assume
-            it's open.
-          </p>
-        </div>
         <div className="sign__insight sign__insight--with-media">
-          <h2 className="project__heading">insight two</h2>
-          <p className="project__text">
-            remove acrylics paper cover first and then insert light stripes to avoid
-            paper pieces to be stuck in channels
-          </p>
+          <h2 className="project__heading">insight one</h2>
           <Zoomable as="figure" className="project__figure sign__insight-photo">
             <img src={insightImg} alt="Inserting light stripes into acrylic channels" />
           </Zoomable>

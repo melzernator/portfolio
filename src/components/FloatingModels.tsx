@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import signModel from '../assets/workspace/sign.glb';
 import fanModel from '../assets/workspace/fan.glb';
-import cherokeeModel from '../assets/workspace/cherokee.glb';
 import atasModel from '../assets/workspace/atas.glb';
+import phoneModel from '../assets/workspace/phone.glb';
+import pendantModel from '../assets/workspace/pendant-2.glb';
 import { navigate } from '../router';
 
 type ModelDef = {
@@ -21,9 +22,40 @@ type ModelDef = {
 const MODELS: ModelDef[] = [
   { url: signModel, route: '/sign', size: 3.2, presentRotation: [Math.PI / 2, 0, 0], presentTilt: 0 },
   { url: fanModel, route: '/fan', size: 2.6, presentRotation: [0, -Math.PI / 2, 0] },
-  { url: cherokeeModel, size: 2.8 },
   { url: atasModel, route: '/atas', size: 3.0, presentRotation: [0, Math.PI, 0] },
+  { url: phoneModel, route: '/phone', size: 2.4, presentRotation: [Math.PI / 2, 0, 0], presentTilt: 0 },
+  // neutral start — open /?orient=1 and hover to dial rotation with keys
+  { url: pendantModel, route: '/pendant', size: 2.4, presentRotation: [0, 0, Math.PI / 2], presentTilt: 0 },
 ];
+
+function formatRad(r: number): string {
+  const n = r / Math.PI;
+  const nearest = Math.round(n * 4) / 4;
+  if (Math.abs(n - nearest) < 0.001) {
+    if (nearest === 0) return '0';
+    if (nearest === 1) return 'Math.PI';
+    if (nearest === -1) return '-Math.PI';
+    if (nearest === 0.5) return 'Math.PI / 2';
+    if (nearest === -0.5) return '-Math.PI / 2';
+    if (nearest === 1.5) return '(3 * Math.PI) / 2';
+    if (nearest === -1.5) return '(-3 * Math.PI) / 2';
+    if (nearest === 0.25) return 'Math.PI / 4';
+    if (nearest === -0.25) return '-Math.PI / 4';
+    if (nearest === 0.75) return '(3 * Math.PI) / 4';
+    if (nearest === -0.75) return '(-3 * Math.PI) / 4';
+  }
+  return r.toFixed(3);
+}
+
+function rebuildPresentQuat(
+  quat: THREE.Quaternion,
+  rot: [number, number, number],
+  tilt: number,
+) {
+  quat
+    .setFromEuler(new THREE.Euler(tilt, 0, 0))
+    .multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(...rot)));
+}
 
 type Floater = {
   group: THREE.Group;
@@ -35,10 +67,23 @@ type Floater = {
   baseScale: number;
   /** orientation to ease into while hovered */
   presentQuat: THREE.Quaternion;
+  presentRot: [number, number, number];
+  presentTilt: number;
+};
+
+type OrientReadout = {
+  route: string;
+  line: string;
 };
 
 export default function FloatingModels() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const [orientReadout, setOrientReadout] = useState<OrientReadout | null>(null);
+  const total = MODELS.length;
+  const orientMode =
+    typeof window !== 'undefined' &&
+    new URLSearchParams(window.location.search).has('orient');
 
   useEffect(() => {
     const container = containerRef.current;
@@ -102,6 +147,7 @@ export default function FloatingModels() {
     MODELS.forEach((def, i) => {
       loader.load(def.url, (gltf) => {
         if (disposed) return;
+        setLoadedCount((n) => n + 1);
         const model = gltf.scene;
 
         // normalize: center and scale to def.size
@@ -144,10 +190,18 @@ export default function FloatingModels() {
           ),
           targetScale: 1,
           baseScale,
+          presentRot: [...(def.presentRotation ?? [0, 0, 0])] as [number, number, number],
+          presentTilt: def.presentTilt ?? 0.35,
           // optional top-down tilt applied on top of the model's own front-facing fix
-          presentQuat: new THREE.Quaternion()
-            .setFromEuler(new THREE.Euler(def.presentTilt ?? 0.35, 0, 0))
-            .multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(...(def.presentRotation ?? [0, 0, 0])))),
+          presentQuat: (() => {
+            const q = new THREE.Quaternion();
+            rebuildPresentQuat(
+              q,
+              def.presentRotation ?? [0, 0, 0],
+              def.presentTilt ?? 0.35,
+            );
+            return q;
+          })(),
         });
       });
     });
@@ -272,6 +326,64 @@ export default function FloatingModels() {
     renderer.domElement.addEventListener('pointerleave', onPointerLeave);
     window.addEventListener('resize', updateSize);
 
+    const publishOrient = (f: Floater) => {
+      const [x, y, z] = f.presentRot;
+      const line = `presentRotation: [${formatRad(x)}, ${formatRad(y)}, ${formatRad(z)}], presentTilt: ${formatRad(f.presentTilt)}`;
+      setOrientReadout({ route: f.route ?? '(no route)', line });
+      console.log(`[orient] ${f.route ?? '?'} → ${line}`);
+    };
+
+    const onOrientKey = (e: KeyboardEvent) => {
+      if (!orientMode) return;
+      const f = dragged ?? hovered;
+      if (!f) return;
+
+      const step = e.shiftKey ? Math.PI / 2 : Math.PI / 12;
+      let changed = false;
+
+      // ←→ yaw (Y), ↑↓ pitch (X), ,/. roll (Z), [/] tilt
+      if (e.key === 'ArrowLeft') {
+        f.presentRot[1] += step;
+        changed = true;
+      } else if (e.key === 'ArrowRight') {
+        f.presentRot[1] -= step;
+        changed = true;
+      } else if (e.key === 'ArrowUp') {
+        f.presentRot[0] += step;
+        changed = true;
+      } else if (e.key === 'ArrowDown') {
+        f.presentRot[0] -= step;
+        changed = true;
+      } else if (e.key === ',' || e.key === '<') {
+        f.presentRot[2] += step;
+        changed = true;
+      } else if (e.key === '.' || e.key === '>') {
+        f.presentRot[2] -= step;
+        changed = true;
+      } else if (e.key === '[') {
+        f.presentTilt += step;
+        changed = true;
+      } else if (e.key === ']') {
+        f.presentTilt -= step;
+        changed = true;
+      } else if (e.key === '0') {
+        f.presentRot = [0, 0, 0];
+        f.presentTilt = 0;
+        changed = true;
+      }
+
+      if (!changed) return;
+      e.preventDefault();
+      rebuildPresentQuat(f.presentQuat, f.presentRot, f.presentTilt);
+      // snap immediately while tuning so you see the result
+      f.group.quaternion.copy(f.presentQuat);
+      publishOrient(f);
+    };
+
+    if (orientMode) {
+      window.addEventListener('keydown', onOrientKey);
+    }
+
     const clock = new THREE.Clock();
     let raf = 0;
 
@@ -390,6 +502,7 @@ export default function FloatingModels() {
       disposed = true;
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', updateSize);
+      if (orientMode) window.removeEventListener('keydown', onOrientKey);
       renderer.domElement.removeEventListener('pointerdown', onPointerDown);
       renderer.domElement.removeEventListener('pointermove', onPointerMove);
       renderer.domElement.removeEventListener('pointerup', onPointerUp);
@@ -405,7 +518,38 @@ export default function FloatingModels() {
       });
       container.removeChild(renderer.domElement);
     };
-  }, []);
+  }, [orientMode]);
 
-  return <div ref={containerRef} className="workspace__canvas" />;
+  const status =
+    loadedCount === 0
+      ? 'loading creations...'
+      : loadedCount < total
+        ? `${loadedCount}/${total} models loaded...`
+        : null;
+
+  return (
+    <>
+      <div ref={containerRef} className="workspace__canvas" />
+      {status && (
+        <p className="workspace__load-status" aria-live="polite">
+          {status}
+        </p>
+      )}
+      {orientMode && (
+        <div className="workspace__orient" aria-live="polite">
+          <p>
+            orient mode — hover a model, then: ←→ yaw · ↑↓ pitch · ,/. roll · [/]
+            tilt · shift=90° · 0=reset
+          </p>
+          {orientReadout ? (
+            <code>
+              {orientReadout.route}: {orientReadout.line}
+            </code>
+          ) : (
+            <code>hover a model, then press an arrow key</code>
+          )}
+        </div>
+      )}
+    </>
+  );
 }

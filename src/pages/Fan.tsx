@@ -3,7 +3,7 @@ import Zoomable from '../components/Zoomable';
 import { img } from '../lib/img';
 import { video } from '../lib/video';
 
-const renderOpen = img('fan/fan-render-open');
+const fanHero = img('fan/fan-hero');
 const hl70a = img('fan/HL70-1');
 const hl70b = img('fan/HL70-2');
 const bladeRatio = img('fan/blade-ratio');
@@ -12,6 +12,7 @@ const printClosed = img('fan/fan-print-closed');
 const printSide = img('fan/fan-print-side');
 const test1 = img('fan/test-1');
 const test2 = img('fan/test-2');
+const renderOpen = img('fan/fan-render-open');
 const renderLaying = img('fan/fan-render-laying');
 const renderStanding = img('fan/fan-render-standing');
 const functionVideo = video('fan/fan-function');
@@ -38,7 +39,7 @@ export default function Fan() {
           </p>
         </div>
         <Zoomable className="project__hero">
-          <img src={renderOpen} alt="Redesigned fan render" />
+          <img src={fanHero} alt="Redesigned fan render" />
         </Zoomable>
       </section>
 
