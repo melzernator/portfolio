@@ -192,6 +192,13 @@ a {
   font-size: var(--text-lg);
   font-weight: 600;
   letter-spacing: -0.019em;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.back-button:hover {
+  transform: translateX(-3px);
+  opacity: 0.85;
 }
 
 /* ---------- zoomable assets (fullscreen viewer) ---------- */
