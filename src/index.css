@@ -896,7 +896,6 @@ a {
   aspect-ratio: 394 / 527;
   object-fit: cover;
   border-radius: var(--radius);
-  filter: blur(10px);
 }
 
 .about__timeline {
