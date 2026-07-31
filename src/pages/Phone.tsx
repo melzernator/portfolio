@@ -108,7 +108,7 @@ export default function Phone() {
         <Zoomable as="figure" className="project__figure">
           <img
             src={test}
-            alt="Finished walnut phone back with camera cutouts"
+            alt="Walnut back bulging where the wood expands as the phone heats up"
           />
         </Zoomable>
       </section>

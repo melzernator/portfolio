@@ -135,7 +135,7 @@ export default function FloatingModels() {
       const spanY = Math.max(bounds.yMax - bounds.yMin, 0.5);
       const fit = Math.max(MODELS.length, 2) + 0.2;
       const maxR = Math.min(bounds.x / fit, spanY / 2.2);
-      const mobileBoost = w <= 767 ? 2 : 1;
+      const mobileBoost = w <= 767 ? 1.5 : 1;
       for (const f of floaters) {
         f.baseScale = Math.min(1, maxR / f.radius) * mobileBoost;
       }
@@ -174,7 +174,7 @@ export default function FloatingModels() {
         const spanYNow = Math.max(bounds.yMax - bounds.yMin, 0.5);
         const fitNow = Math.max(MODELS.length, 2) + 0.2;
         const maxRNow = Math.min(bounds.x / fitNow, spanYNow / 2.2);
-        const mobileBoost = container.clientWidth <= 767 ? 2 : 1;
+        const mobileBoost = container.clientWidth <= 767 ? 1.5 : 1;
         const baseScale = Math.min(1, maxRNow / (def.size / 2)) * mobileBoost;
         group.scale.setScalar(baseScale);
         floaters.push({
@@ -447,7 +447,7 @@ export default function FloatingModels() {
         }
 
         // hover scale (smooth)
-        f.targetScale = isHovered || isHeld ? f.baseScale * 1.15 : f.baseScale;
+        f.targetScale = isHovered || isHeld ? f.baseScale * 1.45 : f.baseScale;
         const s = THREE.MathUtils.lerp(f.group.scale.x, f.targetScale, 1 - Math.exp(-10 * dt));
         f.group.scale.setScalar(s);
       }
