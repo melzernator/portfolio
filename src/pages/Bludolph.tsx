@@ -4,6 +4,7 @@ import { img } from '../lib/img';
 import { video } from '../lib/video';
 
 const hero = img('bludolph/heroshot');
+const hero3 = img('bludolph/heroshot-3');
 const sketches = img('bludolph/sketches');
 const skiing = img('bludolph/skiing');
 const head = img('bludolph/head');
@@ -37,6 +38,20 @@ export default function Bludolph() {
 
       <section className="project__intro">
         <h1 className="bludolph__title">bludolph</h1>
+        <div className="bludolph__heroes">
+          <Zoomable className="project__hero">
+            <img
+              src={hero}
+              alt="Rows of blue Bludolph ornaments with glowing red LED eyes"
+            />
+          </Zoomable>
+          <Zoomable className="project__hero">
+            <img
+              src={hero3}
+              alt="A long line of blue Bludolph ornaments with red eyes, receding into the dark"
+            />
+          </Zoomable>
+        </div>
         <div className="project__facts">
           <h2>what?</h2>
           <p>
@@ -56,12 +71,6 @@ export default function Bludolph() {
           <h2>who?</h2>
           <p>Marvin Melzer &amp; Veronica Dryer</p>
         </div>
-        <Zoomable className="project__hero">
-          <img
-            src={hero}
-            alt="A rearing blue Bludolph horse with glowing red eyes above rows of blue ornaments with red LED eyes"
-          />
-        </Zoomable>
       </section>
 
       <section className="project__section">

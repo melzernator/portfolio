@@ -2006,10 +2006,27 @@ video.project__figure {
   white-space: nowrap;
 }
 
+/* single column: title → hero shots → facts */
 .bludolph .project__intro {
-  grid-template-columns: 1fr 1fr;
-  gap: 0 50px;
-  align-items: start;
+  display: block;
+}
+
+.bludolph__heroes {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.bludolph__heroes > .project__hero {
+  width: 100%;
+  max-height: none;
+}
+
+.bludolph__heroes > .project__hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
 }
 
 .bludolph .project__intro .bludolph__title {
