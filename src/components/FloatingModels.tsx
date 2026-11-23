@@ -6,7 +6,12 @@ import fanModel from '../assets/workspace/fan.glb';
 import atasModel from '../assets/workspace/atas.glb';
 import phoneModel from '../assets/workspace/phone.glb';
 import pendantModel from '../assets/workspace/pendant-2.glb';
+// brick lamp is off the workspace for now — re-add the import + MODELS entry to bring it back
+// import brickLampModel from '../assets/workspace/brick-lamp.glb';
+import bludolphModel from '../assets/workspace/bludolph.glb';
 import { navigate } from '../router';
+
+const BRICK_RED = 0xe10600;
 
 type ModelDef = {
   url: string;
@@ -17,6 +22,10 @@ type ModelDef = {
   presentRotation?: [number, number, number];
   /** top-down tilt (rad) added to the hover pose; defaults to 0.35, set 0 for dead-on front */
   presentTilt?: number;
+  /** paint every mesh this hex color (used for the brick lamp) */
+  paint?: number;
+  /** emissive red glow that ramps up while hovered */
+  glow?: boolean;
 };
 
 const MODELS: ModelDef[] = [
@@ -26,6 +35,16 @@ const MODELS: ModelDef[] = [
   { url: phoneModel, route: '/phone', size: 2.4, presentRotation: [Math.PI / 2, 0, 0], presentTilt: 0 },
   // neutral start — open /?orient=1 and hover to dial rotation with keys
   { url: pendantModel, route: '/pendant', size: 2.4, presentRotation: [0, 0, Math.PI / 2], presentTilt: 0 },
+  // {
+  //   url: brickLampModel,
+  //   route: '/brick-lamp',
+  //   size: 2.5,
+  //   presentRotation: [0.3, 0.6, 0],
+  //   presentTilt: 0.2,
+  //   paint: BRICK_RED,
+  //   glow: true,
+  // },
+  { url: bludolphModel, route: '/bludolph', size: 2.6, presentRotation: [0, 0, -Math.PI / 2] },
 ];
 
 function formatRad(r: number): string {
@@ -69,6 +88,10 @@ type Floater = {
   presentQuat: THREE.Quaternion;
   presentRot: [number, number, number];
   presentTilt: number;
+  glow: boolean;
+  glowAmount: number;
+  glowMats: THREE.MeshStandardMaterial[];
+  glowLight: THREE.PointLight | null;
 };
 
 type OrientReadout = {
@@ -163,6 +186,33 @@ export default function FloatingModels() {
         const group = new THREE.Group();
         group.add(model);
 
+        const glowMats: THREE.MeshStandardMaterial[] = [];
+        let glowLight: THREE.PointLight | null = null;
+        if (def.paint !== undefined || def.glow) {
+          model.traverse((obj) => {
+            if (!(obj instanceof THREE.Mesh)) return;
+            obj.castShadow = false;
+            const src = Array.isArray(obj.material) ? obj.material : [obj.material];
+            const next = src.map((mat) => {
+              const painted = new THREE.MeshStandardMaterial({
+                color: def.paint ?? (mat && 'color' in mat ? mat.color : 0xffffff),
+                roughness: 0.38,
+                metalness: 0.04,
+                emissive: def.glow ? BRICK_RED : 0x000000,
+                emissiveIntensity: def.glow ? 0.18 : 0,
+              });
+              if (def.glow) glowMats.push(painted);
+              return painted;
+            });
+            obj.material = Array.isArray(obj.material) ? next : next[0];
+          });
+          if (def.glow) {
+            glowLight = new THREE.PointLight(BRICK_RED, 0, 10, 2);
+            glowLight.position.set(0, 0.4, 0.8);
+            group.add(glowLight);
+          }
+        }
+
         // start models spaced across the screen so they don't overlap
         const t = MODELS.length === 1 ? 0.5 : i / (MODELS.length - 1);
         const startX = (t - 0.5) * bounds.x * 1.6;
@@ -204,6 +254,10 @@ export default function FloatingModels() {
             );
             return q;
           })(),
+          glow: Boolean(def.glow),
+          glowAmount: 0,
+          glowMats,
+          glowLight,
         });
       });
     });
@@ -450,6 +504,18 @@ export default function FloatingModels() {
         f.targetScale = isHovered || isHeld ? f.baseScale * 1.45 : f.baseScale;
         const s = THREE.MathUtils.lerp(f.group.scale.x, f.targetScale, 1 - Math.exp(-10 * dt));
         f.group.scale.setScalar(s);
+
+        if (f.glow) {
+          const glowTarget = isHovered || isHeld ? 1 : 0;
+          f.glowAmount = THREE.MathUtils.lerp(
+            f.glowAmount,
+            glowTarget,
+            1 - Math.exp(-8 * dt),
+          );
+          const emit = 0.18 + f.glowAmount * 3.4;
+          for (const mat of f.glowMats) mat.emissiveIntensity = emit;
+          if (f.glowLight) f.glowLight.intensity = f.glowAmount * 8;
+        }
       }
 
       // separate overlapping pairs (elastic push-apart)

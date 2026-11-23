@@ -1,137 +1,95 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { Blob } from 'node:buffer';
 import * as THREE from 'three';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, '..');
-const name = process.argv[2] || 'phone';
-const fbxPath = path.resolve(root, `src/assets/workspace/${name}.fbx`);
-const outPath = path.resolve(root, `src/assets/workspace/${name}.glb`);
+if (!globalThis.FileReader) {
+  globalThis.FileReader = class FileReader {
+    result = null;
+    onload = null;
+    onloadend = null;
+    onerror = null;
+    readAsArrayBuffer(blob) {
+      Promise.resolve(blob.arrayBuffer())
+        .then((buf) => {
+          this.result = buf;
+          this.onload?.({ target: this });
+          this.onloadend?.({ target: this });
+        })
+        .catch((err) => this.onerror?.(err));
+    }
+    readAsDataURL(blob) {
+      Promise.resolve(blob.arrayBuffer())
+        .then((buf) => {
+          this.result = `data:application/octet-stream;base64,${Buffer.from(buf).toString('base64')}`;
+          this.onload?.({ target: this });
+          this.onloadend?.({ target: this });
+        })
+        .catch((err) => this.onerror?.(err));
+    }
+  };
+}
+globalThis.Blob ??= Blob;
 
-if (!fs.existsSync(fbxPath)) {
-  console.error(`Missing FBX: ${fbxPath}`);
+const [, , inPath, outPath, ...rest] = process.argv;
+if (!inPath || !outPath) {
+  console.error('usage: node fbx-to-glb.mjs <in.fbx> <out.glb> [--keep a,b,c]');
   process.exit(1);
 }
+const keepArg = rest.find((arg) => arg.startsWith('--keep='));
+const keep = keepArg
+  ? new Set(
+      keepArg
+        .slice('--keep='.length)
+        .split(',')
+        .map((name) => name.trim())
+        .filter(Boolean),
+    )
+  : null;
 
-globalThis.self = globalThis;
+const absIn = path.resolve(inPath);
+const buffer = fs.readFileSync(absIn);
+const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
+const resourcePath = path.dirname(absIn) + path.sep;
 
-class NodeFileReader {
-  constructor() {
-    this.onload = null;
-    this.onloadend = null;
-    this.onerror = null;
-    this.result = null;
-  }
-
-  readAsArrayBuffer(blob) {
-    const run = async () => {
-      try {
-        let ab;
-        if (blob instanceof ArrayBuffer) ab = blob;
-        else if (ArrayBuffer.isView(blob)) ab = blob.buffer.slice(blob.byteOffset, blob.byteOffset + blob.byteLength);
-        else if (typeof blob?.arrayBuffer === 'function') ab = await blob.arrayBuffer();
-        else if (Buffer.isBuffer(blob)) ab = blob.buffer.slice(blob.byteOffset, blob.byteOffset + blob.byteLength);
-        else throw new Error('Unsupported blob type: ' + Object.prototype.toString.call(blob));
-        this.result = ab;
-        const ev = { target: this };
-        this.onload?.(ev);
-        this.onloadend?.(ev);
-      } catch (e) {
-        this.onerror?.(e);
-        this.onloadend?.({ target: this });
-      }
-    };
-    queueMicrotask(run);
-  }
+const loader = new FBXLoader();
+const group = loader.parse(arrayBuffer, resourcePath);
+if (keep) {
+  const drop = [];
+  group.traverse((obj) => {
+    if (obj instanceof THREE.Mesh && !keep.has(obj.name)) drop.push(obj);
+  });
+  for (const obj of drop) obj.removeFromParent();
+  console.log(`kept ${[...keep].join(', ')} (dropped ${drop.length})`);
 }
-
-globalThis.FileReader = NodeFileReader;
-
-const APPEARANCE = {
-  'Mahogany Veneer': { color: 0x4a2c1a, roughness: 0.55, metalness: 0.05 },
-  'Walnut Veneer': { color: 0x5c3a21, roughness: 0.5, metalness: 0.05 },
-  // Default steel (e.g. pendant hardware)
-  'Steel - Satin': { color: 0x1f3333, roughness: 0.32, metalness: 0.9 },
-  // Pendant outer shell — clear acrylic
-  'Glass - Clouds': {
-    color: 0xf6f6f3,
-    roughness: 0.12,
-    metalness: 0,
-    transparent: true,
-    opacity: 0.35,
-    side: THREE.DoubleSide,
-    depthWrite: false,
-  },
-  // Sign acrylic sheets
-  'Acrylic (Clear)': {
-    color: 0xf6f6f3,
-    roughness: 0.12,
-    metalness: 0,
-    transparent: true,
-    opacity: 0.35,
-    side: THREE.DoubleSide,
-    depthWrite: false,
-  },
-};
-
-const MODEL_APPEARANCE = {
-  phone: {
-    // Phone frame / base — white satin metal
-    'Steel - Satin': { color: 0xf2f2f0, roughness: 0.28, metalness: 0.95 },
-  },
-};
-
-const appearance = { ...APPEARANCE, ...(MODEL_APPEARANCE[name] || {}) };
-
-const buffer = fs.readFileSync(fbxPath).buffer;
-const group = new FBXLoader().parse(buffer, path.dirname(fbxPath) + '/');
-
 group.traverse((obj) => {
-  if (!obj.isMesh) return;
+  if (!(obj instanceof THREE.Mesh)) return;
   const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
-  const converted = mats.map((m) => {
-    if (!m) return m;
-    const name = m.name || '';
-    const preset = appearance[name];
-    const finalColor = preset?.color ?? m.color?.getHex?.() ?? 0x888888;
-    const opacity = preset?.opacity ?? 1;
-    const transparent = preset?.transparent ?? opacity < 1;
-    console.log(
-      `  ${obj.name} / ${name} → #${finalColor.toString(16).padStart(6, '0')}` +
-        (transparent ? ` opacity=${opacity}` : ''),
-    );
-    return new THREE.MeshStandardMaterial({
-      name,
-      color: finalColor,
-      roughness: preset?.roughness ?? 0.6,
-      metalness: preset?.metalness ?? 0.1,
-      side: preset?.side ?? m.side ?? THREE.FrontSide,
-      map: m.map || null,
-      transparent,
-      opacity,
-      depthWrite: preset?.depthWrite ?? true,
-    });
+  const converted = mats.map((mat) => {
+    if (mat instanceof THREE.MeshStandardMaterial || mat instanceof THREE.MeshBasicMaterial) {
+      return mat;
+    }
+    const next = new THREE.MeshStandardMaterial();
+    if (mat) {
+      next.name = mat.name;
+      if ('color' in mat) next.color.copy(mat.color);
+      if ('map' in mat) next.map = mat.map;
+      next.metalness = 0.05;
+      next.roughness = 0.7;
+    }
+    mat?.dispose?.();
+    return next;
   });
   obj.material = Array.isArray(obj.material) ? converted : converted[0];
-  if (converted.some((m) => m?.transparent)) obj.renderOrder = 1;
 });
 
-await new Promise((resolve, reject) => {
-  new GLTFExporter().parse(
-    group,
-    (result) => {
-      if (!(result instanceof ArrayBuffer)) {
-        reject(new Error('Expected binary GLB'));
-        return;
-      }
-      fs.writeFileSync(outPath, Buffer.from(result));
-      console.log(`Wrote ${outPath} (${result.byteLength} bytes)`);
-      resolve();
-    },
-    reject,
-    { binary: true },
-  );
-});
+const exporter = new GLTFExporter();
+const glb = await exporter.parseAsync(group, { binary: true });
+const bytes =
+  glb instanceof ArrayBuffer ? Buffer.from(glb) : Buffer.from(await glb.arrayBuffer());
+const absOut = path.resolve(outPath);
+fs.mkdirSync(path.dirname(absOut), { recursive: true });
+fs.writeFileSync(absOut, bytes);
+console.log(`wrote ${outPath} (${bytes.length} bytes)`);

@@ -8,6 +8,8 @@ import Fan from './pages/Fan';
 import Atas from './pages/Atas';
 import Phone from './pages/Phone';
 import Pendant from './pages/Pendant';
+import BrickLamp from './pages/BrickLamp';
+import Bludolph from './pages/Bludolph';
 import NotFound from './pages/NotFound';
 
 const NAV_ROUTES = new Set(['/', '/workspace', '/skills', '/about']);
@@ -20,6 +22,8 @@ const KNOWN_ROUTES = new Set([
   '/atas',
   '/phone',
   '/pendant',
+  '/brick-lamp',
+  '/bludolph',
 ]);
 
 function getRoute(): string {
@@ -49,6 +53,10 @@ function renderPage(route: string) {
       return <Phone />;
     case '/pendant':
       return <Pendant />;
+    case '/brick-lamp':
+      return <BrickLamp />;
+    case '/bludolph':
+      return <Bludolph />;
     default:
       return <NotFound />;
   }
@@ -86,7 +94,9 @@ export default function App() {
     route === '/fan' ||
     route === '/atas' ||
     route === '/phone' ||
-    route === '/pendant';
+    route === '/pendant' ||
+    route === '/brick-lamp' ||
+    route === '/bludolph';
   const isNotFound = !KNOWN_ROUTES.has(route);
   const showNav = !isDetail && !isNotFound;
   const activePath = NAV_ROUTES.has(route) ? route : '/';

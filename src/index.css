@@ -1019,7 +1019,9 @@ a {
 .atas .project__intro,
 .fan .project__intro,
 .phone .project__intro,
-.pendant .project__intro {
+.bludolph .project__intro,
+.pendant .project__intro,
+.brick-lamp .project__intro {
   grid-template-rows: auto 1fr;
   row-gap: 0;
 }
@@ -1027,7 +1029,9 @@ a {
 .project__intro .page-title,
 .fan .project__intro .fan__title,
 .phone .project__intro .phone__title,
-.pendant .project__intro .pendant__title {
+.bludolph .project__intro .bludolph__title,
+.pendant .project__intro .pendant__title,
+.brick-lamp .project__intro .brick-lamp__title {
   grid-column: 1;
   grid-row: 1;
   white-space: nowrap;
@@ -1037,6 +1041,7 @@ a {
 .atas .project__intro .project__facts,
 .fan .project__intro .project__facts,
 .phone .project__intro .phone__facts,
+.bludolph .project__intro .project__facts,
 .pendant .project__intro .project__facts {
   grid-column: 1;
   grid-row: 2;
@@ -1046,7 +1051,9 @@ a {
 .atas .project__intro > .project__hero,
 .fan .project__intro > .project__hero,
 .phone .project__intro > .project__hero,
-.pendant .project__intro > .project__hero {
+.bludolph .project__intro > .project__hero,
+.pendant .project__intro > .project__hero,
+.brick-lamp .project__intro > .project__hero {
   grid-column: 2;
   grid-row: 2;
 }
@@ -1963,6 +1970,180 @@ video.project__figure {
   }
 }
 
+/* ---------- bludolph ---------- */
+
+.construction-banner {
+  margin: 0 0 50px;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffd400 0 28px,
+    #111 28px 56px
+  );
+}
+
+.construction-banner span {
+  display: block;
+  padding: 18px 24px;
+  border-radius: calc(var(--radius) / 2);
+  background: #ffd400;
+  color: #111;
+  font-size: clamp(var(--text-xl), 6vw, var(--text-5xl));
+  font-weight: 900;
+  letter-spacing: -0.011em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.bludolph__title {
+  margin: 0;
+  font-size: clamp(var(--text-xl), 7vw, var(--text-5xl));
+  font-weight: 900;
+  letter-spacing: -0.011em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.bludolph .project__intro {
+  grid-template-columns: 1fr 1fr;
+  gap: 0 50px;
+  align-items: start;
+}
+
+.bludolph .project__intro .bludolph__title {
+  grid-column: 1 / -1;
+  margin-bottom: 24px;
+}
+
+.bludolph .project__intro .project__facts {
+  min-width: 0;
+}
+
+.bludolph .project__intro .project__facts p {
+  max-width: none;
+}
+
+.bludolph .project__intro > .project__hero {
+  width: 100%;
+  max-height: none;
+  align-self: start;
+}
+
+.bludolph .project__intro > .project__hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+/* figures share one height; each cell's flex-grow is its media's aspect
+   ratio (set inline), so nothing gets cropped */
+.bludolph__row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.bludolph__row > * {
+  flex-basis: 0;
+  min-width: 0;
+}
+
+.bludolph .project__section > * + * {
+  margin-top: 24px;
+}
+
+.bludolph .project__figure img,
+.bludolph .project__figure video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 767px) {
+  .bludolph__title {
+    white-space: normal;
+    font-size: clamp(var(--text-xl), 10vw, var(--text-3xl));
+  }
+
+  .bludolph .project__intro {
+    grid-template-columns: 1fr;
+  }
+
+  .bludolph__row {
+    flex-direction: column;
+  }
+
+  .bludolph__row > * {
+    flex: none !important;
+    width: 100%;
+  }
+}
+
+/* ---------- brick lamp ---------- */
+
+.brick-lamp__title {
+  margin: 0;
+  font-size: clamp(var(--text-xl), 7vw, var(--text-5xl));
+  font-weight: 900;
+  letter-spacing: -0.011em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.brick-lamp .project__intro {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.brick-lamp .project__intro .brick-lamp__title,
+.brick-lamp .project__intro > .project__hero {
+  grid-column: 1;
+}
+
+.brick-lamp .project__intro .brick-lamp__title {
+  grid-row: 1;
+}
+
+.brick-lamp .project__intro > .project__hero {
+  grid-row: 2;
+  width: 100%;
+  max-height: none;
+}
+
+.brick-lamp .project__intro > .project__hero img,
+.brick-lamp .project__figure img,
+.brick-lamp .project__figure video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.brick-lamp .project__row .project__figure img {
+  aspect-ratio: 4 / 3;
+}
+
+.brick-lamp .project__figure video {
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 767px) {
+  .brick-lamp__title {
+    white-space: normal;
+    font-size: clamp(var(--text-xl), 10vw, var(--text-3xl));
+  }
+
+  .brick-lamp .project__row,
+  .brick-lamp .project__row--three {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- fan (Figma frame: 1440 canvas, 50px margins, 50px gaps) ---------- */
 
 .fan {
@@ -2310,7 +2491,9 @@ video.project__figure {
   .atas .project__intro,
   .fan .project__intro,
   .phone .project__intro,
-  .pendant .project__intro {
+  .bludolph .project__intro,
+  .pendant .project__intro,
+  .brick-lamp .project__intro {
     grid-template-rows: none;
     gap: 24px;
   }
@@ -2318,17 +2501,22 @@ video.project__figure {
   .project__intro .page-title,
   .fan .project__intro .fan__title,
   .phone .project__intro .phone__title,
+  .bludolph .project__intro .bludolph__title,
   .pendant .project__intro .pendant__title,
+  .brick-lamp .project__intro .brick-lamp__title,
   .sign .project__intro .project__facts,
   .atas .project__intro .project__facts,
   .fan .project__intro .project__facts,
   .phone .project__intro .phone__facts,
+  .bludolph .project__intro .project__facts,
   .pendant .project__intro .project__facts,
   .sign .project__intro > .sign__hero,
   .atas .project__intro > .project__hero,
   .fan .project__intro > .project__hero,
   .phone .project__intro > .project__hero,
-  .pendant .project__intro > .project__hero {
+  .bludolph .project__intro > .project__hero,
+  .pendant .project__intro > .project__hero,
+  .brick-lamp .project__intro > .project__hero {
     grid-column: auto;
     grid-row: auto;
   }
