@@ -55,14 +55,13 @@ export default function Bludolph() {
         <div className="project__facts">
           <h2>what?</h2>
           <p>
-            a holiday ornament forever on the naughty list: a tiny Blucifer
-            with glowing red eyes, injection molded from recycled food-grade
-            industrial drums
+            Designing, building, and selling 45 injection molded christmas
+            ornaments with integrated LED eyes.
           </p>
-          <h2>why?</h2>
           <p>
-            designing, producing and selling a product made from recycled
-            material, from first sketch to market stall
+            Most of the material is upcycled: we shredded food-grade HDPE
+            barrels from the airport and injection molded the material into the
+            ornaments.
           </p>
           <h2>when?</h2>
           <p>fall 2026</p>
@@ -120,6 +119,7 @@ export default function Bludolph() {
             <img src={injection1} alt="Blue Bludolph ornament next to its open mold" />
           </Zoomable>
         </div>
+        <p className="caption">injection molding with an undercut</p>
         <div className="bludolph__row">
           <Zoomable as="figure" className="project__figure" style={{ flex: WIDE }}>
             <video src={assembly1} autoPlay loop muted playsInline />
@@ -154,6 +154,7 @@ export default function Bludolph() {
             <img src={sale2} alt="Handing a Bludolph ornament to a customer across the checkout table" />
           </Zoomable>
         </div>
+        <p className="caption">sold out all 45 units after 2 days at $50 a piece</p>
         <Zoomable as="figure" className="project__figure bludolph__pano">
           <img src={pano} alt="Panorama of the market booth with all student product displays" />
         </Zoomable>

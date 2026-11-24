@@ -2072,6 +2072,11 @@ video.project__figure {
   margin-top: 24px;
 }
 
+/* captions hug the row above them */
+.bludolph .project__section > .caption {
+  margin-top: 8px;
+}
+
 .bludolph .project__figure img,
 .bludolph .project__figure video {
   display: block;
