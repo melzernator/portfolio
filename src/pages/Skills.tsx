@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { img } from '../lib/img';
 import { video } from '../lib/video';
 
-const designImg = img('skills/design');
 const modellingImg = img('skills/3D-modelling');
 const printingImg = img('skills/3d-printing');
 const renderingImg = img('skills/rendering');
@@ -16,7 +15,6 @@ const keyshotLogo = img('skills/keyshot');
 const photoshopLogo = img('skills/photoshop');
 const vizcomLogo = img('skills/vizcom');
 const altiumLogo = img('skills/altium');
-const figmaLogo = img('skills/figma');
 const cncRoutingVideo = video('skills/cnc-routing');
 const cncCuttingVideo = video('skills/cnc-cutting');
 
@@ -216,41 +214,6 @@ export default function Skills() {
     <div className="page skills">
       <h1 className="page-title">skills</h1>
       <div className="skills__grid">
-        <button
-          type="button"
-          className={`skills__card skills__card--banner skills__card--flip-x ${isFlipped('design') ? 'is-flipped' : ''}`}
-          onClick={() => toggle('design')}
-          aria-pressed={isFlipped('design')}
-          aria-label={isFlipped('design') ? 'Hide details for design' : 'Show details for design'}
-        >
-          <div className="skills__wiggle">
-            <div className="skills__flip">
-              <div className="skills__face skills__face--front">
-                <SkillMedia src={designImg} alt="" />
-                <span className="skills__label">design</span>
-                <FlipHint />
-              </div>
-              <div className="skills__face skills__face--back skills__face--design">
-                <div className="skills__design-intro">
-                  <h2 className="skills__back-title">design</h2>
-                  <p>asking why a couple of times can reveal the underlying design problem.</p>
-                </div>
-                <div className="skills__cloud">
-                  <span style={{ left: '41.4%', top: '22%' }}>observation</span>
-                  <span style={{ left: '32.6%', top: '46.9%' }}>testing</span>
-                  <span style={{ left: '54.3%', top: '46.9%' }}>ideation</span>
-                  <span style={{ left: '41.1%', top: '70.5%' }}>prototyping</span>
-                </div>
-                <img
-                  className="skills__design-logo"
-                  src={figmaLogo}
-                  alt="figma"
-                  style={{ left: '89.7%', top: '18.9%', width: '6.9%' }}
-                />
-              </div>
-            </div>
-          </div>
-        </button>
 
         {skills.map((skill) => (
           <button

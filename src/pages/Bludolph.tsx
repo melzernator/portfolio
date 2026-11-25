@@ -55,7 +55,7 @@ export default function Bludolph() {
         <div className="project__facts">
           <h2>what?</h2>
           <p>
-            Designing, building, and selling 45 injection molded christmas
+            Designing, building, and selling 50 injection molded christmas
             ornaments with integrated LED eyes.
           </p>
           <p>
@@ -64,7 +64,7 @@ export default function Bludolph() {
             ornaments.
           </p>
           <h2>when?</h2>
-          <p>fall 2026</p>
+          <p>August 2026 - November 2026</p>
           <h2>where?</h2>
           <p>Boulder, Colorado</p>
           <h2>who?</h2>
@@ -154,7 +154,7 @@ export default function Bludolph() {
             <img src={sale2} alt="Handing a Bludolph ornament to a customer across the checkout table" />
           </Zoomable>
         </div>
-        <p className="caption">sold out all 45 units after 2 days at $50 a piece</p>
+        <p className="caption">sold out all 50 units after 2 days at $50 a piece</p>
         <Zoomable as="figure" className="project__figure bludolph__pano">
           <img src={pano} alt="Panorama of the market booth with all student product displays" />
         </Zoomable>
